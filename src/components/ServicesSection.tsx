@@ -29,7 +29,7 @@ const services = [
     icon: Wrench,
     title: "Manutenzione coperture",
     description: "Piani di manutenzione programmata per garantire durata e sicurezza.",
-    href: "/servizi/manutenzione-coperture",
+    href: "/servizi",
   },
 ];
 const ServicesSection = () => {
