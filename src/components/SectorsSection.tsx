@@ -1,4 +1,6 @@
 import { Factory, Warehouse, Truck, Store, Building2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 const sectors = [
   { icon: Factory, title: "Industria", description: "Stabilimenti produttivi e impianti industriali." },
@@ -8,11 +10,136 @@ const sectors = [
   { icon: Building2, title: "Edifici industriali", description: "Uffici, laboratori e strutture direzionali." },
 ];
 
+const TimelineItem = ({
+  sector,
+  index,
+}: {
+  sector: (typeof sectors)[0];
+  index: number;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const isRight = index % 2 === 0;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const Icon = sector.icon;
+
+  return (
+    <div ref={ref} className="relative flex items-center w-full">
+      {/* Desktop layout */}
+      <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] w-full items-center gap-0">
+        {/* Left column */}
+        <div className={`flex ${isRight ? "justify-end" : "justify-end"}`}>
+          {!isRight ? (
+            <Link
+              to="/settori"
+              className={`block max-w-md w-full p-6 rounded-lg border border-border bg-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-8"
+              } transition-all duration-500 ease-out`}
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-heading font-semibold text-foreground mb-1">{sector.title}</h3>
+                  <p className="text-sm text-muted-foreground">{sector.description}</p>
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
+        </div>
+
+        {/* Center node */}
+        <div className="flex flex-col items-center relative z-10">
+          <div
+            className={`w-4 h-4 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
+              isVisible ? "scale-100" : "scale-0"
+            }`}
+          />
+        </div>
+
+        {/* Right column */}
+        <div className="flex justify-start">
+          {isRight ? (
+            <Link
+              to="/settori"
+              className={`block max-w-md w-full p-6 rounded-lg border border-border bg-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-8"
+              } transition-all duration-500 ease-out`}
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-heading font-semibold text-foreground mb-1">{sector.title}</h3>
+                  <p className="text-sm text-muted-foreground">{sector.description}</p>
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
+        </div>
+      </div>
+
+      {/* Mobile layout */}
+      <div className="flex lg:hidden items-start gap-4 w-full">
+        <div className="flex flex-col items-center shrink-0">
+          <div
+            className={`w-3 h-3 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
+              isVisible ? "scale-100" : "scale-0"
+            }`}
+          />
+        </div>
+        <Link
+          to="/settori"
+          className={`block flex-1 p-5 rounded-lg border border-border bg-card hover:shadow-card-hover transition-all duration-300 group ${
+            isVisible
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 translate-x-6"
+          } transition-all duration-500 ease-out`}
+        >
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+              <Icon className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-foreground mb-1 text-sm">{sector.title}</h3>
+              <p className="text-xs text-muted-foreground">{sector.description}</p>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
 const SectorsSection = () => {
   return (
     <section className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
             Settori serviti
           </h2>
@@ -21,19 +148,18 @@ const SectorsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {sectors.map((sector) => (
-            <div
-              key={sector.title}
-              className="text-center p-6 rounded-lg hover:bg-muted transition-colors group"
-            >
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                <sector.icon className="w-7 h-7 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-foreground mb-2">{sector.title}</h3>
-              <p className="text-sm text-muted-foreground">{sector.description}</p>
-            </div>
-          ))}
+        {/* Timeline */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Vertical line - desktop */}
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 -translate-x-1/2" />
+          {/* Vertical line - mobile */}
+          <div className="lg:hidden absolute left-[5px] top-0 bottom-0 w-0.5 bg-primary/20" />
+
+          <div className="flex flex-col gap-10 lg:gap-12">
+            {sectors.map((sector, index) => (
+              <TimelineItem key={sector.title} sector={sector} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
