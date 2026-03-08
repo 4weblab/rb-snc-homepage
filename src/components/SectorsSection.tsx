@@ -41,7 +41,7 @@ const TimelineItem = ({
   return (
     <div ref={ref} className="relative flex items-center w-full">
       {/* Desktop layout */}
-      <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] w-full items-center gap-0">
+      <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] w-full items-center gap-8">
         {/* Left column */}
         <div className={`flex ${isRight ? "justify-end" : "justify-end"}`}>
           {!isRight ? (
@@ -69,7 +69,7 @@ const TimelineItem = ({
         </div>
 
         {/* Center node */}
-        <div className="flex flex-col items-center relative z-10">
+        <div className="flex flex-col items-center relative z-10 px-4">
           <div
             className={`w-4 h-4 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
               isVisible ? "scale-100" : "scale-0"
@@ -105,7 +105,7 @@ const TimelineItem = ({
       </div>
 
       {/* Mobile layout */}
-      <div className="flex lg:hidden items-center gap-4 w-full">
+      <div className="flex lg:hidden items-center gap-6 w-full">
         <div className="flex flex-col items-center shrink-0">
           <div
             className={`w-3 h-3 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
