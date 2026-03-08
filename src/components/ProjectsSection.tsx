@@ -26,7 +26,7 @@ const ProjectsSection = () => {
     <section className="py-20 lg:py-28 bg-muted">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-14">
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
             Realizzazioni
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">

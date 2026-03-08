@@ -150,7 +150,7 @@ const SectorsSection = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
             Settori serviti
           </h2>
           <p className="text-white/70 max-w-xl mx-auto">

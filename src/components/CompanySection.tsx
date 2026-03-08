@@ -6,7 +6,7 @@ const CompanySection = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-6">
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
               Esperienza e affidabilità nel settore delle coperture
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">

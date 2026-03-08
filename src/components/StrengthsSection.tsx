@@ -27,7 +27,7 @@ const StrengthsSection = () => {
           {strengths.map((item) =>
           <div key={item.title} className="text-center">
               <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-5">
-                <item.icon className="w-8 h-8 text-white" />
+                <item.icon className="w-9 h-9 text-white" />
               </div>
               <h3 className="font-heading font-semibold text-white mb-2">{item.title}</h3>
               <p className="text-sm text-white/70">{item.description}</p>

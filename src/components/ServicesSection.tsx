@@ -71,7 +71,7 @@ const ServicesSection = () => {
               {/* Content */}
               <div className="relative z-10 p-8">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 lg:group-hover:bg-white/20 transition-colors ring-1 ring-primary/10">
-                  <service.icon className="w-6 h-6 text-primary lg:group-hover:text-white transition-colors" />
+                  <service.icon className="w-7 h-7 text-primary lg:group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-lg font-heading font-semibold text-foreground lg:group-hover:text-white transition-colors mb-2">
                   {service.title}
