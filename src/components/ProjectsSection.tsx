@@ -60,8 +60,8 @@ const ProjectsSection = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="hero" size="lg">
-            Vedi tutte le realizzazioni
+          <Button asChild variant="hero" size="lg">
+            <Link to="/realizzazioni">Vedi tutte le realizzazioni</Link>
           </Button>
         </div>
       </div>
