@@ -5,8 +5,8 @@ const brands = [
 
 const BrandsSection = () => {
   return (
-    <section className="py-16 bg-[hsl(var(--navy))] overflow-hidden">
-      <div className="container mx-auto px-4 mb-10">
+    <section className="py-10 bg-[hsl(var(--navy))] overflow-hidden">
+      <div className="container mx-auto px-4 mb-6">
         <p className="text-center text-sm uppercase tracking-widest text-[hsl(var(--steel))]">
           Collaboriamo con soluzioni e materiali di qualità
         </p>
