@@ -38,8 +38,8 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden lg:block">
-          <Button variant="hero" size="sm">
-            Contattaci
+          <Button asChild variant="hero" size="sm">
+            <Link to="/contatti">Contattaci</Link>
           </Button>
         </div>
 
