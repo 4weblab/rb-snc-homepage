@@ -53,8 +53,9 @@ const TimelineItem = ({
                   : "opacity-0 -translate-x-8"
               } transition-all duration-500 ease-out`}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+              <div className="h-1 bg-primary" />
+              <div className="flex items-start gap-4 p-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors ring-1 ring-primary/10">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
