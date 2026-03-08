@@ -1,14 +1,14 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const footerLinks = [
-  { label: "Home", href: "/" },
-  { label: "Chi siamo", href: "/chi-siamo" },
-  { label: "Servizi", href: "/servizi" },
-  { label: "Settori", href: "/settori" },
-  { label: "Realizzazioni", href: "/realizzazioni" },
-  { label: "Certificazioni", href: "/certificazioni" },
-  { label: "Contatti", href: "/contatti" },
-];
+{ label: "Home", href: "/" },
+{ label: "Chi siamo", href: "/chi-siamo" },
+{ label: "Servizi", href: "/servizi" },
+{ label: "Settori", href: "/settori" },
+{ label: "Realizzazioni", href: "/realizzazioni" },
+{ label: "Certificazioni", href: "/certificazioni" },
+{ label: "Contatti", href: "/contatti" }];
+
 
 const Footer = () => {
   return (
@@ -29,16 +29,16 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-semibold text-background mb-4">Pagine</h4>
             <ul className="space-y-2">
-              {footerLinks.map((link) => (
-                <li key={link.href}>
+              {footerLinks.map((link) =>
+              <li key={link.href}>
                   <a
-                    href={link.href}
-                    className="text-sm text-background/60 hover:text-background transition-colors"
-                  >
+                  href={link.href}
+                  className="text-sm text-background/60 hover:text-background transition-colors">
+                  
                     {link.label}
                   </a>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -59,7 +59,7 @@ const Footer = () => {
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-background/40 shrink-0" />
                 <a href="mailto:info@rb-snc.it" className="text-background/60 hover:text-background transition-colors">
-                  info@rb-snc.it
+                  info@4weblab.it
                 </a>
               </li>
             </ul>
@@ -70,8 +70,8 @@ const Footer = () => {
           © {new Date().getFullYear()} RB SNC — Tutti i diritti riservati. P.IVA 00000000000
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 };
 
 export default Footer;
