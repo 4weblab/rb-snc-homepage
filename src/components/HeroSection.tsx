@@ -21,7 +21,7 @@ const HeroSection = () => {
             Coperture industriali e bonifica amianto
           </h1>
           <p className="text-lg md:text-xl text-navy-foreground/80 mb-10 leading-relaxed max-w-2xl" style={{ animationDelay: "0.15s" }}>
-            Soluzioni professionali per tetti industriali, rifacimenti e messa in sicurezza delle coperture.
+            Interventi professionali su coperture industriali, capannoni e strutture produttive, con soluzioni sicure per la bonifica amianto e il rifacimento dei tetti.
           </p>
           <div className="flex flex-col sm:flex-row gap-4" style={{ animationDelay: "0.3s" }}>
             <Button variant="hero" size="xl">
