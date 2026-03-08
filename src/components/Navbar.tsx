@@ -69,8 +69,8 @@ const Navbar = () => {
               </li>
           )}
             <li className="mt-2">
-              <Button variant="hero" size="sm" className="w-full">
-                Contattaci
+              <Button asChild variant="hero" size="sm" className="w-full">
+                <Link to="/contatti">Contattaci</Link>
               </Button>
             </li>
           </ul>
