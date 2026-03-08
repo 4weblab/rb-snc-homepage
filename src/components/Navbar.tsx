@@ -19,7 +19,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
         <a href="/" className="font-heading text-2xl font-bold tracking-tight text-primary">
-          RB <span className="text-foreground">​WEBLAB</span>
+          4 <span className="text-foreground">​WEBLAB</span>
         </a>
 
         {/* Desktop */}
