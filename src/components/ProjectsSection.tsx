@@ -38,8 +38,10 @@ const ProjectsSection = () => {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group bg-card rounded-lg overflow-hidden border border-border shadow-card hover:shadow-card-hover transition-all duration-300"
+              className="group bg-card rounded-xl overflow-hidden border border-border/60 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
             >
+              {/* Accent line */}
+              <div className="h-1 bg-primary" />
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={project.image}
