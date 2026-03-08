@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
@@ -60,8 +61,8 @@ const ProjectsSection = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="hero" size="lg">
-            Vedi tutte le realizzazioni
+          <Button asChild variant="hero" size="lg">
+            <Link to="/realizzazioni">Vedi tutte le realizzazioni</Link>
           </Button>
         </div>
       </div>
