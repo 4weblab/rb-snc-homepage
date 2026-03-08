@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroBg1 from "@/assets/hero-bg.jpg";
 import heroBg2 from "@/assets/hero-bg-2.jpg";
 import heroBg3 from "@/assets/hero-bg-3.jpg";
@@ -50,8 +51,8 @@ const HeroSection = () => {
             Interventi professionali su coperture industriali, capannoni e strutture produttive, con soluzioni sicure per la bonifica amianto e il rifacimento dei tetti.
           </p>
           <div className="flex flex-col sm:flex-row gap-4" style={{ animationDelay: "0.3s" }}>
-            <Button variant="hero" size="xl" className="font-semibold">
-              Richiedi informazioni
+            <Button asChild variant="hero" size="xl" className="font-semibold">
+              <Link to="/contatti">Richiedi informazioni</Link>
             </Button>
           </div>
         </div>

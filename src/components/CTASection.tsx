@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const CTASection = () => {
   return (
@@ -10,8 +11,8 @@ const CTASection = () => {
         <p className="text-navy-foreground/70 max-w-lg mx-auto mb-10">
           Contattaci per un sopralluogo gratuito e un preventivo personalizzato.
         </p>
-        <Button variant="cta" size="xl">
-          Contattaci
+        <Button asChild variant="cta" size="xl">
+          <Link to="/contatti">Contattaci</Link>
         </Button>
       </div>
     </section>

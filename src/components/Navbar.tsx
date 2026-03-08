@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const navLinks = [
 { label: "Home", href: "/" },
@@ -37,8 +38,8 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden lg:block">
-          <Button variant="hero" size="sm">
-            Contattaci
+          <Button asChild variant="hero" size="sm">
+            <Link to="/contatti">Contattaci</Link>
           </Button>
         </div>
 
@@ -68,8 +69,8 @@ const Navbar = () => {
               </li>
           )}
             <li className="mt-2">
-              <Button variant="hero" size="sm" className="w-full">
-                Contattaci
+              <Button asChild variant="hero" size="sm" className="w-full">
+                <Link to="/contatti">Contattaci</Link>
               </Button>
             </li>
           </ul>
