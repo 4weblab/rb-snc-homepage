@@ -20,7 +20,7 @@ const services = [
     title: "Rifacimento tetti",
     description: "Interventi completi di rifacimento e ristrutturazione coperture esistenti.",
     href: "/servizi",
-    image: "https://images.unsplash.com/photo-1632863790675-1e4da72c5f97?w=600&q=80&fit=crop",
+    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=80&fit=crop",
   },
   {
     icon: Layers,
