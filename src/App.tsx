@@ -4,6 +4,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import ChiSiamo from "./pages/ChiSiamo";
+import Servizi from "./pages/Servizi";
+import Settori from "./pages/Settori";
+import Realizzazioni from "./pages/Realizzazioni";
+import Certificazioni from "./pages/Certificazioni";
+import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
