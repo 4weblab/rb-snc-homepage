@@ -45,12 +45,12 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {services.map((service) => (
             <a
               key={service.title}
               href={service.href}
-              className="group bg-card rounded-lg border border-border p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group bg-card rounded-lg border border-border p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                 <service.icon className="w-6 h-6 text-primary" />
