@@ -5,31 +5,31 @@ const services = [
     icon: ShieldCheck,
     title: "Bonifica amianto",
     description: "Rimozione e smaltimento amianto in conformità alle normative vigenti.",
-    href: "/servizi/bonifica-amianto",
+    href: "/servizi",
   },
   {
     icon: Factory,
     title: "Coperture industriali",
     description: "Progettazione e posa di coperture metalliche per edifici industriali e commerciali.",
-    href: "/servizi/coperture-industriali",
+    href: "/servizi",
   },
   {
     icon: Hammer,
     title: "Rifacimento tetti",
     description: "Interventi completi di rifacimento e ristrutturazione coperture esistenti.",
-    href: "/servizi/rifacimento-tetti",
+    href: "/servizi",
   },
   {
     icon: Layers,
     title: "Sovracoperture",
     description: "Installazione di sovracoperture per migliorare isolamento e prestazioni.",
-    href: "/servizi/sovracoperture",
+    href: "/servizi",
   },
   {
     icon: Wrench,
     title: "Manutenzione coperture",
     description: "Piani di manutenzione programmata per garantire durata e sicurezza.",
-    href: "/servizi/manutenzione-coperture",
+    href: "/servizi",
   },
 ];
 const ServicesSection = () => {
