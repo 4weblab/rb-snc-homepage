@@ -18,7 +18,7 @@ const StrengthsSection = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-14">
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
             Perché scegliere 4 WEBLAB 
           </h2>
         </div>
