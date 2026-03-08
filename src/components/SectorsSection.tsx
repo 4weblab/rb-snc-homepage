@@ -83,7 +83,7 @@ const TimelineItem = ({
           {isRight ? (
             <Link
               to="/settori"
-              className={`block max-w-md w-full p-6 rounded-lg border border-border bg-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group ${
+              className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${
                 isVisible
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 translate-x-8"
