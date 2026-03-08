@@ -6,32 +6,38 @@ const services = [
     title: "Bonifica amianto",
     description: "Rimozione e smaltimento amianto in conformità alle normative vigenti.",
     href: "/servizi",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&fit=crop",
   },
   {
     icon: Factory,
     title: "Coperture industriali",
     description: "Progettazione e posa di coperture metalliche per edifici industriali e commerciali.",
     href: "/servizi",
+    image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=80&fit=crop",
   },
   {
     icon: Hammer,
     title: "Rifacimento tetti",
     description: "Interventi completi di rifacimento e ristrutturazione coperture esistenti.",
     href: "/servizi",
+    image: "https://images.unsplash.com/photo-1632863790675-1e4da72c5f97?w=600&q=80&fit=crop",
   },
   {
     icon: Layers,
     title: "Sovracoperture",
     description: "Installazione di sovracoperture per migliorare isolamento e prestazioni.",
     href: "/servizi",
+    image: "https://images.unsplash.com/photo-1590846083693-f23fdede3a7e?w=600&q=80&fit=crop",
   },
   {
     icon: Wrench,
     title: "Manutenzione coperture",
     description: "Piani di manutenzione programmata per garantire durata e sicurezza.",
     href: "/servizi",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&fit=crop",
   },
 ];
+
 const ServicesSection = () => {
   return (
     <section className="py-20 lg:py-28 bg-background">
@@ -50,20 +56,30 @@ const ServicesSection = () => {
             <a
               key={service.title}
               href={service.href}
-              className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group bg-card rounded-lg border border-border p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              className="relative overflow-hidden w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group bg-card rounded-lg border border-border p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                <service.icon className="w-6 h-6 text-primary" />
+              {/* Hover image overlay — desktop only */}
+              <div
+                className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-300 ease-out bg-cover bg-center rounded-lg"
+                style={{ backgroundImage: `url(${service.image})` }}
+              />
+              <div className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/70 via-black/40 to-black/20 rounded-lg" />
+
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 lg:group-hover:bg-white/20 transition-colors">
+                  <service.icon className="w-6 h-6 text-primary lg:group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-heading font-semibold text-foreground lg:group-hover:text-white transition-colors mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-muted-foreground lg:group-hover:text-white/80 transition-colors leading-relaxed">
+                  {service.description}
+                </p>
+                <span className="inline-block mt-4 text-sm font-medium text-primary lg:group-hover:text-white transition-colors group-hover:underline">
+                  Scopri di più →
+                </span>
               </div>
-              <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
-              <span className="inline-block mt-4 text-sm font-medium text-primary group-hover:underline">
-                Scopri di più →
-              </span>
             </a>
           ))}
         </div>
