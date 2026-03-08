@@ -18,7 +18,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <a href="/" className="font-heading text-2xl font-bold text-background">
-              RB <span className="text-primary-foreground/60">SNC</span>
+              4 <span className="text-primary-foreground/60">WEBLAB</span>
             </a>
             <p className="mt-4 text-sm leading-relaxed text-background/60">
               Coperture industriali, bonifica amianto e manutenzione tetti per il settore industriale e commerciale.
