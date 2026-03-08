@@ -16,8 +16,8 @@ const CompanySection = () => {
             <p className="text-muted-foreground leading-relaxed mb-8">
               Dalla progettazione alla realizzazione, accompagniamo i clienti con soluzioni personalizzate e un servizio di assistenza dedicato.
             </p>
-            <Button variant="hero" size="lg">
-              Scopri l'azienda
+            <Button asChild variant="hero" size="lg">
+              <Link to="/chi-siamo">Scopri l'azienda</Link>
             </Button>
           </div>
           <div className="grid grid-cols-2 gap-4">
