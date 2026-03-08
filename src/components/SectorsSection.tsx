@@ -69,7 +69,7 @@ const TimelineItem = ({
         </div>
 
         {/* Center node */}
-        <div className="flex flex-col items-center relative z-10">
+        <div className="flex flex-col items-center relative z-10 px-4">
           <div
             className={`w-4 h-4 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
               isVisible ? "scale-100" : "scale-0"
