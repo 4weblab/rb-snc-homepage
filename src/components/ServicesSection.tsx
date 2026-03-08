@@ -11,7 +11,7 @@ const services = [
     icon: Factory,
     title: "Coperture industriali",
     description: "Progettazione e posa di coperture metalliche per edifici industriali e commerciali.",
-    href: "/servizi/coperture-industriali",
+    href: "/servizi",
   },
   {
     icon: Hammer,
