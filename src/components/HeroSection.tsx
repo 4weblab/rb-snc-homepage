@@ -20,7 +20,7 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-navy-foreground leading-tight mb-6 animate-fade-in-up">
             Coperture industriali e bonifica amianto
           </h1>
-          <p className="text-lg md:text-xl text-navy-foreground/80 mb-10 leading-relaxed max-w-2xl" style={{ animationDelay: "0.15s" }}>
+          <p className="text-xl md:text-2xl font-heading font-semibold text-navy-foreground/85 mb-10 leading-relaxed max-w-2xl" style={{ animationDelay: "0.15s" }}>
             Interventi professionali su coperture industriali, capannoni e strutture produttive, con soluzioni sicure per la bonifica amianto e il rifacimento dei tetti.
           </p>
           <div className="flex flex-col sm:flex-row gap-4" style={{ animationDelay: "0.3s" }}>
