@@ -23,7 +23,7 @@ const services = [
     icon: Layers,
     title: "Sovracoperture",
     description: "Installazione di sovracoperture per migliorare isolamento e prestazioni.",
-    href: "/servizi/sovracoperture",
+    href: "/servizi",
   },
   {
     icon: Wrench,
