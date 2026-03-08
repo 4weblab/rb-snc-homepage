@@ -43,7 +43,7 @@ const ServicesSection = () => {
     <section className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-14">
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
             I nostri servizi
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
@@ -71,7 +71,7 @@ const ServicesSection = () => {
               {/* Content */}
               <div className="relative z-10 p-8">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 lg:group-hover:bg-white/20 transition-colors ring-1 ring-primary/10">
-                  <service.icon className="w-6 h-6 text-primary lg:group-hover:text-white transition-colors" />
+                  <service.icon className="w-7 h-7 text-primary lg:group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-lg font-heading font-semibold text-foreground lg:group-hover:text-white transition-colors mb-2">
                   {service.title}
