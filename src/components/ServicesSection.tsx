@@ -17,7 +17,7 @@ const services = [
     icon: Hammer,
     title: "Rifacimento tetti",
     description: "Interventi completi di rifacimento e ristrutturazione coperture esistenti.",
-    href: "/servizi/rifacimento-tetti",
+    href: "/servizi",
   },
   {
     icon: Layers,
