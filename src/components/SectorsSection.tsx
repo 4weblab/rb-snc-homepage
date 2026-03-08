@@ -47,14 +47,15 @@ const TimelineItem = ({
           {!isRight ? (
             <Link
               to="/settori"
-              className={`block max-w-md w-full p-6 rounded-lg border border-border bg-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group ${
+              className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${
                 isVisible
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 -translate-x-8"
               } transition-all duration-500 ease-out`}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+              <div className="h-1 bg-primary" />
+              <div className="flex items-start gap-4 p-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors ring-1 ring-primary/10">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
@@ -82,14 +83,15 @@ const TimelineItem = ({
           {isRight ? (
             <Link
               to="/settori"
-              className={`block max-w-md w-full p-6 rounded-lg border border-border bg-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group ${
+              className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${
                 isVisible
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 translate-x-8"
               } transition-all duration-500 ease-out`}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+              <div className="h-1 bg-primary" />
+              <div className="flex items-start gap-4 p-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors ring-1 ring-primary/10">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
@@ -115,14 +117,15 @@ const TimelineItem = ({
         </div>
         <Link
           to="/settori"
-          className={`block flex-1 p-5 rounded-lg border border-border bg-card hover:shadow-card-hover transition-all duration-300 group ${
+          className={`block flex-1 rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover transition-all duration-300 group overflow-hidden ${
             isVisible
               ? "opacity-100 translate-x-0"
               : "opacity-0 translate-x-6"
           } transition-all duration-500 ease-out`}
         >
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+          <div className="h-1 bg-primary" />
+          <div className="flex items-start gap-3 p-5">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors ring-1 ring-primary/10">
               <Icon className="w-5 h-5 text-primary" />
             </div>
             <div>

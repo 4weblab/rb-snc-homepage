@@ -56,18 +56,21 @@ const ServicesSection = () => {
             <a
               key={service.title}
               href={service.href}
-              className="relative overflow-hidden w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group bg-card rounded-lg border border-border p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              className="relative overflow-hidden w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group bg-card rounded-xl border border-border/60 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
+              {/* Accent line */}
+              <div className="h-1 bg-primary lg:group-hover:opacity-0 transition-opacity duration-300" />
+
               {/* Hover image overlay — desktop only */}
               <div
-                className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-300 ease-out bg-cover bg-center rounded-lg"
+                className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-300 ease-out bg-cover bg-center rounded-xl"
                 style={{ backgroundImage: `url(${service.image})` }}
               />
-              <div className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/70 via-black/40 to-black/20 rounded-lg" />
+              <div className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/70 via-black/40 to-black/20 rounded-xl" />
 
               {/* Content */}
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 lg:group-hover:bg-white/20 transition-colors">
+              <div className="relative z-10 p-8">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 lg:group-hover:bg-white/20 transition-colors ring-1 ring-primary/10">
                   <service.icon className="w-6 h-6 text-primary lg:group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-lg font-heading font-semibold text-foreground lg:group-hover:text-white transition-colors mb-2">
