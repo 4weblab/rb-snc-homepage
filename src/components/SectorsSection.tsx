@@ -104,7 +104,7 @@ const TimelineItem = ({
       </div>
 
       {/* Mobile layout */}
-      <div className="flex lg:hidden items-start gap-4 w-full">
+      <div className="flex lg:hidden items-center gap-4 w-full">
         <div className="flex flex-col items-center shrink-0">
           <div
             className={`w-3 h-3 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
