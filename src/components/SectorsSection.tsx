@@ -138,13 +138,19 @@ const TimelineItem = ({
 
 const SectorsSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section
+      className="py-20 lg:py-28 relative bg-cover bg-center bg-fixed max-md:bg-scroll"
+      style={{ backgroundImage: `url(${sectorsBg})` }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/45" />
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white mb-4">
             Settori serviti
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-white/70 max-w-xl mx-auto">
             Operiamo in diversi contesti del settore industriale e commerciale.
           </p>
         </div>
@@ -152,9 +158,9 @@ const SectorsSection = () => {
         {/* Timeline */}
         <div className="relative max-w-4xl mx-auto">
           {/* Vertical line - desktop */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 -translate-x-1/2" />
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-white/30 -translate-x-1/2" />
           {/* Vertical line - mobile */}
-          <div className="lg:hidden absolute left-[5px] top-0 bottom-0 w-0.5 bg-primary/20" />
+          <div className="lg:hidden absolute left-[5px] top-0 bottom-0 w-0.5 bg-white/30" />
 
           <div className="flex flex-col gap-10 lg:gap-12">
             {sectors.map((sector, index) => (
