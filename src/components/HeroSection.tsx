@@ -1,16 +1,42 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg1 from "@/assets/hero-bg.jpg";
+import heroBg2 from "@/assets/hero-bg-2.jpg";
+import heroBg3 from "@/assets/hero-bg-3.jpg";
+import heroBg4 from "@/assets/hero-bg-4.jpg";
+
+const heroImages = [
+  { src: heroBg1, alt: "Coperture industriali - RB SNC" },
+  { src: heroBg2, alt: "Installazione coperture metalliche" },
+  { src: heroBg3, alt: "Capannoni industriali" },
+  { src: heroBg4, alt: "Bonifica amianto su coperture" },
+];
 
 const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-      {/* Background image */}
+      {/* Background carousel */}
       <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Coperture industriali - RB SNC"
-          className="w-full h-full object-cover"
-        />
+        {heroImages.map((image, index) => (
+          <img
+            key={image.alt}
+            src={image.src}
+            alt={image.alt}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: index === currentIndex ? 1 : 0 }}
+          />
+        ))}
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.35)" }} />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/75 to-navy/50" />
       </div>
 
