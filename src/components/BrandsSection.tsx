@@ -20,7 +20,7 @@ const BrandsSection = () => {
           {[...brands, ...brands].map((brand, i) => (
             <div
               key={`${brand}-${i}`}
-              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center h-16 md:h-20 px-6 md:px-8"
+              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center h-12 md:h-14 px-6 md:px-8"
             >
               <span className="text-lg md:text-xl font-heading font-bold text-primary-foreground/50 hover:text-primary-foreground/90 transition-opacity duration-300 whitespace-nowrap select-none">
                 {brand}

@@ -42,13 +42,14 @@ const ProjectsSection = () => {
             >
               {/* Accent line */}
               <div className="h-1 bg-primary" />
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden relative">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-[0.95] contrast-[1.02] saturate-[0.9]"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10 pointer-events-none" />
               </div>
               <div className="p-6">
                 <h3 className="font-heading font-semibold text-foreground mb-2">{project.title}</h3>
