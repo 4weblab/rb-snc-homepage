@@ -117,7 +117,7 @@ const TimelineItem = ({
         </div>
         <Link
           to="/settori"
-          className={`block flex-1 p-5 rounded-lg border border-border bg-card hover:shadow-card-hover transition-all duration-300 group ${
+          className={`block flex-1 rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover transition-all duration-300 group overflow-hidden ${
             isVisible
               ? "opacity-100 translate-x-0"
               : "opacity-0 translate-x-6"
