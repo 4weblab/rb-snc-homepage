@@ -41,7 +41,7 @@ const TimelineItem = ({
   return (
     <div ref={ref} className="relative flex items-center w-full">
       {/* Desktop layout */}
-      <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] w-full items-center gap-0">
+      <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] w-full items-center gap-8">
         {/* Left column */}
         <div className={`flex ${isRight ? "justify-end" : "justify-end"}`}>
           {!isRight ? (
