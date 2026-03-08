@@ -2,16 +2,16 @@ import { Factory, ShieldCheck, Hammer, Layers, Wrench } from "lucide-react";
 
 const services = [
   {
-    icon: Factory,
-    title: "Coperture industriali",
-    description: "Progettazione e posa di coperture metalliche per edifici industriali e commerciali.",
-    href: "/servizi/coperture-industriali",
-  },
-  {
     icon: ShieldCheck,
     title: "Bonifica amianto",
     description: "Rimozione e smaltimento amianto in conformità alle normative vigenti.",
     href: "/servizi/bonifica-amianto",
+  },
+  {
+    icon: Factory,
+    title: "Coperture industriali",
+    description: "Progettazione e posa di coperture metalliche per edifici industriali e commerciali.",
+    href: "/servizi/coperture-industriali",
   },
   {
     icon: Hammer,
@@ -32,7 +32,6 @@ const services = [
     href: "/servizi/manutenzione-coperture",
   },
 ];
-
 const ServicesSection = () => {
   return (
     <section className="py-20 lg:py-28 bg-background">
