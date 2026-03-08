@@ -5,8 +5,8 @@ const brands = [
 
 const BrandsSection = () => {
   return (
-    <section className="py-16 bg-[hsl(var(--navy))] overflow-hidden">
-      <div className="container mx-auto px-4 mb-10">
+    <section className="py-10 bg-[hsl(var(--navy))] overflow-hidden">
+      <div className="container mx-auto px-4 mb-6">
         <p className="text-center text-sm uppercase tracking-widest text-[hsl(var(--steel))]">
           Collaboriamo con soluzioni e materiali di qualità
         </p>
@@ -20,7 +20,7 @@ const BrandsSection = () => {
           {[...brands, ...brands].map((brand, i) => (
             <div
               key={`${brand}-${i}`}
-              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center h-16 md:h-20 px-6 md:px-8"
+              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center h-12 md:h-14 px-6 md:px-8"
             >
               <span className="text-lg md:text-xl font-heading font-bold text-primary-foreground/50 hover:text-primary-foreground/90 transition-opacity duration-300 whitespace-nowrap select-none">
                 {brand}
