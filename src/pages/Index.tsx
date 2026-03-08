@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import CompanySection from "@/components/CompanySection";
+import BrandsSection from "@/components/BrandsSection";
 import SectorsSection from "@/components/SectorsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import StrengthsSection from "@/components/StrengthsSection";
