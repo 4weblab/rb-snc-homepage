@@ -5,7 +5,7 @@ const services = [
     icon: ShieldCheck,
     title: "Bonifica amianto",
     description: "Rimozione e smaltimento amianto in conformità alle normative vigenti.",
-    href: "/servizi/bonifica-amianto",
+    href: "/servizi",
   },
   {
     icon: Factory,
