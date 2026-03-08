@@ -27,9 +27,6 @@ const HeroSection = () => {
             <Button variant="hero" size="xl">
               Richiedi informazioni
             </Button>
-            <Button variant="hero-outline" size="xl">
-              Scopri i servizi
-            </Button>
           </div>
         </div>
       </div>
