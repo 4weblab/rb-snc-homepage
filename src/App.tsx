@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import ChiSiamo from "./pages/ChiSiamo";
 import Servizi from "./pages/Servizi";
 
-import Realizzazioni from "./pages/Realizzazioni";
+
 import Certificazioni from "./pages/Certificazioni";
 import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
