@@ -26,7 +26,7 @@ const problems = [
 
 const ProblemsSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-muted/70 relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />

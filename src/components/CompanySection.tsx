@@ -29,7 +29,7 @@ const strengths = [
 
 const CompanySection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-secondary/40 relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-muted/30 relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
