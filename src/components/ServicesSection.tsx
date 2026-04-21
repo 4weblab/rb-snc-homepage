@@ -1,90 +1,120 @@
-import { Factory, ShieldCheck, Hammer, Layers, Wrench } from "lucide-react";
+import { ShieldCheck, Factory, Home, ArrowRight, Star } from "lucide-react";
 
-const services = [
-  {
-    icon: ShieldCheck,
-    title: "Bonifica amianto",
-    description: "Rimozione e smaltimento amianto in conformità alle normative vigenti.",
-    href: "/servizi",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&fit=crop",
-  },
+const primaryService = {
+  icon: ShieldCheck,
+  title: "Bonifica amianto e smaltimento eternit",
+  description:
+    "Rimozione e smaltimento amianto su capannoni, aziende e abitazioni nel rispetto delle normative vigenti.",
+  href: "/servizi",
+  badge: "Servizio principale",
+};
+
+const secondaryServices = [
   {
     icon: Factory,
-    title: "Coperture industriali",
-    description: "Progettazione e posa di coperture metalliche per edifici industriali e commerciali.",
+    title: "Rifacimento coperture industriali",
+    description:
+      "Interventi su tetti e coperture per aziende e capannoni industriali, con soluzioni durevoli e sicure.",
     href: "/servizi",
-    image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=80&fit=crop",
   },
   {
-    icon: Hammer,
-    title: "Rifacimento tetti",
-    description: "Interventi completi di rifacimento e ristrutturazione coperture esistenti.",
+    icon: Home,
+    title: "Rifacimento tetti civili",
+    description:
+      "Ristrutturazione e sostituzione coperture per abitazioni private.",
     href: "/servizi",
-    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=80&fit=crop",
-  },
-  {
-    icon: Layers,
-    title: "Sovracoperture",
-    description: "Installazione di sovracoperture per migliorare isolamento e prestazioni.",
-    href: "/servizi",
-    image: "https://images.unsplash.com/photo-1590846083693-f23fdede3a7e?w=600&q=80&fit=crop",
-  },
-  {
-    icon: Wrench,
-    title: "Manutenzione coperture",
-    description: "Piani di manutenzione programmata per garantire durata e sicurezza.",
-    href: "/servizi",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&fit=crop",
   },
 ];
 
 const ServicesSection = () => {
+  const Primary = primaryService.icon;
+
   return (
-    <section className="py-20 lg:py-28 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-14">
+    <section className="py-20 lg:py-28 bg-muted/40 relative overflow-hidden">
+      {/* Soft decorative background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 relative">
+        <div className="text-center mb-14 max-w-2xl mx-auto">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
+            Cosa facciamo
+          </span>
           <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
             I nostri servizi
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Interventi specializzati per ogni esigenza nel settore delle coperture industriali.
+          <p className="text-muted-foreground text-lg">
+            Interventi professionali per aziende, capannoni e privati in tutto il Veneto.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
-          {services.map((service) => (
-            <a
-              key={service.title}
-              href={service.href}
-              className="relative overflow-hidden w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group bg-card rounded-xl border border-border/60 shadow-[0_2px_16px_-4px_rgba(31,58,95,0.08),0_4px_32px_-8px_rgba(31,58,95,0.06)] hover:shadow-[0_8px_40px_-8px_rgba(31,58,95,0.15),0_4px_20px_-4px_rgba(31,58,95,0.1)] transition-all duration-300 hover:-translate-y-1"
-            >
-              {/* Accent line */}
-              <div className="h-1 bg-primary lg:group-hover:opacity-0 transition-opacity duration-300" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {/* PRIMARY CARD — bonifica amianto */}
+          <a
+            href={primaryService.href}
+            className="group relative lg:col-span-1 lg:row-span-1 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary/85 text-primary-foreground p-8 lg:p-10 shadow-[0_12px_40px_-12px_hsl(var(--primary)/0.45)] hover:shadow-[0_20px_60px_-12px_hsl(var(--primary)/0.55)] transition-all duration-300 hover:-translate-y-1 ring-1 ring-primary/20 lg:scale-[1.02]"
+          >
+            {/* Accent corner */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-2xl rounded-full pointer-events-none" />
 
-              {/* Hover image overlay — desktop only */}
-              <div
-                className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-300 ease-out bg-cover bg-center rounded-xl"
-                style={{ backgroundImage: `url(${service.image})` }}
-              />
-              <div className="absolute inset-0 hidden lg:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/70 via-black/40 to-black/20 rounded-xl" />
-
-              {/* Content */}
-              <div className="relative z-10 p-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 lg:group-hover:bg-white/20 transition-colors ring-1 ring-primary/10">
-                  <service.icon className="w-7 h-7 text-primary lg:group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="text-lg font-heading font-semibold text-foreground lg:group-hover:text-white transition-colors mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground lg:group-hover:text-white/80 transition-colors leading-relaxed">
-                  {service.description}
-                </p>
-                <span className="inline-block mt-4 text-sm font-medium text-primary lg:group-hover:text-white transition-colors group-hover:underline">
-                  Scopri di più →
-                </span>
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="inline-flex items-center gap-1.5 self-start bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+                <Star className="w-3 h-3 fill-current" />
+                {primaryService.badge}
               </div>
-            </a>
-          ))}
+
+              <div className="w-16 h-16 rounded-2xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center mb-6 ring-1 ring-primary-foreground/20 group-hover:bg-primary-foreground/25 transition-colors">
+                <Primary className="w-9 h-9 text-primary-foreground" strokeWidth={1.75} />
+              </div>
+
+              <h3 className="text-2xl lg:text-[1.7rem] font-heading font-bold leading-tight mb-3">
+                {primaryService.title}
+              </h3>
+              <p className="text-primary-foreground/85 leading-relaxed mb-6 flex-grow">
+                {primaryService.description}
+              </p>
+
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">
+                Scopri il servizio
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </div>
+          </a>
+
+          {/* SECONDARY CARDS */}
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+            {secondaryServices.map((service) => {
+              const Icon = service.icon;
+              return (
+                <a
+                  key={service.title}
+                  href={service.href}
+                  className="group relative overflow-hidden rounded-2xl bg-card border border-border/60 p-8 shadow-[0_4px_20px_-6px_hsl(var(--primary)/0.08)] hover:shadow-[0_12px_36px_-8px_hsl(var(--primary)/0.18)] hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                >
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-105 transition-all duration-300">
+                    <Icon
+                      className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors"
+                      strokeWidth={1.75}
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-heading font-semibold text-foreground mb-3 leading-snug">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed flex-grow">
+                    {service.description}
+                  </p>
+
+                  <span className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
+                    Scopri di più
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
