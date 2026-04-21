@@ -26,63 +26,67 @@ const problems = [
 
 const ProblemsSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-muted/60 relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-muted/70 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-destructive/5 blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-destructive/5 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative">
         {/* Header */}
-        <div className="text-center mb-14 max-w-3xl mx-auto">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-destructive mb-3">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="inline-block text-[10px] font-bold tracking-[0.25em] uppercase text-destructive mb-4 relative">
             Perché intervenire
+            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-destructive/40 rounded-full" />
           </span>
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-5">
             Amianto e coperture danneggiate: quando intervenire
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             Non tutti i problemi sono visibili subito, ma ignorarli può avere conseguenze serie nel tempo.
           </p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mb-14">
           {problems.map((problem) => {
             const Icon = problem.icon;
             return (
               <div
                 key={problem.title}
-                className="group relative flex flex-col rounded-2xl bg-card border border-border/50 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-6 md:p-8"
+                className="group relative flex flex-col rounded-2xl bg-card border border-border/80 shadow-lg hover:shadow-2xl hover:-translate-y-2.5 transition-all duration-400 p-8 md:p-10"
               >
                 {/* Icon Header */}
-                <div className="mb-6">
-                  <div className="w-14 h-14 rounded-xl bg-destructive/10 flex items-center justify-center mb-4">
-                    <Icon className="w-7 h-7 text-destructive" strokeWidth={1.75} />
+                <div className="mb-8">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 ring-1 ring-primary/15 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform duration-300">
+                    <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-heading font-bold text-foreground">
+                  <h3 className="text-xl font-heading font-bold text-foreground tracking-tight">
                     {problem.title}
                   </h3>
                 </div>
 
                 {/* Bullet Points */}
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-3 mb-6">
                   {problem.points.map((point) => (
-                    <li key={point} className="flex items-center gap-2 text-sm text-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <li key={point} className="flex items-center gap-3 text-sm font-medium text-foreground">
+                      <span className="w-2 h-2 rounded-full bg-accent shrink-0 shadow-sm" />
                       {point}
                     </li>
                   ))}
                 </ul>
 
+                {/* Divider */}
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent mb-6" />
+
                 {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed mt-auto">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {problem.description}
                 </p>
 
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-6 right-6 h-1 bg-gradient-to-r from-destructive/30 via-accent/30 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Bottom accent gradient */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             );
           })}
@@ -92,10 +96,10 @@ const ProblemsSection = () => {
         <div className="text-center">
           <a
             href="/contatti"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-lg font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 group"
+            className="inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/25 px-10 py-5 rounded-xl font-bold text-base tracking-wide transition-all duration-300 group"
           >
             Richiedi un sopralluogo
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 group-hover:scale-110 transition-all duration-300" />
           </a>
         </div>
       </div>
