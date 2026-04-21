@@ -1,14 +1,14 @@
-import { Factory, Warehouse, Truck, Store, Building2 } from "lucide-react";
+import { Factory, Warehouse, Store, Building2, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import sectorsBg from "@/assets/sectors-bg.jpg";
 
 const sectors = [
-  { icon: Factory, title: "Industria", description: "Stabilimenti produttivi e impianti industriali." },
-  { icon: Warehouse, title: "Capannoni produttivi", description: "Coperture per capannoni e strutture prefabbricate." },
-  { icon: Truck, title: "Logistica", description: "Centri logistici, magazzini e piattaforme distributive." },
-  { icon: Store, title: "Strutture commerciali", description: "Centri commerciali e grandi superfici di vendita." },
-  { icon: Building2, title: "Edifici industriali", description: "Uffici, laboratori e strutture direzionali." },
+  { icon: Factory, title: "Industria e stabilimenti produttivi", description: "Interventi su coperture e bonifica amianto per stabilimenti produttivi e impianti industriali." },
+  { icon: Warehouse, title: "Capannoni industriali e prefabbricati", description: "Coperture e rifacimento tetti per capannoni, strutture prefabbricate e immobili industriali." },
+  { icon: Store, title: "Strutture commerciali", description: "Interventi su coperture per negozi, centri commerciali e grandi superfici di vendita." },
+  { icon: Home, title: "Abitazioni private e condomini", description: "Rifacimento tetti e interventi su coperture civili per abitazioni private e condomini." },
+  { icon: Building2, title: "Edifici direzionali e uffici", description: "Interventi su coperture per uffici, laboratori e strutture direzionali." },
 ];
 
 const TimelineItem = ({
