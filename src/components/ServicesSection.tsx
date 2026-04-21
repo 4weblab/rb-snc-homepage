@@ -83,14 +83,14 @@ const ServicesSection = () => {
               <a
                 key={service.title}
                 href={service.href}
-                className={`group relative flex flex-col overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
+                className={`group relative flex flex-col rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
                   isFeatured
                     ? "bg-primary text-primary-foreground ring-1 ring-primary/30"
                     : "bg-card text-card-foreground border border-border/60"
                 }`}
               >
                 {/* Top visual */}
-                <div className="relative h-[180px] overflow-hidden">
+                <div className="relative h-[180px] overflow-hidden rounded-t-2xl">
                   <img
                     src={service.image}
                     alt={service.title}
@@ -108,18 +108,18 @@ const ServicesSection = () => {
                       </div>
                     </>
                   )}
+                </div>
 
-                  {/* Icon badge — overlapping */}
-                  <div className="absolute -bottom-7 left-6 w-14 h-14 rounded-xl bg-card shadow-lg ring-1 ring-border/60 flex items-center justify-center">
-                    <Icon
-                      className={`w-7 h-7 ${isFeatured ? "text-accent" : "text-primary"}`}
-                      strokeWidth={1.75}
-                    />
-                  </div>
+                {/* Icon badge — overlapping the image/body boundary */}
+                <div className="absolute top-[180px] left-6 -translate-y-1/2 w-14 h-14 rounded-xl bg-card shadow-lg ring-1 ring-border/60 flex items-center justify-center z-10">
+                  <Icon
+                    className={`w-7 h-7 ${isFeatured ? "text-accent" : "text-primary"}`}
+                    strokeWidth={1.75}
+                  />
                 </div>
 
                 {/* Body */}
-                <div className="p-6 md:p-8 pt-10 flex flex-col flex-grow">
+                <div className="p-6 md:p-8 pt-10 flex flex-col flex-grow rounded-b-2xl">
                   <h3
                     className={`text-2xl font-heading font-bold leading-snug ${
                       isFeatured ? "text-primary-foreground" : "text-foreground"
