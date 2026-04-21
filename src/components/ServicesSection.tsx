@@ -1,21 +1,26 @@
-import { ShieldCheck, Factory, Home, ArrowRight, Star } from "lucide-react";
+import { ShieldCheck, Factory, Home, ArrowRight, Star, Timer, Award, Users } from "lucide-react";
+import serviceAmianto from "@/assets/service-amianto.jpg";
+import serviceCoperture from "@/assets/service-coperture-industriali.jpg";
+import serviceTetto from "@/assets/service-tetto-civile.jpg";
 
-const primaryService = {
-  icon: ShieldCheck,
-  title: "Bonifica amianto e smaltimento eternit",
-  description:
-    "Rimozione e smaltimento amianto su capannoni, aziende e abitazioni nel rispetto delle normative vigenti.",
-  href: "/servizi",
-  badge: "Servizio principale",
-};
-
-const secondaryServices = [
+const services = [
+  {
+    icon: ShieldCheck,
+    title: "Bonifica amianto e smaltimento eternit",
+    description:
+      "Rimozione e smaltimento amianto su capannoni, aziende e abitazioni nel rispetto delle normative vigenti.",
+    href: "/servizi",
+    image: serviceAmianto,
+    featured: true,
+  },
   {
     icon: Factory,
     title: "Rifacimento coperture industriali",
     description:
       "Interventi su tetti e coperture per aziende e capannoni industriali, con soluzioni durevoli e sicure.",
     href: "/servizi",
+    image: serviceCoperture,
+    featured: false,
   },
   {
     icon: Home,
@@ -23,12 +28,31 @@ const secondaryServices = [
     description:
       "Ristrutturazione e sostituzione coperture per abitazioni private.",
     href: "/servizi",
+    image: serviceTetto,
+    featured: false,
+  },
+];
+
+const trustItems = [
+  {
+    icon: Timer,
+    title: "Interventi rapidi",
+    description: "Siamo organizzati per intervenire in tempi brevi.",
+  },
+  {
+    icon: Award,
+    title: "Esperienza consolidata",
+    description:
+      "Oltre 20 anni di esperienza nel settore delle coperture e della bonifica amianto.",
+  },
+  {
+    icon: Users,
+    title: "Gestione diretta",
+    description: "Lavori gestiti direttamente dal nostro team, senza intermediari.",
   },
 ];
 
 const ServicesSection = () => {
-  const Primary = primaryService.icon;
-
   return (
     <section className="py-20 lg:py-28 bg-muted/40 relative overflow-hidden">
       {/* Soft decorative background */}
@@ -50,68 +74,104 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {/* PRIMARY CARD — bonifica amianto */}
-          <a
-            href={primaryService.href}
-            className="group relative lg:col-span-1 lg:row-span-1 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary/85 text-primary-foreground p-8 lg:p-10 shadow-[0_12px_40px_-12px_hsl(var(--primary)/0.45)] hover:shadow-[0_20px_60px_-12px_hsl(var(--primary)/0.55)] transition-all duration-300 hover:-translate-y-1 ring-1 ring-primary/20 lg:scale-[1.02]"
-          >
-            {/* Accent corner */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-2xl rounded-full pointer-events-none" />
+        {/* SERVICE CARDS — 3 equal columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {services.map((service) => {
+            const Icon = service.icon;
+            const isFeatured = service.featured;
+            return (
+              <a
+                key={service.title}
+                href={service.href}
+                className={`group relative flex flex-col overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
+                  isFeatured
+                    ? "bg-primary text-primary-foreground ring-1 ring-primary/30"
+                    : "bg-card text-card-foreground border border-border/60"
+                }`}
+              >
+                {/* Top visual */}
+                <div className="relative h-[180px] overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    width={1024}
+                    height={768}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {isFeatured && (
+                    <>
+                      <div className="absolute inset-0 bg-primary/55" />
+                      <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
+                        <Star className="w-3 h-3 fill-current" />
+                        Servizio principale
+                      </div>
+                    </>
+                  )}
 
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="inline-flex items-center gap-1.5 self-start bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-                <Star className="w-3 h-3 fill-current" />
-                {primaryService.badge}
-              </div>
-
-              <div className="w-16 h-16 rounded-2xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center mb-6 ring-1 ring-primary-foreground/20 group-hover:bg-primary-foreground/25 transition-colors">
-                <Primary className="w-9 h-9 text-primary-foreground" strokeWidth={1.75} />
-              </div>
-
-              <h3 className="text-2xl lg:text-[1.7rem] font-heading font-bold leading-tight mb-3">
-                {primaryService.title}
-              </h3>
-              <p className="text-primary-foreground/85 leading-relaxed mb-6 flex-grow">
-                {primaryService.description}
-              </p>
-
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">
-                Scopri il servizio
-                <ArrowRight className="w-4 h-4" />
-              </span>
-            </div>
-          </a>
-
-          {/* SECONDARY CARDS */}
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-            {secondaryServices.map((service) => {
-              const Icon = service.icon;
-              return (
-                <a
-                  key={service.title}
-                  href={service.href}
-                  className="group relative overflow-hidden rounded-2xl bg-card border border-border/60 p-8 shadow-[0_4px_20px_-6px_hsl(var(--primary)/0.08)] hover:shadow-[0_12px_36px_-8px_hsl(var(--primary)/0.18)] hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 flex flex-col"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-105 transition-all duration-300">
+                  {/* Icon badge — overlapping */}
+                  <div className="absolute -bottom-7 left-6 w-14 h-14 rounded-xl bg-card shadow-lg ring-1 ring-border/60 flex items-center justify-center">
                     <Icon
-                      className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors"
+                      className={`w-7 h-7 ${isFeatured ? "text-accent" : "text-primary"}`}
                       strokeWidth={1.75}
                     />
                   </div>
+                </div>
 
-                  <h3 className="text-xl font-heading font-semibold text-foreground mb-3 leading-snug">
+                {/* Body */}
+                <div className="p-6 md:p-8 pt-10 flex flex-col flex-grow">
+                  <h3
+                    className={`text-2xl font-heading font-bold leading-snug ${
+                      isFeatured ? "text-primary-foreground" : "text-foreground"
+                    }`}
+                  >
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed flex-grow">
+                  <div className="w-12 h-1 bg-accent rounded-full my-4" />
+                  <p
+                    className={`leading-relaxed flex-grow ${
+                      isFeatured ? "text-primary-foreground/85" : "text-muted-foreground"
+                    }`}
+                  >
                     {service.description}
                   </p>
 
-                  <span className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
+                  <span
+                    className={`inline-flex items-center gap-2 mt-6 text-sm font-semibold group-hover:gap-3 transition-all ${
+                      isFeatured ? "text-accent" : "text-primary"
+                    }`}
+                  >
                     Scopri di più
                     <ArrowRight className="w-4 h-4" />
                   </span>
-                </a>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* TRUST STRIP */}
+        <div className="mt-8 lg:mt-10 rounded-2xl bg-card border border-border/60 shadow-sm p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x md:divide-border gap-6 md:gap-0">
+            {trustItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="flex items-start gap-4 md:px-6 first:md:pl-0 last:md:pr-0"
+                >
+                  <div className="shrink-0 w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-semibold text-foreground mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
               );
             })}
           </div>
