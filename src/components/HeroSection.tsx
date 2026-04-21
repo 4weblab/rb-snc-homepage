@@ -55,6 +55,21 @@ const HeroSection = () => {
               <Link to="/contatti">Richiedi un sopralluogo</Link>
             </Button>
           </div>
+          {/* Micro Trust */}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-sm text-navy-foreground/80" style={{ animationDelay: "0.45s" }}>
+            <span className="flex items-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary" />
+              Interventi rapidi
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary" />
+              Esperienza consolidata
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary" />
+              Lavori gestiti direttamente
+            </span>
+          </div>
         </div>
       </div>
     </section>
