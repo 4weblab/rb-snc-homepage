@@ -1,4 +1,4 @@
-import { Factory, Warehouse, Truck, Store, Building2 } from "lucide-react";
+import { Factory, Warehouse, Store, Building2, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import sectorsBg from "@/assets/sectors-bg.jpg";
