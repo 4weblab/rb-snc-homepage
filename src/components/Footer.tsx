@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/10 mt-12 pt-8 text-center text-xs text-background/40">
-          © {new Date().getFullYear()} RB SNC — Tutti i diritti riservati. P.IVA 00000000000
+          © {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati. P.IVA 00000000000
         </div>
       </div>
     </footer>);
