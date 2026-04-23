@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Zap, Award, HardHat } from "lucide-react";
 import heroBg1 from "@/assets/hero-bg.jpg";
 import heroBg2 from "@/assets/hero-bg-2.jpg";
 import heroBg3 from "@/assets/hero-bg-3.jpg";
@@ -58,15 +59,15 @@ const HeroSection = () => {
           {/* Micro Trust */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-sm text-navy-foreground/80" style={{ animationDelay: "0.45s" }}>
             <span className="flex items-center gap-2">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary" />
+              <Zap className="w-4 h-4 text-primary" />
               Interventi rapidi
             </span>
             <span className="flex items-center gap-2">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary" />
+              <Award className="w-4 h-4 text-primary" />
               Esperienza consolidata
             </span>
             <span className="flex items-center gap-2">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary" />
+              <HardHat className="w-4 h-4 text-primary" />
               Lavori gestiti direttamente
             </span>
           </div>
