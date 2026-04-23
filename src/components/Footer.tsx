@@ -17,8 +17,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <a href="/" className="font-heading text-2xl font-bold text-background">
-              4 <span className="text-primary-foreground/60">WEBLAB</span>
+            <a href="/" className="font-heading text-xl font-bold text-background leading-tight">
+              RB snc <span className="text-primary-foreground/60 font-normal text-sm">di Bertoluzzo e Ragazzo</span>
             </a>
             <p className="mt-4 text-sm leading-relaxed text-background/60">
               Coperture industriali, bonifica amianto e manutenzione tetti per il settore industriale e commerciale.
