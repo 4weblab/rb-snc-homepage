@@ -2,10 +2,8 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const footerLinks = [
 { label: "Home", href: "/" },
-{ label: "Chi siamo", href: "/chi-siamo" },
+{ label: "Realizzazioni", href: "/realizzazioni" },
 { label: "Servizi", href: "/servizi" },
-
-
 { label: "Certificazioni", href: "/certificazioni" },
 { label: "Contatti", href: "/contatti" }];
 
