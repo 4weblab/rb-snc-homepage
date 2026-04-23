@@ -45,7 +45,7 @@ const HeroSection = () => {
       <div className="relative container mx-auto px-4 lg:px-8 py-32">
         <div className="max-w-2xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-navy-foreground leading-tight mb-6 animate-fade-in-up">
-            Bonifica amianto e rifacimento coperture in Veneto
+            RB snc - Il vostro partner per la bonifica amianto e rifacimento coperture in Veneto
           </h1>
           <p className="text-xl md:text-2xl font-heading font-semibold text-navy-foreground/85 mb-10 leading-relaxed max-w-2xl" style={{ animationDelay: "0.15s" }}>
             RB SNC interviene a Cittadella, Padova e in tutto il Veneto per bonifica amianto, smaltimento eternit e rifacimento coperture. Lavoriamo con aziende, capannoni industriali e privati, garantendo interventi rapidi, esperienza sul campo e gestione diretta dei lavori senza intermediari.
