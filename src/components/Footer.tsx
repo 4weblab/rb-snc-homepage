@@ -66,8 +66,19 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-background/10 mt-12 pt-8 text-center text-xs text-background/40">
-          © {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati. P.IVA 00000000000
+        <div className="border-t border-background/10 mt-12 pt-8 text-center text-xs text-background/40 space-y-2">
+          <p>© {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati. P.IVA 00000000000</p>
+          <p>
+            Soluzione web aziendale a Padova a cura di{" "}
+            <a
+              href="https://4weblab.it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/60 hover:text-primary transition-colors underline-offset-2 hover:underline"
+            >
+              4 Web Lab | Siti web per negozi, professionisti e aziende
+            </a>
+          </p>
         </div>
       </div>
     </footer>);
