@@ -59,15 +59,15 @@ const HeroSection = () => {
           {/* Micro Trust */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-sm text-navy-foreground/80" style={{ animationDelay: "0.45s" }}>
             <span className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-primary" />
+              <Zap className="w-4 h-4 text-accent" />
               Interventi rapidi
             </span>
             <span className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-primary" />
+              <Award className="w-4 h-4 text-accent" />
               Esperienza consolidata
             </span>
             <span className="flex items-center gap-2">
-              <HardHat className="w-4 h-4 text-primary" />
+              <HardHat className="w-4 h-4 text-accent" />
               Lavori gestiti direttamente
             </span>
           </div>
