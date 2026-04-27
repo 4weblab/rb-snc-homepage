@@ -80,7 +80,8 @@ const Certificazioni = () => {
               height={900}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/85 to-navy/55" />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy/[0.97] via-navy/90 to-navy/70" />
+            <div className="absolute inset-0 bg-navy/20" />
           </div>
           <div className="relative container mx-auto px-4 lg:px-8 py-24 md:py-28 lg:py-32">
             <div className="max-w-3xl animate-fade-in-up">
@@ -88,10 +89,13 @@ const Certificazioni = () => {
                 <ShieldCheck className="w-3.5 h-3.5" />
                 Sicurezza e conformità
               </span>
+              <p className="text-sm md:text-base text-navy-foreground/80 font-medium mb-4 tracking-wide">
+                Interventi eseguiti nel rispetto della normativa vigente
+              </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-navy-foreground leading-[1.1] mb-6">
                 Sicurezza, normativa e gestione degli interventi su amianto
               </h1>
-              <p className="text-lg md:text-xl text-navy-foreground/85 leading-relaxed mb-8 max-w-2xl">
+              <p className="text-lg md:text-xl text-navy-foreground/95 leading-relaxed mb-8 max-w-2xl">
                 Gli interventi su amianto e coperture richiedono attenzione, competenza e rispetto delle normative. RB SNC opera seguendo procedure precise, gestendo ogni fase del lavoro in modo ordinato, dalla valutazione iniziale fino alla documentazione finale.
               </p>
               <Button asChild variant="hero" size="xl" className="font-semibold">
