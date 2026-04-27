@@ -218,27 +218,27 @@ const Contatti = () => {
 
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-card rounded-2xl border-2 border-border shadow-card p-6 md:p-8 space-y-5"
+                  className="bg-card rounded-3xl border-2 border-border shadow-card p-8 md:p-10 space-y-6"
                 >
                   <div>
                     <Label htmlFor="nome" className="text-sm font-semibold">
                       Nome e cognome <span className="text-accent">*</span>
                     </Label>
-                    <Input id="nome" name="nome" required className="mt-2 h-11" placeholder="Mario Rossi" />
+                    <Input id="nome" name="nome" required className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="Mario Rossi" />
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="telefono" className="text-sm font-semibold">
                         Telefono <span className="text-accent">*</span>
                       </Label>
-                      <Input id="telefono" name="telefono" type="tel" required className="mt-2 h-11" placeholder="+39 ..." />
+                      <Input id="telefono" name="telefono" type="tel" required className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="+39 ..." />
                     </div>
                     <div>
                       <Label htmlFor="email" className="text-sm font-semibold">
                         Email
                       </Label>
-                      <Input id="email" name="email" type="email" className="mt-2 h-11" placeholder="nome@email.it" />
+                      <Input id="email" name="email" type="email" className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="nome@email.it" />
                     </div>
                   </div>
 
@@ -246,7 +246,7 @@ const Contatti = () => {
                     <Label htmlFor="zona" className="text-sm font-semibold">
                       Comune / zona intervento
                     </Label>
-                    <Input id="zona" name="zona" className="mt-2 h-11" placeholder="Es. Cittadella (PD)" />
+                    <Input id="zona" name="zona" className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="Es. Cittadella (PD)" />
                   </div>
 
                   <div>
@@ -256,7 +256,7 @@ const Contatti = () => {
                     <select
                       id="tipo"
                       name="tipo"
-                      className="mt-2 flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="mt-2 flex h-12 w-full rounded-xl border-2 border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors"
                       defaultValue=""
                     >
                       <option value="" disabled>
@@ -277,7 +277,7 @@ const Contatti = () => {
                       id="messaggio"
                       name="messaggio"
                       rows={5}
-                      className="mt-2 resize-none"
+                      className="mt-2 resize-none rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors"
                       placeholder="Descrivi brevemente la situazione (tipologia di edificio, dimensioni indicative, eventuali urgenze)..."
                     />
                   </div>
@@ -295,10 +295,10 @@ const Contatti = () => {
 
                   <Button
                     type="submit"
-                    size="lg"
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
+                    size="xl"
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                   >
-                    <Send className="mr-2 w-4 h-4" />
+                    <Send className="mr-2 w-5 h-5" />
                     Richiedi sopralluogo
                   </Button>
                 </form>
