@@ -134,7 +134,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/10 mt-12 pt-8 text-center text-xs text-background/40 space-y-2">
-          <p>© {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati. P.IVA 04244010288</p>
+          <p>© {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati.</p>
           <p className="flex items-center justify-center gap-3 flex-wrap">
             <Link to="/privacy-policy" className="text-background/60 hover:text-background transition-colors">
               Privacy Policy
