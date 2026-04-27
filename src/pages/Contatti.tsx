@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,6 +23,7 @@ import {
   Briefcase,
   Layers,
   ShieldCheck,
+  AlertCircle,
 } from "lucide-react";
 import heroImg from "@/assets/contatti-hero.jpg";
 import { localBusiness } from "@/lib/business";
@@ -92,8 +95,22 @@ const jsonLd = {
 };
 
 const Contatti = () => {
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [privacyError, setPrivacyError] = useState(false);
+  const privacyRef = useRef<HTMLButtonElement>(null);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!privacyAccepted) {
+      setPrivacyError(true);
+      toast.error("Consenso privacy mancante", {
+        description: "Spunta la casella di accettazione per procedere.",
+      });
+      privacyRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => privacyRef.current?.focus(), 300);
+      return;
+    }
+    // Submit logic placeholder (form not yet wired to a backend)
   };
 
   return (
@@ -281,22 +298,53 @@ const Contatti = () => {
                     />
                   </div>
 
-                  <div className="flex items-start gap-3 pt-2">
-                    <Checkbox id="privacy" required className="mt-0.5" />
-                    <Label
-                      htmlFor="privacy"
-                      className="text-sm font-normal text-muted-foreground leading-relaxed cursor-pointer"
-                    >
-                      Ho letto l'
-                      <Link
-                        to="/privacy-policy"
-                        className="text-accent font-semibold hover:underline"
+                  <div className="pt-2">
+                    <div className="flex items-start gap-3">
+                      <Checkbox
+                        id="privacy"
+                        ref={privacyRef}
+                        checked={privacyAccepted}
+                        onCheckedChange={(checked) => {
+                          const value = checked === true;
+                          setPrivacyAccepted(value);
+                          if (value) setPrivacyError(false);
+                        }}
+                        aria-invalid={privacyError}
+                        aria-describedby={privacyError ? "privacy-error" : undefined}
+                        className={`mt-0.5 ${
+                          privacyError
+                            ? "border-destructive ring-2 ring-destructive/30"
+                            : ""
+                        }`}
+                      />
+                      <Label
+                        htmlFor="privacy"
+                        className="text-sm font-normal text-muted-foreground leading-relaxed cursor-pointer"
                       >
-                        informativa privacy
-                      </Link>
-                      {" "}e acconsento al trattamento dei dati{" "}
-                      <span className="text-accent">*</span>
-                    </Label>
+                        Ho letto l'
+                        <Link
+                          to="/privacy-policy"
+                          className="text-accent font-semibold hover:underline"
+                        >
+                          informativa privacy
+                        </Link>
+                        {" "}e acconsento al trattamento dei dati{" "}
+                        <span className="text-accent">*</span>
+                      </Label>
+                    </div>
+                    {privacyError && (
+                      <p
+                        id="privacy-error"
+                        role="alert"
+                        className="mt-3 ml-8 flex items-start gap-2 text-sm text-destructive"
+                      >
+                        <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                        <span>
+                          Per inviare la richiesta devi accettare l'informativa
+                          privacy spuntando la casella qui sopra.
+                        </span>
+                      </p>
+                    )}
                   </div>
 
                   <Button

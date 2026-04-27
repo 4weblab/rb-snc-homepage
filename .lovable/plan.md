@@ -1,42 +1,35 @@
-# Sezione "Obblighi informativi per le erogazioni pubbliche"
+# Validazione consenso privacy nel form contatti
 
-Inserimento della sezione richiesta dalla normativa nella Privacy Policy, con un link diretto e discreto dal footer.
+## Obiettivo
+Il form della pagina Contatti deve inviare la richiesta **solo** se l'utente ha spuntato la checkbox di consenso privacy. In caso contrario, mostrare un errore visibile e indicare come risolverlo.
 
-## 1. Privacy Policy (`src/pages/PrivacyPolicy.tsx`)
+## Comportamento previsto
 
-Aggiungere come **ottavo e ultimo blocco** della lista `sections` un nuovo elemento:
+1. L'utente compila il form ma **non spunta** "Ho letto l'informativa privacy"
+2. Al click su "Invia Richiesta":
+   - L'invio viene **bloccato**
+   - Compare un messaggio di errore rosso sotto la checkbox: *"Per inviare la richiesta devi accettare l'informativa privacy spuntando la casella qui sopra."*
+   - La checkbox e il suo bordo si evidenziano in rosso (accent error state)
+   - La pagina scorre dolcemente alla checkbox e il focus si sposta su di essa
+   - Compare anche un toast di errore (`sonner`): *"Consenso privacy mancante"*
+3. Quando l'utente spunta la casella, il messaggio di errore scompare automaticamente
+4. Se il consenso è dato, il form procede al normale flusso di invio (attualmente solo `preventDefault`, non viene modificato)
 
-- **Icona**: `Banknote` (lucide-react), coerente con le icone già usate per le altre sezioni.
-- **Titolo**: `"8. Obblighi informativi per le erogazioni pubbliche"`.
-- **ID anchor**: `aiuti-di-stato` (da assegnare all'`<article>` corrispondente).
-- **Contenuto**: paragrafo unico con testo richiesto e link cliccabile a `https://www.rna.gov.it/RegistroNazionaleTrasparenza/faces/pages/TrasparenzaAiuto.jspx` (apertura in nuova scheda con `target="_blank"` e `rel="noopener noreferrer"`, classe `text-accent font-semibold hover:underline break-words`).
+## Modifiche tecniche
 
-Modifica strutturale minima: aggiungere un campo opzionale `id` agli oggetti di `sections` e propagarlo come attributo `id` sull'`<article>` nel `.map()`. Nessun nuovo wrapper o stile evidenziante: la sezione condivide esattamente lo stesso layout (card `bg-card`, `rounded-2xl`, `border-2`) delle altre.
+**File:** `src/pages/Contatti.tsx`
 
-## 2. Footer (`src/components/Footer.tsx`)
+1. Aggiungere stato locale:
+   - `privacyAccepted: boolean` (default `false`)
+   - `privacyError: boolean` (default `false`)
+2. Collegare la `Checkbox` (Radix) a `privacyAccepted` tramite `checked` e `onCheckedChange`. Quando viene spuntata, resettare `privacyError` a `false`.
+3. Rimuovere l'attributo `required` dalla Checkbox Radix (non affidabile per validazione HTML5) e gestire la validazione manualmente in `handleSubmit`.
+4. In `handleSubmit`:
+   - Se `!privacyAccepted` → `e.preventDefault()`, set `privacyError = true`, mostrare `toast.error("Consenso privacy mancante", { description: "Spunta la casella di accettazione per procedere." })`, e fare `scrollIntoView` + `focus()` sulla checkbox tramite `ref`.
+5. Rendering condizionale del messaggio di errore sotto la checkbox (testo `text-destructive text-sm` con icona `AlertCircle`).
+6. Quando `privacyError` è `true`, applicare classi condizionali alla checkbox: `border-destructive ring-2 ring-destructive/30`.
 
-Nella riga dei link legali in fondo al footer (quella che già contiene "Privacy Policy · Cookie Policy"), aggiungere un terzo link separato dallo stesso `·`:
-
-```
-Privacy Policy · Cookie Policy · Aiuti di Stato
-```
-
-- Componente `<Link>` di react-router-dom verso `/privacy-policy#aiuti-di-stato`.
-- Stesse classi degli altri due link (`text-background/60 hover:text-background transition-colors`).
-- Nessuna nuova colonna, nessun bottone.
-
-## 3. Scroll fluido all'anchor
-
-Già gestito: il componente `src/components/ScrollToHash.tsx` (montato in `App.tsx`) intercetta l'hash della URL e chiama `el.scrollIntoView({ behavior: "smooth", block: "start" })`. Cliccando il link dal footer di qualsiasi pagina si naviga a `/privacy-policy`, l'anchor viene risolto e lo scroll fluido porta direttamente alla sezione. Nessuna modifica necessaria.
-
-## File toccati
-
-- `src/pages/PrivacyPolicy.tsx` — nuova sezione + supporto `id` opzionale sull'articolo.
-- `src/components/Footer.tsx` — terzo link "Aiuti di Stato" nella riga dei link legali.
-
-## Vincoli rispettati
-
-- Nessuna modifica ad altri contenuti della Privacy Policy.
-- Nessuna duplicazione (la sezione non esiste già: verificato).
-- Solo informazioni fornite nel brief, nessuna aggiunta arbitraria.
-- Coerenza grafica e tipografica: stessa card, stessa icona-style, stesso pattern di link `text-accent`.
+## Coerenza con il design system
+- Usare il token semantico `destructive` (già definito in `index.css`) per il colore dell'errore
+- Toast tramite `sonner` (già configurato a livello root)
+- Nessuna modifica al layout o alla tipografia esistente
