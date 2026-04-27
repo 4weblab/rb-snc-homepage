@@ -106,6 +106,7 @@ const PrivacyPolicy = () => {
           content="Privacy Policy di RB SNC di Bertoluzzo e Ragazzo: titolare, dati raccolti, finalità, conservazione e diritti dell'utente."
         />
         <link rel="canonical" href="https://rb-snc.it/privacy-policy" />
+        <meta name="robots" content="noindex, follow" />
       </Helmet>
       <Navbar />
       <main className="pt-16">

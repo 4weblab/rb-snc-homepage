@@ -16,9 +16,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <a href="/" className="font-heading text-xl font-bold text-background leading-tight">
+            <Link to="/" className="font-heading text-xl font-bold text-background leading-tight">
               RB snc <span className="text-primary-foreground/60 font-normal text-sm">di Bertoluzzo e Ragazzo</span>
-            </a>
+            </Link>
             <p className="mt-4 text-sm leading-relaxed text-background/60">
               Coperture industriali, bonifica amianto e manutenzione tetti per il settore industriale e commerciale.
             </p>
@@ -30,12 +30,11 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.map((link) =>
               <li key={link.href}>
-                  <a
-                  href={link.href}
+                  <Link
+                  to={link.href}
                   className="text-sm text-background/60 hover:text-background transition-colors">
-                  
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               )}
             </ul>
@@ -64,7 +63,7 @@ const Footer = () => {
                   <span className="block text-background/80 text-xs uppercase tracking-wide font-semibold mb-0.5">
                     Sede operativa
                   </span>
-                  Via Sansughe 6/3<br />
+                  Via Sansughe 6<br />
                   35013 Cittadella (PD)
                 </div>
               </li>
