@@ -414,12 +414,12 @@ const Contatti = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-1 hover:border-accent/40 hover:shadow-card-hover transition-all duration-300 flex flex-col"
+                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-2 hover:border-accent hover:shadow-2xl transition-all duration-300 flex flex-col"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent/15 transition-colors">
-                    <link.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                    <link.icon className="w-7 h-7 text-primary group-hover:text-accent-foreground transition-colors" />
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-2">
+                  <h3 className="font-heading text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
                     {link.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
@@ -427,7 +427,7 @@ const Contatti = () => {
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent">
                     Scopri di più
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                   </span>
                 </Link>
               ))}
