@@ -149,25 +149,27 @@ const DetailsList = ({
 }: {
   details: { icon: typeof Tag; label: string; value: string }[];
 }) => (
-  <div className="rounded-2xl bg-card border border-border/60 shadow-md p-5 md:p-6 relative overflow-hidden">
+  <div className="rounded-2xl bg-muted/60 border-2 border-border shadow-lg p-7 md:p-8 relative overflow-hidden">
     <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
     <h3 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">
       Dettagli intervento
     </h3>
-    <div className="w-10 h-1 bg-accent rounded-full mb-5" />
-    <ul className="divide-y divide-border/60">
+    <div className="w-12 h-1 bg-accent rounded-full mb-6" />
+    <ul className="divide-y divide-border/70">
       {details.map((d) => {
         const Icon = d.icon;
         return (
-          <li key={d.label} className="flex items-start gap-3 py-3">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-              <Icon className="w-4 h-4 text-primary" strokeWidth={2} />
+          <li key={d.label} className="flex items-start gap-4 py-4">
+            <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+              <Icon className="w-5 h-5 text-primary" strokeWidth={2.2} />
             </div>
             <div className="flex-1">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
+              <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">
                 {d.label}
               </p>
-              <p className="text-foreground font-semibold">{d.value}</p>
+              <p className="text-foreground font-semibold text-base md:text-lg leading-snug">
+                {d.value}
+              </p>
             </div>
           </li>
         );
