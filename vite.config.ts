@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => ({
           route: string;
           html: string;
           outputPath?: string;
-        }) {
+        }): void {
           // /404 -> 404.html (file singolo, non cartella)
           if (renderedRoute.route === "/404") {
             renderedRoute.outputPath = "404.html";
@@ -59,7 +59,6 @@ export default defineConfig(({ mode }) => ({
             (match, attrs = "") =>
               /lang=/.test(attrs) ? match : `<html lang="it"${attrs || ""}>`,
           );
-          return renderedRoute;
         },
       }),
   ].filter(Boolean),
