@@ -305,7 +305,7 @@ const Contatti = () => {
                     className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                   >
                     <Send className="mr-2 w-5 h-5" />
-                    Richiedi sopralluogo
+                    Invia Richiesta
                   </Button>
                 </form>
 
