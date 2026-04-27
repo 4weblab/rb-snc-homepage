@@ -119,21 +119,21 @@ const collectionPage = {
         position: 1,
         name: "Bonifica amianto su copertura industriale",
         description:
-          "Realizzazione segnaposto dedicata a un intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto.",
+          "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto, eseguito da RB SNC nel rispetto della normativa vigente.",
       },
       {
         "@type": "CreativeWork",
         position: 2,
         name: "Rifacimento copertura industriale",
         description:
-          "Realizzazione segnaposto dedicata al rifacimento di una copertura industriale su capannone in Veneto.",
+          "Rifacimento completo della copertura di un capannone industriale in Veneto con posa di pannelli sandwich coibentati e finiture perimetrali.",
       },
       {
         "@type": "CreativeWork",
         position: 3,
         name: "Rifacimento tetto civile",
         description:
-          "Realizzazione segnaposto dedicata al rifacimento di un tetto civile in Veneto.",
+          "Rifacimento di un tetto civile su abitazione privata con nuova orditura, isolamento termico, impermeabilizzazione e copertura in tegole.",
       },
     ],
   },
