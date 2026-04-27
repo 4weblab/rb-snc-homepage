@@ -1,4 +1,5 @@
 import { AlertTriangle, Home, Clock, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const problems = [
   {
@@ -7,6 +8,8 @@ const problems = [
     points: ["Esposizione alle fibre", "Obblighi normativi", "Rischi per la salute"],
     description:
       "La presenza di amianto deteriorato può rappresentare un rischio reale per la salute e richiede interventi specifici nel rispetto delle normative vigenti.",
+    linkHref: "/servizi#bonifica-amianto",
+    linkLabel: "Vai alla bonifica amianto",
   },
   {
     icon: Home,
@@ -14,6 +17,8 @@ const problems = [
     points: ["Infiltrazioni d'acqua", "Degrado della struttura", "Perdita di isolamento"],
     description:
       "Una copertura danneggiata può causare infiltrazioni e peggioramenti strutturali, aumentando i costi di intervento nel tempo.",
+    linkHref: "/servizi#coperture-industriali",
+    linkLabel: "Scopri il rifacimento coperture",
   },
   {
     icon: Clock,
@@ -21,6 +26,8 @@ const problems = [
     points: ["Costi più elevati", "Lavori più invasivi", "Tempi più lunghi"],
     description:
       "Rimandare l'intervento porta spesso a situazioni più complesse, con lavori più lunghi e costosi rispetto a un intervento tempestivo.",
+    linkHref: "/certificazioni",
+    linkLabel: "Leggi normativa e procedure",
   },
 ];
 
@@ -99,6 +106,15 @@ const ProblemsSection = () => {
                   {problem.description}
                 </p>
 
+                {/* Contextual link */}
+                <Link
+                  to={problem.linkHref}
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-accent transition-colors group/link"
+                >
+                  {problem.linkLabel}
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+
                 {/* Bottom accent gradient */}
                 <div className={`
                   absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500
@@ -111,13 +127,13 @@ const ProblemsSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <a
-            href="/contatti"
+          <Link
+            to="/contatti"
             className="inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/85 hover:shadow-xl hover:shadow-primary/20 px-12 py-6 rounded-xl font-bold text-lg tracking-wide transition-all duration-300 group"
           >
             Richiedi un sopralluogo gratuito
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

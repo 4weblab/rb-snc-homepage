@@ -53,13 +53,27 @@ const CompanySection = () => {
               Esperienza e affidabilità nel settore amianto e coperture
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4 text-base">
-              RB SNC opera a Cittadella, Padova e in tutto il Veneto nel settore della bonifica amianto e delle coperture, offrendo interventi professionali per aziende, capannoni industriali e abitazioni private.
+              RB SNC opera a Cittadella, Padova e in tutto il Veneto nel settore della{" "}
+              <Link
+                to="/servizi"
+                className="text-primary font-semibold underline-offset-4 hover:underline"
+              >
+                bonifica amianto e delle coperture
+              </Link>
+              , offrendo interventi professionali per aziende, capannoni industriali e abitazioni private.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8 text-base">
-              Nel tempo abbiamo maturato esperienza diretta sul campo, gestendo ogni intervento senza intermediari e garantendo tempi rapidi e lavorazioni eseguite a regola d'arte.
+              Nel tempo abbiamo maturato esperienza diretta sul campo, gestendo ogni intervento senza intermediari e garantendo tempi rapidi,{" "}
+              <Link
+                to="/certificazioni"
+                className="text-primary font-semibold underline-offset-4 hover:underline"
+              >
+                lavorazioni a norma e documentazione completa
+              </Link>
+              .
             </p>
             <Button asChild variant="hero" size="lg">
-              <Link to="/chi-siamo">Scopri l'azienda</Link>
+              <Link to="/servizi">Scopri i nostri servizi</Link>
             </Button>
           </div>
 

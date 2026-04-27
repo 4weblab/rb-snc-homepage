@@ -17,20 +17,20 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
-        <a href="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight text-primary leading-tight">
+        <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight text-primary leading-tight">
           RB snc <span className="text-foreground font-normal text-sm md:text-base">di Bertoluzzo e Ragazzo</span>
-        </a>
+        </Link>
 
         {/* Desktop */}
         <ul className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) =>
           <li key={link.href}>
-              <a
-              href={link.href}
+              <Link
+              to={link.href}
               className="px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary transition-colors rounded-md hover:bg-muted">
               
                 {link.label}
-              </a>
+              </Link>
             </li>
           )}
         </ul>
@@ -57,13 +57,13 @@ const Navbar = () => {
           <ul className="flex flex-col px-4 py-4 gap-1">
             {navLinks.map((link) =>
           <li key={link.href}>
-                <a
-              href={link.href}
+                <Link
+              to={link.href}
               className="block px-3 py-2.5 text-sm font-medium text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors"
               onClick={() => setOpen(false)}>
               
                   {link.label}
-                </a>
+                </Link>
               </li>
           )}
             <li className="mt-2">
