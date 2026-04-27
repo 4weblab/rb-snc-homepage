@@ -143,6 +143,10 @@ const Footer = () => {
             <Link to="/cookie-policy" className="text-background/60 hover:text-background transition-colors">
               Cookie Policy
             </Link>
+            <span className="text-background/30">·</span>
+            <Link to="/privacy-policy#aiuti-di-stato" className="text-background/60 hover:text-background transition-colors">
+              Aiuti di Stato
+            </Link>
           </p>
           <p>
             Soluzione web aziendale a Padova a cura di{" "}
