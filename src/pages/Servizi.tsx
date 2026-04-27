@@ -199,15 +199,17 @@ const Servizi = () => (
       </section>
 
       {/* INTRO + SUMMARY CARDS */}
-      <section className="py-20 lg:py-24 bg-background">
+      <section className="py-24 lg:py-32 bg-muted/30 relative">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mb-14">
+          <div className="max-w-3xl mb-16">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
               I nostri servizi
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-5">
               Interventi professionali per aziende, capannoni e privati
             </h2>
+            <div className="w-20 h-1 bg-accent rounded-full mb-8" />
             <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
               <p>
                 Ogni edificio ha esigenze diverse: una copertura industriale
@@ -307,7 +309,7 @@ const Servizi = () => (
       {/* BONIFICA AMIANTO — main section */}
       <section
         id="bonifica-amianto"
-        className="py-20 lg:py-28 relative overflow-hidden bg-muted/40"
+        className="py-24 lg:py-36 relative overflow-hidden bg-background"
       >
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] rounded-full bg-primary/5 blur-3xl" />
@@ -317,13 +319,14 @@ const Servizi = () => (
         <div className="container mx-auto px-4 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div>
-              <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 rounded-full mb-4 shadow-md">
-                <ShieldCheck className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-bold px-4 py-2 rounded-full mb-5 shadow-lg uppercase tracking-wider">
+                <ShieldCheck className="w-4 h-4" />
                 Servizio principale
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-foreground mb-6 leading-[1.1]">
                 Bonifica amianto e smaltimento eternit in Veneto
               </h2>
+              <div className="w-24 h-1.5 bg-accent rounded-full mb-6" />
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   La bonifica amianto è un intervento delicato che non può
@@ -410,11 +413,11 @@ const Servizi = () => (
               return (
                 <div
                   key={m.title}
-                  className="relative rounded-2xl bg-card border border-border/60 p-6 md:p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  className="relative rounded-2xl bg-card border border-border/60 p-7 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:border-accent/40 transition-all duration-300 overflow-hidden"
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                    <Icon className="w-8 h-8 text-primary" strokeWidth={1.75} />
                   </div>
                   <h3 className="font-heading font-bold text-lg text-foreground mb-2">
                     {m.title}
@@ -433,25 +436,36 @@ const Servizi = () => (
       {/* COPERTURE INDUSTRIALI */}
       <section
         id="coperture-industriali"
-        className="py-20 lg:py-28 bg-background"
+        className="py-20 lg:py-28 bg-muted/30"
       >
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="order-2 lg:order-1 relative">
-              <div className="rounded-2xl overflow-hidden shadow-card-hover ring-1 ring-border/60 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="order-2 lg:order-1 lg:col-span-7 relative">
+              <div className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border/60 relative">
                 <img
                   src={copertureImg}
                   alt="Rifacimento copertura industriale su capannone"
-                  width={1024}
-                  height={768}
+                  width={1280}
+                  height={860}
                   loading="lazy"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover aspect-[4/3] lg:aspect-[3/2]"
                 />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
               </div>
+              <div className="absolute -bottom-5 -right-4 hidden md:flex items-center gap-3 bg-card border border-border/60 shadow-lg rounded-xl px-5 py-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Factory className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">Settore</p>
+                  <p className="font-heading font-bold text-foreground text-sm">
+                    Industriale
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="order-1 lg:order-2">
+            <div className="order-1 lg:order-2 lg:col-span-5">
               <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
                 Industriale
               </span>
@@ -643,7 +657,7 @@ const Servizi = () => (
       </section>
 
       {/* AUTOREVOLEZZA */}
-      <section className="py-20 lg:py-28 bg-muted/40">
+      <section className="py-20 lg:py-28 bg-navy/[0.04] border-y border-border/60">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="relative">
@@ -680,40 +694,40 @@ const Servizi = () => (
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Link
                   to="/certificazioni"
-                  className="group rounded-xl bg-card border border-border/60 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-4"
+                  className="group rounded-2xl bg-card border-2 border-border/60 p-6 md:p-7 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:border-accent/60 transition-all duration-300 flex items-center gap-5"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <Award className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 group-hover:bg-accent/15 flex items-center justify-center shrink-0 transition-colors">
+                    <Award className="w-7 h-7 text-primary group-hover:text-accent transition-colors" strokeWidth={1.75} />
                   </div>
                   <div className="flex-1">
-                    <p className="font-heading font-bold text-foreground">
+                    <p className="font-heading font-bold text-foreground text-lg">
                       Certificazioni
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       Conformità e documentazione
                     </p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1.5 group-hover:text-accent transition-all" />
                 </Link>
                 <Link
                   to="/realizzazioni"
-                  className="group rounded-xl bg-card border border-border/60 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-4"
+                  className="group rounded-2xl bg-card border-2 border-border/60 p-6 md:p-7 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:border-accent/60 transition-all duration-300 flex items-center gap-5"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 group-hover:bg-accent/15 flex items-center justify-center shrink-0 transition-colors">
+                    <CheckCircle2 className="w-7 h-7 text-primary group-hover:text-accent transition-colors" strokeWidth={1.75} />
                   </div>
                   <div className="flex-1">
-                    <p className="font-heading font-bold text-foreground">
+                    <p className="font-heading font-bold text-foreground text-lg">
                       Realizzazioni
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       Interventi eseguiti
                     </p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1.5 group-hover:text-accent transition-all" />
                 </Link>
               </div>
             </div>
@@ -731,6 +745,9 @@ const Servizi = () => (
           }}
         />
         <div className="container mx-auto px-4 lg:px-8 text-center relative">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">
+            Parlaci del tuo caso, ti ricontattiamo dopo una prima valutazione
+          </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-5">
             Hai bisogno di valutare un intervento?
           </h2>
