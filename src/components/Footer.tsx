@@ -64,7 +64,7 @@ const Footer = () => {
                   <span className="block text-background/80 text-xs uppercase tracking-wide font-semibold mb-0.5">
                     Sede operativa
                   </span>
-                  Via Sansughe 6/3<br />
+                  Via Sansughe 6<br />
                   35013 Cittadella (PD)
                 </div>
               </li>
