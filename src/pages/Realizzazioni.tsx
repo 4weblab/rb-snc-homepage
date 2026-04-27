@@ -138,6 +138,16 @@ const collectionPage = {
   },
 };
 
+import { localBusiness } from "@/lib/business";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@context": "https://schema.org", ...localBusiness },
+    collectionPage,
+  ],
+};
+
 /* Reusable details card list */
 const DetailsList = ({
   details,
