@@ -355,10 +355,24 @@ const Contatti = () => {
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   RB SNC opera in Veneto per interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili.
                 </p>
-                <div className="flex items-center gap-3 text-sm text-foreground">
+                <div className="flex items-center gap-3 text-sm text-foreground mb-6">
                   <MapPin className="w-5 h-5 text-accent" />
                   <span className="font-semibold">Sede operativa: Cittadella (PD)</span>
                 </div>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=RB+SNC+Via+Sansughe+3+Cittadella"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MapPin className="mr-2 w-5 h-5" />
+                    Apri Google Maps e raggiungici
+                  </a>
+                </Button>
               </div>
 
               <div className="relative">
