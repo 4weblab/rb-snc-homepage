@@ -128,25 +128,28 @@ const processSteps = [
   },
 ];
 
+import { localBusiness, areaServed } from "@/lib/business";
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Servizi di bonifica amianto e rifacimento coperture in Veneto",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "RB SNC di Bertoluzzo e Ragazzo",
-    areaServed: { "@type": "AdministrativeArea", name: "Veneto" },
-  },
-  areaServed: { "@type": "AdministrativeArea", name: "Veneto" },
-  serviceType: [
-    "Bonifica amianto",
-    "Smaltimento eternit",
-    "Rifacimento coperture industriali",
-    "Rifacimento tetti civili",
+  "@graph": [
+    { "@context": "https://schema.org", ...localBusiness },
+    {
+      "@type": "Service",
+      name: "Servizi di bonifica amianto e rifacimento coperture in Veneto",
+      provider: { "@id": localBusiness["@id"] },
+      areaServed,
+      serviceType: [
+        "Bonifica amianto",
+        "Smaltimento eternit",
+        "Rifacimento coperture industriali",
+        "Rifacimento tetti civili",
+      ],
+      description:
+        "RB SNC offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto, con gestione dell’intervento, smaltimento e documentazione finale.",
+      url: "https://www.rb-snc.it/servizi",
+    },
   ],
-  description:
-    "RB SNC offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto, con gestione dell’intervento, smaltimento e documentazione finale.",
-  url: "https://www.rb-snc.it/servizi",
 };
 
 const Servizi = () => (
