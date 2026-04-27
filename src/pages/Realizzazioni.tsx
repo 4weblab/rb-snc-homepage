@@ -108,8 +108,8 @@ const collectionPage = {
   name: "Realizzazioni bonifica amianto e coperture in Veneto",
   description:
     "Pagina realizzazioni RB SNC con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto.",
-  url: "https://www.rb-snc.it/realizzazioni",
-  publisher: { "@id": "https://www.rb-snc.it/#business" },
+  url: "https://rb-snc.it/realizzazioni",
+  publisher: { "@id": "https://rb-snc.it/#business" },
   mainEntity: {
     "@type": "ItemList",
     name: "Realizzazioni RB SNC",

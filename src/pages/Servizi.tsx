@@ -146,7 +146,7 @@ const jsonLd = {
       ],
       description:
         "RB SNC offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto, con gestione dell’intervento, smaltimento e documentazione finale.",
-      url: "https://www.rb-snc.it/servizi",
+      url: "https://rb-snc.it/servizi",
     },
   ],
 };
