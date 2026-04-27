@@ -273,18 +273,18 @@ const Realizzazioni = () => {
         </section>
 
         {/* INTRO */}
-        <section className="py-20 lg:py-28 bg-muted/30 relative">
+        <section className="py-24 lg:py-32 bg-muted/50 relative">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-3xl">
               <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
                 Panoramica
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-5">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-5 leading-tight">
                 Interventi eseguiti su edifici industriali e civili
               </h2>
-              <div className="w-20 h-1 bg-accent rounded-full mb-8" />
-              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+              <div className="w-24 h-1.5 bg-accent rounded-full mb-10" />
+              <p className="text-foreground/85 text-lg md:text-xl leading-relaxed mb-8">
                 Questa sezione raccoglie le principali tipologie di intervento
                 gestite da RB SNC: bonifica amianto, smaltimento eternit,
                 rifacimento coperture industriali e rifacimento tetti civili.
