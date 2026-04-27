@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--
-      title, description, canonical e og:* sono gestiti per pagina da react-helmet-async.
-      Lasciamo qui solo i fallback minimi per la fase di caricamento iniziale.
+      title, description e canonical sono override per pagina via react-helmet-async.
+      Gli og:* qui sono fallback (vengono sovrascritti dalle pagine quando presenti).
     -->
     <title>RB SNC — Coperture Industriali e Bonifica Amianto</title>
     <meta name="description" content="RB SNC: coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione per l'edilizia industriale." />
@@ -13,6 +13,22 @@
     <link rel="icon" href="/favicon.webp" type="image/webp" />
     <link rel="apple-touch-icon" href="/favicon.webp" />
     <meta name="theme-color" content="#0f2742" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RB SNC" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:image" content="https://rb-snc.it/og-image.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RB SNC — Bonifica amianto e rifacimento coperture in Veneto" />
+    <meta property="og:title" content="RB SNC — Coperture Industriali e Bonifica Amianto" />
+    <meta property="og:description" content="Soluzioni professionali per coperture industriali, bonifica amianto e manutenzione tetti." />
+    <meta property="og:url" content="https://rb-snc.it/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RB SNC — Coperture Industriali e Bonifica Amianto" />
+    <meta name="twitter:description" content="Bonifica amianto, smaltimento eternit e rifacimento coperture industriali e civili in Veneto." />
+    <meta name="twitter:image" content="https://rb-snc.it/og-image.webp" />
   </head>
 
   <body>
