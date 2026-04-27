@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ShieldCheck, Building2, Database, Target, Scale, Clock, Share2, UserCheck } from "lucide-react";
+import { ShieldCheck, Building2, Database, Target, Scale, Clock, Share2, UserCheck, Banknote } from "lucide-react";
 
 const sections = [
   {
@@ -94,6 +94,27 @@ const sections = [
       </p>
     ),
   },
+  {
+    icon: Banknote,
+    id: "aiuti-di-stato",
+    title: "8. Obblighi informativi per le erogazioni pubbliche",
+    body: (
+      <p className="text-base text-muted-foreground leading-relaxed">
+        Gli aiuti di Stato e gli aiuti &ldquo;de minimis&rdquo; ricevuti dalla nostra
+        impresa sono contenuti nel Registro nazionale degli aiuti di Stato di cui
+        all&rsquo;art. 52 della Legge 234/2012 e sono consultabili al seguente link,
+        inserendo come chiave di ricerca nel campo CODICE FISCALE 04244010288:{" "}
+        <a
+          href="https://www.rna.gov.it/RegistroNazionaleTrasparenza/faces/pages/TrasparenzaAiuto.jspx"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent font-semibold hover:underline break-words"
+        >
+          https://www.rna.gov.it/RegistroNazionaleTrasparenza/faces/pages/TrasparenzaAiuto.jspx
+        </a>
+      </p>
+    ),
+  },
 ];
 
 const PrivacyPolicy = () => {
@@ -135,6 +156,7 @@ const PrivacyPolicy = () => {
               {sections.map((s) => (
                 <article
                   key={s.title}
+                  id={s.id}
                   className="bg-card rounded-2xl border-2 border-border p-6 md:p-8"
                 >
                   <div className="flex items-center gap-4 mb-5">
