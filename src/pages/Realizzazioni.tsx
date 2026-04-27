@@ -439,11 +439,11 @@ const Realizzazioni = () => {
         {/* PROJECT 3 — centered, image on top */}
         <section
           id={projects[2].id}
-          className="py-20 lg:py-28 bg-background relative overflow-hidden"
+          className="py-24 lg:py-36 bg-background relative overflow-hidden"
         >
           <div className="container mx-auto px-4 lg:px-8 relative">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-14">
                 <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-wider">
                   <Home className="w-3.5 h-3.5" />
                   {projects[2].tag}
@@ -457,22 +457,27 @@ const Realizzazioni = () => {
               <button
                 type="button"
                 onClick={() => setLightbox(projects[2].main)}
-                className="group relative block w-full overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-border/60 mb-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                aria-label="Apri immagine ingrandita"
+                className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-border/60 mb-14 lg:mb-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
               >
                 <img
                   src={projects[2].main.src}
                   alt={projects[2].main.alt}
                   loading="lazy"
                   width={1920}
-                  height={896}
-                  className="w-full h-auto object-cover aspect-[16/8] group-hover:scale-[1.02] transition-transform duration-500"
+                  height={1080}
+                  className="w-full h-auto object-cover aspect-[16/9] group-hover:scale-[1.04] transition-transform duration-700 ease-out"
                 />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                  <ZoomIn className="w-5 h-5" />
+                </div>
               </button>
 
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
                 <div className="lg:col-span-3">
-                  <p className="text-muted-foreground leading-relaxed text-lg">
+                  <p className="text-muted-foreground leading-relaxed text-lg md:text-xl">
                     {projects[2].text}
                   </p>
                 </div>
@@ -506,6 +511,9 @@ const Realizzazioni = () => {
               <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">
                 Parlaci del tuo caso
               </span>
+              <p className="text-primary-foreground/90 text-base md:text-lg mb-4">
+                Parlaci del tuo caso, ti ricontattiamo dopo una prima valutazione
+              </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mb-5 leading-tight">
                 Hai bisogno di un intervento simile?
               </h2>
