@@ -218,14 +218,16 @@ const Certificazioni = () => {
                   </p>
                   <p className="text-foreground font-medium">Affidarsi a un'azienda che opera nel rispetto della normativa significa:</p>
                 </div>
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-7 space-y-4">
                   {benefits.map((b, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 bg-card rounded-lg border border-border/60 px-4 py-3 shadow-sm"
+                      className="flex items-start gap-4 bg-card rounded-xl border-2 border-border/70 px-5 py-4 shadow-sm hover:shadow-card hover:border-accent/40 transition-all duration-300"
                     >
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                      <span className="text-foreground">{b}</span>
+                      <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-5 h-5 text-accent" />
+                      </div>
+                      <span className="text-foreground font-medium leading-relaxed pt-1">{b}</span>
                     </li>
                   ))}
                 </ul>
