@@ -288,7 +288,14 @@ const Contatti = () => {
                       htmlFor="privacy"
                       className="text-sm font-normal text-muted-foreground leading-relaxed cursor-pointer"
                     >
-                      Ho letto l'informativa privacy e acconsento al trattamento dei dati{" "}
+                      Ho letto l'
+                      <Link
+                        to="/privacy-policy"
+                        className="text-accent font-semibold hover:underline"
+                      >
+                        informativa privacy
+                      </Link>
+                      {" "}e acconsento al trattamento dei dati{" "}
                       <span className="text-accent">*</span>
                     </Label>
                   </div>

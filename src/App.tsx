@@ -9,6 +9,9 @@ import Realizzazioni from "./pages/Realizzazioni";
 import Certificazioni from "./pages/Certificazioni";
 import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
+import CookiePolicy from "./pages/CookiePolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -24,9 +27,12 @@ const App = () => (
           <Route path="/realizzazioni" element={<Realizzazioni />} />
           <Route path="/certificazioni" element={<Certificazioni />} />
           <Route path="/contatti" element={<Contatti />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <CookieBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
