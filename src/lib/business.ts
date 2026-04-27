@@ -56,8 +56,8 @@ export const localBusiness = {
   address: businessAddress,
   geo: {
     "@type": "GeoCoordinates" as const,
-    latitude: 45.6485,
-    longitude: 11.7895,
+    latitude: 45.6379303,
+    longitude: 11.7905672,
   },
   openingHoursSpecification: [
     {
@@ -69,6 +69,7 @@ export const localBusiness = {
   ],
   areaServed,
   contactPoint: contactPoints,
+  sameAs: ["https://share.google/vVq1eG5PIttanZ00O"],
 };
 
 /** Reference compatta al LocalBusiness via @id (per evitare duplicazioni). */
