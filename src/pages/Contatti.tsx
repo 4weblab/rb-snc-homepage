@@ -163,34 +163,34 @@ const Contatti = () => {
               {quickContacts.map((c) => (
                 <div
                   key={c.title}
-                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-1 hover:border-accent/40 hover:shadow-card-hover transition-all duration-300"
+                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-card-hover transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent/15 transition-colors">
-                    <c.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
+                  <div className="w-14 h-14 rounded-2xl bg-accent/10 ring-1 ring-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent group-hover:ring-accent transition-all duration-300">
+                    <c.icon className="w-7 h-7 text-accent group-hover:text-accent-foreground transition-colors" />
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-3">
+                  <h3 className="font-heading text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                     {c.title}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {c.lines.map((line, idx) => {
                       const LineIcon = (line as any).icon;
                       const content = (
-                        <span className="inline-flex items-center gap-2">
-                          {LineIcon && <LineIcon className="w-4 h-4 text-muted-foreground" />}
+                        <span className="inline-flex items-center gap-2.5">
+                          {LineIcon && <LineIcon className="w-4 h-4 text-accent shrink-0" />}
                           <span>{line.label}</span>
                         </span>
                       );
                       return (
-                        <li key={idx} className="text-base text-foreground">
+                        <li key={idx} className="text-lg md:text-xl font-heading text-foreground">
                           {line.href ? (
                             <a
                               href={line.href}
-                              className="hover:text-accent transition-colors font-medium"
+                              className="hover:text-accent transition-colors font-bold"
                             >
                               {content}
                             </a>
                           ) : (
-                            <span className="font-medium">{content}</span>
+                            <span className="font-bold">{content}</span>
                           )}
                         </li>
                       );
