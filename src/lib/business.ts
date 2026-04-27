@@ -3,7 +3,7 @@
  * Unica fonte di verità per i JSON-LD del sito.
  */
 
-export const SITE_URL = "https://www.rb-snc.it";
+export const SITE_URL = "https://rb-snc.it";
 
 export const businessAddress = {
   "@type": "PostalAddress" as const,

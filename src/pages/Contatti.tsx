@@ -79,8 +79,8 @@ const contactPage = {
   name: "Contatti RB SNC",
   description:
     "Contatta RB SNC per sopralluoghi su amianto, coperture e tetti in Veneto.",
-  url: "https://www.rb-snc.it/contatti",
-  publisher: { "@id": "https://www.rb-snc.it/#business" },
+  url: "https://rb-snc.it/contatti",
+  publisher: { "@id": "https://rb-snc.it/#business" },
 };
 
 const jsonLd = {
@@ -104,7 +104,7 @@ const Contatti = () => {
           name="description"
           content="Contatta RB SNC per sopralluoghi su bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
         />
-        <link rel="canonical" href="https://www.rb-snc.it/contatti" />
+        <link rel="canonical" href="https://rb-snc.it/contatti" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <Navbar />

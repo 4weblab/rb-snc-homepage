@@ -13,7 +13,7 @@ const CookiePolicy = () => {
           name="description"
           content="Cookie Policy di RB SNC: il sito utilizza esclusivamente cookie tecnici necessari al funzionamento, senza profilazione né tracciamento."
         />
-        <link rel="canonical" href="https://www.rb-snc.it/cookie-policy" />
+        <link rel="canonical" href="https://rb-snc.it/cookie-policy" />
       </Helmet>
       <Navbar />
       <main className="pt-16">
