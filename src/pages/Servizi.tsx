@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { localBusiness, areaServed } from "@/lib/business";
 import {
   ShieldCheck,
   Factory,
@@ -127,8 +128,6 @@ const processSteps = [
     linkHref: "/certificazioni",
   },
 ];
-
-import { localBusiness, areaServed } from "@/lib/business";
 
 const jsonLd = {
   "@context": "https://schema.org",
