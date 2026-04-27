@@ -1,4 +1,5 @@
-import { Phone, Mail, MapPin, Smartphone } from "lucide-react";
+import { Phone, Mail, MapPin, Smartphone, FileText, Hash } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const footerLinks = [
 { label: "Home", href: "/" },
@@ -85,12 +86,42 @@ const Footer = () => {
                   info@rb-snc.it
                 </a>
               </li>
+              <li className="flex items-center gap-3 text-sm">
+                <Mail className="w-4 h-4 text-background/40 shrink-0" />
+                <a href="mailto:info@pec.rb-snc.it" className="text-background/60 hover:text-background transition-colors">
+                  <span className="text-background/80 text-xs uppercase tracking-wide font-semibold mr-2">PEC</span>
+                  info@pec.rb-snc.it
+                </a>
+              </li>
+              <li className="flex items-center gap-3 text-sm">
+                <FileText className="w-4 h-4 text-background/40 shrink-0" />
+                <span className="text-background/60">
+                  <span className="text-background/80 text-xs uppercase tracking-wide font-semibold mr-2">P.IVA</span>
+                  04244010288
+                </span>
+              </li>
+              <li className="flex items-center gap-3 text-sm">
+                <Hash className="w-4 h-4 text-background/40 shrink-0" />
+                <span className="text-background/60">
+                  <span className="text-background/80 text-xs uppercase tracking-wide font-semibold mr-2">C.F.</span>
+                  04244010288
+                </span>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-background/10 mt-12 pt-8 text-center text-xs text-background/40 space-y-2">
-          <p>© {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati. P.IVA 00000000000</p>
+          <p>© {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati. P.IVA 04244010288</p>
+          <p className="flex items-center justify-center gap-3 flex-wrap">
+            <Link to="/privacy-policy" className="text-background/60 hover:text-background transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-background/30">·</span>
+            <Link to="/cookie-policy" className="text-background/60 hover:text-background transition-colors">
+              Cookie Policy
+            </Link>
+          </p>
           <p>
             Soluzione web aziendale a Padova a cura di{" "}
             <a
