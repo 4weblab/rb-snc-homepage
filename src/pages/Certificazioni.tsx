@@ -296,7 +296,7 @@ const Certificazioni = () => {
         <section className="py-20 lg:py-28 bg-muted/40 border-y border-border/60">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
-              <div className="lg:col-span-6 animate-fade-in-up">
+              <div className="lg:col-span-7 animate-fade-in-up">
                 <span className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-wider mb-4">
                   <FileText className="w-4 h-4" />
                   Documentazione
@@ -315,6 +315,9 @@ const Certificazioni = () => {
                   <p>
                     Questo approccio consente di affrontare l'intervento con maggiore tranquillità, sapendo che ogni fase è stata gestita in modo corretto.
                   </p>
+                  <p className="text-foreground font-medium">
+                    Al termine dell'intervento, il cliente ha un quadro chiaro e documentato del lavoro svolto.
+                  </p>
                   <p>
                     Puoi vedere{" "}
                     <Link to="/realizzazioni" className="text-primary font-semibold underline underline-offset-4 hover:text-accent transition-colors">
@@ -324,15 +327,15 @@ const Certificazioni = () => {
                   </p>
                 </div>
               </div>
-              <div className="lg:col-span-6">
+              <div className="lg:col-span-5">
                 <div className="relative rounded-2xl overflow-hidden shadow-card">
                   <img
                     src={docImg}
                     alt="Documentazione tecnica intervento amianto"
                     width={1280}
-                    height={900}
+                    height={1280}
                     loading="lazy"
-                    className="w-full h-auto object-cover aspect-[4/3]"
+                    className="w-full h-auto object-cover aspect-square"
                   />
                 </div>
               </div>
