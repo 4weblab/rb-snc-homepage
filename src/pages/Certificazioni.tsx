@@ -240,7 +240,7 @@ const Certificazioni = () => {
         </section>
 
         {/* SEZIONE 3 - GESTIONE COMPLETA */}
-        <section className="py-20 lg:py-28 bg-background">
+        <section className="py-24 lg:py-36 bg-background">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-14 animate-fade-in-up">
               <span className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-wider mb-4">
@@ -259,21 +259,21 @@ const Certificazioni = () => {
               </p>
             </div>
 
-            <div className="max-w-5xl mx-auto">
-              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6">
                 {phases.map((phase, i) => (
                   <div
                     key={i}
-                    className="relative bg-card rounded-xl border border-border/60 p-5 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 animate-fade-in-up"
+                    className="group relative bg-card rounded-2xl border-2 border-border/70 p-6 lg:p-7 shadow-sm hover:shadow-card-hover hover:-translate-y-2 hover:border-accent/40 transition-all duration-300 animate-fade-in-up"
                     style={{ animationDelay: `${i * 0.08}s` }}
                   >
-                    <div className="absolute -top-3 left-5 bg-accent text-accent-foreground w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-sm">
+                    <div className="absolute -top-3.5 left-6 bg-accent text-accent-foreground w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md">
                       {i + 1}
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 mt-2">
-                      <phase.icon className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 mt-2 group-hover:bg-accent/15 transition-colors">
+                      <phase.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
                     </div>
-                    <h3 className="font-heading text-base font-bold text-foreground mb-2 leading-snug">
+                    <h3 className="font-heading text-base lg:text-lg font-bold text-foreground mb-3 leading-snug">
                       {phase.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{phase.description}</p>
