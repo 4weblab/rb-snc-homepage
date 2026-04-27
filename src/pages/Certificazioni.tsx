@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { localBusiness } from "@/lib/business";
 import {
   ShieldCheck,
   ScrollText,
@@ -35,8 +36,7 @@ const benefits = [
   "Ricevere indicazioni chiare su come procedere",
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
+const webPage = {
   "@type": "WebPage",
   name: "Sicurezza e normativa amianto in Veneto",
   description:
@@ -46,14 +46,15 @@ const jsonLd = {
     "@type": "Thing",
     name: "Normativa amianto e sicurezza interventi",
   },
-  publisher: {
-    "@type": "LocalBusiness",
-    name: "RB SNC di Bertoluzzo e Ragazzo",
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: "Veneto",
-    },
-  },
+  publisher: { "@id": "https://www.rb-snc.it/#business" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@context": "https://schema.org", ...localBusiness },
+    webPage,
+  ],
 };
 
 const Certificazioni = () => {

@@ -23,6 +23,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import heroImg from "@/assets/contatti-hero.jpg";
+import { localBusiness } from "@/lib/business";
 
 const quickContacts = [
   {
@@ -73,23 +74,21 @@ const utilityLinks = [
   },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
+const contactPage = {
   "@type": "ContactPage",
   name: "Contatti RB SNC",
   description:
     "Contatta RB SNC per sopralluoghi su amianto, coperture e tetti in Veneto.",
   url: "https://www.rb-snc.it/contatti",
-  publisher: {
-    "@type": "LocalBusiness",
-    name: "RB SNC di Bertoluzzo e Ragazzo",
-    telephone: "+39 049 7382238",
-    email: "info@rb-snc.it",
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: "Veneto",
-    },
-  },
+  publisher: { "@id": "https://www.rb-snc.it/#business" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@context": "https://schema.org", ...localBusiness },
+    contactPage,
+  ],
 };
 
 const Contatti = () => {

@@ -10,6 +10,7 @@ import StrengthsSection from "@/components/StrengthsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
+import { localBusinessJsonLd } from "@/lib/business";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
           content="RB SNC: coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione. Soluzioni professionali per l'edilizia industriale."
         />
         <link rel="canonical" href="https://rb-snc.it/" />
+        <script type="application/ld+json">{JSON.stringify(localBusinessJsonLd)}</script>
       </Helmet>
       <Navbar />
       <main>

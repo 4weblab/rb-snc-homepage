@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { localBusiness } from "@/lib/business";
 import {
   Carousel,
   CarouselContent,
@@ -102,18 +103,13 @@ const projects = [
   },
 ] as const;
 
-const jsonLd = {
-  "@context": "https://schema.org",
+const collectionPage = {
   "@type": "CollectionPage",
   name: "Realizzazioni bonifica amianto e coperture in Veneto",
   description:
     "Pagina realizzazioni RB SNC con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto.",
   url: "https://www.rb-snc.it/realizzazioni",
-  publisher: {
-    "@type": "LocalBusiness",
-    name: "RB SNC di Bertoluzzo e Ragazzo",
-    areaServed: { "@type": "AdministrativeArea", name: "Veneto" },
-  },
+  publisher: { "@id": "https://www.rb-snc.it/#business" },
   mainEntity: {
     "@type": "ItemList",
     name: "Realizzazioni RB SNC",
@@ -141,6 +137,14 @@ const jsonLd = {
       },
     ],
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@context": "https://schema.org", ...localBusiness },
+    collectionPage,
+  ],
 };
 
 /* Reusable details card list */
