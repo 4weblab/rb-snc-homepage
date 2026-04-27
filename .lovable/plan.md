@@ -1,51 +1,74 @@
+## Obiettivo
 
+Integrare i nuovi asset (favicon e og-image), correggere l'indirizzo a "Via Sansughe 6" ovunque, arricchire i dati strutturati con orari/geo, e applicare in un'unica passata i fix SEO critici emersi dall'audit precedente.
 
-## Piano: Aggiornamento sezione Servizi (come da immagine)
+---
 
-Allineo la sezione Servizi al mockup fornito: 3 card di altezza uguale in griglia 3 colonne, ognuna con immagine tematica di sfondo, badge icona bianco sovrapposto, sottolineatura ambra sotto il titolo. Sotto, una card "trust" separata con 3 colonne e divisori.
+## 1. Asset nuovi (favicon + OG image)
 
-### Modifiche al file `src/components/ServicesSection.tsx`
+- Copia `user-uploads://favicon.webp` → `public/favicon.webp`
+- Copia `user-uploads://og.webp` → `public/og-image.webp`
+- Elimina `public/favicon.ico` (per evitare che il browser lo serva al posto del nuovo)
+- Aggiorna `index.html`:
+  - `<link rel="icon" href="/favicon.webp" type="image/webp" />`
+  - Aggiunge `<meta property="og:image" content="https://rb-snc.it/og-image.webp" />` + `og:image:width/height/alt`
+  - Aggiunge `og:site_name`, `og:locale="it_IT"`
+  - Aggiunge `<meta name="twitter:image" content="https://rb-snc.it/og-image.webp" />` e `twitter:title/description`
 
-**Layout cards (3 colonne uguali, non più 1+2):**
-- Griglia `grid-cols-1 md:grid-cols-3 gap-6` con altezza uniforme.
-- Ogni card: `rounded-2xl overflow-hidden bg-card shadow-md hover:shadow-xl hover:-translate-y-1 transition`.
+---
 
-**Struttura di ogni card:**
-1. **Top visual** (h ~180px): immagine di sfondo tematica + badge icona bianco arrotondato (`w-14 h-14 rounded-xl bg-white shadow`) posizionato in basso-sinistra che sborda leggermente sull'immagine. Per la card 1 (amianto) viene aggiunto un overlay navy scuro sull'immagine + il badge "★ Servizio principale" ambra in alto-sinistra.
-2. **Body** (`p-6 md:p-8`): titolo `font-heading font-bold text-2xl`, breve linea di accento ambra (`w-12 h-1 bg-accent rounded-full my-4`), descrizione `text-muted-foreground`.
-3. **Footer link**: "Scopri di più →" in ambra (card 1) o primary (card 2 e 3).
+## 2. Correzione indirizzo a "Via Sansughe 6"
 
-**Card 1 — Bonifica amianto (evidenziata):**
-- Sfondo navy scuro (`bg-primary`) sotto l'immagine con overlay scuro per contrasto, testo bianco, descrizione `text-primary-foreground/85`, link "Scopri di più" ambra.
+File da aggiornare:
+- `src/lib/business.ts` → `streetAddress: "Via Sansughe 6"`
+- `src/components/Footer.tsx` → "Via Sansughe 6/3" diventa "Via Sansughe 6"
+- `src/pages/Contatti.tsx` → link Google Maps + eventuale visualizzazione testuale aggiornati con "Via Sansughe 6"
 
-**Card 2 e 3:**
-- Sfondo bianco (`bg-card`), testo scuro standard.
+---
 
-**Sezione "trust strip" (nuova, sotto le card):**
-- Container `mt-8 rounded-2xl bg-card border shadow-sm p-6 md:p-8`.
-- Griglia 3 colonne con `divide-x divide-border` su desktop.
-- Per ogni voce: icona circolare `w-12 h-12 rounded-full bg-muted` a sinistra + testo a destra (titolo bold + descrizione muted).
-- Voci:
-  - **Interventi rapidi** (icona `Timer`) — "Siamo organizzati per intervenire in tempi brevi."
-  - **Esperienza consolidata** (icona `Award`) — "Oltre 20 anni di esperienza nel settore delle coperture e della bonifica amianto."
-  - **Gestione diretta** (icona `Users`) — "Lavori gestiti direttamente dal nostro team, senza intermediari."
+## 3. JSON-LD: orari, geo, tipo più specifico
 
-### Asset immagini (3 nuove)
+In `src/lib/business.ts`:
+- Cambia `@type` da `LocalBusiness` a `["LocalBusiness", "RoofingContractor"]`
+- Punta `image` a `/og-image.webp`
+- Aggiungi `geo` con coordinate della sede di Cittadella (recuperate dalla scheda Google: lat ~45.6485, lng ~11.7895 – verificate dall'URL Maps)
+- Aggiungi `openingHoursSpecification`: lun-ven 09:00–17:00
+- Aggiungi `priceRange: "€€"` (campo richiesto da Google per LocalBusiness)
+- Aggiungi `sameAs` con la URL della scheda Google Business (se confermi il link in fase di build)
 
-Genero e salvo in `src/assets/`:
-- `service-amianto.jpg` — operatore in tuta protettiva bianca che rimuove lastre di eternit.
-- `service-coperture-industriali.jpg` — tetto industriale metallico grigio in prospettiva.
-- `service-tetto-civile.jpg` — tetto in tegole di abitazione privata con cielo azzurro.
+---
 
-Importate come moduli ES6 nel componente.
+## 4. Fix SEO critici (audit)
 
-### Icone Lucide
-`ShieldCheck`, `Factory`, `Home`, `Star`, `ArrowRight` (già usate) + nuove: `Timer`, `Award`, `Users` per la trust strip.
+### 4a. Indicizzazione pagine legali e 404
+- `src/pages/PrivacyPolicy.tsx`, `src/pages/CookiePolicy.tsx`, `src/pages/NotFound.tsx`: aggiungi `<meta name="robots" content="noindex, follow" />` via Helmet
+- `public/sitemap.xml`: rimuovi le voci `/privacy-policy` e `/cookie-policy`
 
-### Vincoli rispettati
-- 3 servizi (nessun secondario aggiunto).
-- Link cards invariati su `/servizi`.
-- Palette esistente (Navy primario, Amber accent).
-- Font headings `font-heading` (Space Grotesk).
-- Responsive: mobile 1 colonna, desktop 3 colonne.
+### 4b. Footer con link interni React Router
+- Sostituisci gli `<a href="/...">` interni del footer con `<Link to="...">` per evitare full reload (Home, Realizzazioni, Servizi, Certificazioni, Contatti)
 
+### 4c. Performance Hero (LCP)
+- `src/components/HeroSection.tsx`: prima immagine del carosello con `fetchPriority="high"`, `loading="eager"`, `decoding="async"`, `width` e `height` espliciti; le altre `loading="lazy"`
+
+### 4d. Alt text SEO-oriented
+- Sostituisci alt generici tipo "Coperture industriali - 4 WEBLAB" con descrizioni che includono keyword di business (es. "Rifacimento copertura industriale RB SNC – Cittadella, Padova", "Bonifica amianto su capannone in Veneto", ecc.)
+
+### 4e. Contenuto thin su /realizzazioni
+- Rimuovi/sostituisci eventuali "Lorem ipsum" residui nel JSON-LD e nei copy della pagina Realizzazioni con testi reali e brevi descrizioni dei lavori (struttura attuale invariata)
+
+---
+
+## Note tecniche
+
+- Tutto il contenuto resta su dominio canonico `https://rb-snc.it` (non-www) — nessuna modifica a canonical/sitemap se non la rimozione delle pagine legali.
+- Coordinate geo verranno prese dal link Google Maps della scheda condivisa; se non ricavabili con precisione userò il centro di Via Sansughe, Cittadella.
+- Nessun cambiamento a contenuti aziendali, layout, palette, struttura pagine.
+- Nessuna nuova dipendenza npm.
+
+## File toccati (previsione)
+
+- `index.html`
+- `public/favicon.webp` (nuovo), `public/og-image.webp` (nuovo), `public/favicon.ico` (rimosso), `public/sitemap.xml`
+- `src/lib/business.ts`
+- `src/components/Footer.tsx`, `src/components/HeroSection.tsx`
+- `src/pages/Contatti.tsx`, `src/pages/PrivacyPolicy.tsx`, `src/pages/CookiePolicy.tsx`, `src/pages/NotFound.tsx`, `src/pages/Realizzazioni.tsx`
