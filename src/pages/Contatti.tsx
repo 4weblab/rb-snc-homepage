@@ -135,16 +135,10 @@ const Contatti = () => {
                 Hai bisogno di rimuovere amianto, sostituire una copertura in eternit o intervenire su un tetto civile o industriale? Contatta RB SNC: valuteremo la situazione e ti indicheremo come procedere in modo chiaro.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Button asChild size="lg" variant="default" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg hover:shadow-xl transition-all">
                   <a href="#form">
                     Compila il form
                     <ArrowRight className="ml-2 w-4 h-4" />
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white">
-                  <a href="tel:+390497382238">
-                    <Phone className="mr-2 w-4 h-4" />
-                    049 7382238
                   </a>
                 </Button>
               </div>
