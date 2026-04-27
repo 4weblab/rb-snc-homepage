@@ -46,7 +46,7 @@ const projects = [
     icon: ShieldCheck,
     tag: "Bonifica amianto",
     title: "Bonifica amianto su copertura industriale",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Intervento segnaposto dedicato alla bonifica amianto e allo smaltimento eternit su copertura industriale. La scheda sarà aggiornata con descrizione reale del cantiere, fotografie definitive e dettagli dell’intervento eseguito.",
+    text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto. RB SNC gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
     main: { src: amianto1, alt: "Realizzazione bonifica amianto su copertura industriale in Veneto" },
     gallery: [
       { src: amianto2, alt: "Dettaglio rimozione eternit da copertura" },
@@ -66,7 +66,7 @@ const projects = [
     icon: Factory,
     tag: "Coperture industriali",
     title: "Rifacimento copertura industriale",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Intervento segnaposto dedicato al rifacimento di una copertura industriale su capannone. La scheda sarà completata con immagini reali, materiali utilizzati e descrizione dell’intervento una volta ricevuti i contenuti dal cliente.",
+    text: "Rifacimento completo della copertura di un capannone industriale: smontaggio della copertura esistente, posa di pannelli sandwich coibentati e finiture perimetrali. Intervento gestito direttamente da RB SNC, con attenzione a tempi, sicurezza in quota e continuità dell’attività produttiva.",
     main: { src: coperture1, alt: "Rifacimento copertura industriale su capannone" },
     gallery: [
       { src: coperture2, alt: "Posa di pannelli sandwich su copertura industriale" },
@@ -86,7 +86,7 @@ const projects = [
     icon: Home,
     tag: "Tetto civile",
     title: "Rifacimento tetto civile",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Intervento segnaposto dedicato al rifacimento di un tetto civile. La scheda sarà aggiornata con fotografie definitive, informazioni sull’edificio e descrizione del lavoro eseguito appena disponibili.",
+    text: "Rifacimento di un tetto civile su abitazione privata: sostituzione dell’orditura ammalorata, posa di nuovo isolamento termico, guaina impermeabile e copertura in tegole. Intervento eseguito con ponteggi a norma e ripristino completo di lattonerie, gronde e pluviali.",
     main: { src: tetto1, alt: "Rifacimento tetto civile con copertura in tegole" },
     gallery: [
       { src: tetto2, alt: "Posa di nuova orditura e isolamento su tetto civile" },
