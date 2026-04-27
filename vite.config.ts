@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => ({
         rendererOptions: {
           maxConcurrentRoutes: 2,
           renderAfterDocumentEvent: "render-event",
-          headless: "new",
+          headless: true,
           launchOptions: {
             executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
             args: ["--no-sandbox", "--disable-setuid-sandbox"],
