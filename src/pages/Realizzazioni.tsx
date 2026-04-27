@@ -196,7 +196,8 @@ const GallerySlider = ({
           <button
             type="button"
             onClick={() => onOpen(img)}
-            className="group relative block w-full aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            aria-label="Apri immagine ingrandita"
+            className="group relative block w-full aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
           >
             <img
               src={img.src}
@@ -204,10 +205,13 @@ const GallerySlider = ({
               loading="lazy"
               width={1280}
               height={896}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
             />
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-navy/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+              <ZoomIn className="w-4 h-4" />
+            </div>
           </button>
         </CarouselItem>
       ))}
