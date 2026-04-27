@@ -80,7 +80,8 @@ const Certificazioni = () => {
               height={900}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/85 to-navy/55" />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy/[0.97] via-navy/90 to-navy/70" />
+            <div className="absolute inset-0 bg-navy/20" />
           </div>
           <div className="relative container mx-auto px-4 lg:px-8 py-24 md:py-28 lg:py-32">
             <div className="max-w-3xl animate-fade-in-up">
@@ -88,10 +89,13 @@ const Certificazioni = () => {
                 <ShieldCheck className="w-3.5 h-3.5" />
                 Sicurezza e conformità
               </span>
+              <p className="text-sm md:text-base text-navy-foreground/80 font-medium mb-4 tracking-wide">
+                Interventi eseguiti nel rispetto della normativa vigente
+              </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-navy-foreground leading-[1.1] mb-6">
                 Sicurezza, normativa e gestione degli interventi su amianto
               </h1>
-              <p className="text-lg md:text-xl text-navy-foreground/85 leading-relaxed mb-8 max-w-2xl">
+              <p className="text-lg md:text-xl text-navy-foreground/95 leading-relaxed mb-8 max-w-2xl">
                 Gli interventi su amianto e coperture richiedono attenzione, competenza e rispetto delle normative. RB SNC opera seguendo procedure precise, gestendo ogni fase del lavoro in modo ordinato, dalla valutazione iniziale fino alla documentazione finale.
               </p>
               <Button asChild variant="hero" size="xl" className="font-semibold">
@@ -149,29 +153,30 @@ const Certificazioni = () => {
               </div>
 
               <aside className="lg:col-span-5 lg:sticky lg:top-24">
-                <div className="bg-card rounded-2xl border-2 border-border shadow-card p-7 md:p-8">
+                <div className="relative bg-muted/60 rounded-2xl border-2 border-accent/30 shadow-card-hover p-7 md:p-8 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-accent" />
                   <div className="flex items-center gap-3 mb-6 pb-5 border-b border-border">
-                    <div className="w-11 h-11 rounded-lg bg-primary text-primary-foreground flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-lg bg-primary text-primary-foreground flex items-center justify-center shadow-sm">
                       <ScrollText className="w-5 h-5" />
                     </div>
                     <h3 className="font-heading text-lg font-bold text-foreground">Riferimenti normativi</h3>
                   </div>
-                  <ul className="space-y-5">
+                  <ul className="space-y-6">
                     <li className="flex gap-4">
-                      <div className="w-1 rounded-full bg-accent shrink-0" />
+                      <div className="w-1.5 rounded-full bg-accent shrink-0" />
                       <div>
-                        <p className="font-bold text-foreground mb-1">Legge 257/92</p>
+                        <p className="font-bold text-foreground mb-1.5">Legge 27 marzo 1992, n. 257</p>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          Cessazione dell'impiego dell'amianto e norme per la sua gestione.
+                          Cessazione dell'utilizzo dell'amianto e norme per la sua gestione.
                         </p>
                       </div>
                     </li>
                     <li className="flex gap-4">
-                      <div className="w-1 rounded-full bg-accent shrink-0" />
+                      <div className="w-1.5 rounded-full bg-accent shrink-0" />
                       <div>
-                        <p className="font-bold text-foreground mb-1">D.M. 6 settembre 1994</p>
+                        <p className="font-bold text-foreground mb-1.5">D.M. 6 settembre 1994</p>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          Metodologie tecniche per valutazione, controllo e gestione degli interventi sui materiali contenenti amianto.
+                          Metodologie tecniche per la gestione e la bonifica dei materiali contenenti amianto.
                         </p>
                       </div>
                     </li>
@@ -213,14 +218,16 @@ const Certificazioni = () => {
                   </p>
                   <p className="text-foreground font-medium">Affidarsi a un'azienda che opera nel rispetto della normativa significa:</p>
                 </div>
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-7 space-y-4">
                   {benefits.map((b, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 bg-card rounded-lg border border-border/60 px-4 py-3 shadow-sm"
+                      className="flex items-start gap-4 bg-card rounded-xl border-2 border-border/70 px-5 py-4 shadow-sm hover:shadow-card hover:border-accent/40 transition-all duration-300"
                     >
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                      <span className="text-foreground">{b}</span>
+                      <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-5 h-5 text-accent" />
+                      </div>
+                      <span className="text-foreground font-medium leading-relaxed pt-1">{b}</span>
                     </li>
                   ))}
                 </ul>
@@ -233,7 +240,7 @@ const Certificazioni = () => {
         </section>
 
         {/* SEZIONE 3 - GESTIONE COMPLETA */}
-        <section className="py-20 lg:py-28 bg-background">
+        <section className="py-24 lg:py-36 bg-background">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-14 animate-fade-in-up">
               <span className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-wider mb-4">
@@ -252,21 +259,21 @@ const Certificazioni = () => {
               </p>
             </div>
 
-            <div className="max-w-5xl mx-auto">
-              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6">
                 {phases.map((phase, i) => (
                   <div
                     key={i}
-                    className="relative bg-card rounded-xl border border-border/60 p-5 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 animate-fade-in-up"
+                    className="group relative bg-card rounded-2xl border-2 border-border/70 p-6 lg:p-7 shadow-sm hover:shadow-card-hover hover:-translate-y-2 hover:border-accent/40 transition-all duration-300 animate-fade-in-up"
                     style={{ animationDelay: `${i * 0.08}s` }}
                   >
-                    <div className="absolute -top-3 left-5 bg-accent text-accent-foreground w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-sm">
+                    <div className="absolute -top-3.5 left-6 bg-accent text-accent-foreground w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md">
                       {i + 1}
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 mt-2">
-                      <phase.icon className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 mt-2 group-hover:bg-accent/15 transition-colors">
+                      <phase.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
                     </div>
-                    <h3 className="font-heading text-base font-bold text-foreground mb-2 leading-snug">
+                    <h3 className="font-heading text-base lg:text-lg font-bold text-foreground mb-3 leading-snug">
                       {phase.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{phase.description}</p>
@@ -289,7 +296,7 @@ const Certificazioni = () => {
         <section className="py-20 lg:py-28 bg-muted/40 border-y border-border/60">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
-              <div className="lg:col-span-6 animate-fade-in-up">
+              <div className="lg:col-span-7 animate-fade-in-up">
                 <span className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-wider mb-4">
                   <FileText className="w-4 h-4" />
                   Documentazione
@@ -308,6 +315,9 @@ const Certificazioni = () => {
                   <p>
                     Questo approccio consente di affrontare l'intervento con maggiore tranquillità, sapendo che ogni fase è stata gestita in modo corretto.
                   </p>
+                  <p className="text-foreground font-medium">
+                    Al termine dell'intervento, il cliente ha un quadro chiaro e documentato del lavoro svolto.
+                  </p>
                   <p>
                     Puoi vedere{" "}
                     <Link to="/realizzazioni" className="text-primary font-semibold underline underline-offset-4 hover:text-accent transition-colors">
@@ -317,15 +327,15 @@ const Certificazioni = () => {
                   </p>
                 </div>
               </div>
-              <div className="lg:col-span-6">
+              <div className="lg:col-span-5">
                 <div className="relative rounded-2xl overflow-hidden shadow-card">
                   <img
                     src={docImg}
                     alt="Documentazione tecnica intervento amianto"
                     width={1280}
-                    height={900}
+                    height={1280}
                     loading="lazy"
-                    className="w-full h-auto object-cover aspect-[4/3]"
+                    className="w-full h-auto object-cover aspect-square"
                   />
                 </div>
               </div>
