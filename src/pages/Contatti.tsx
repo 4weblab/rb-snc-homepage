@@ -135,16 +135,10 @@ const Contatti = () => {
                 Hai bisogno di rimuovere amianto, sostituire una copertura in eternit o intervenire su un tetto civile o industriale? Contatta RB SNC: valuteremo la situazione e ti indicheremo come procedere in modo chiaro.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Button asChild size="lg" variant="default" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg hover:shadow-xl transition-all">
                   <a href="#form">
                     Compila il form
                     <ArrowRight className="ml-2 w-4 h-4" />
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white">
-                  <a href="tel:+390497382238">
-                    <Phone className="mr-2 w-4 h-4" />
-                    049 7382238
                   </a>
                 </Button>
               </div>
@@ -169,34 +163,34 @@ const Contatti = () => {
               {quickContacts.map((c) => (
                 <div
                   key={c.title}
-                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-1 hover:border-accent/40 hover:shadow-card-hover transition-all duration-300"
+                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-card-hover transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent/15 transition-colors">
-                    <c.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
+                  <div className="w-14 h-14 rounded-2xl bg-accent/10 ring-1 ring-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent group-hover:ring-accent transition-all duration-300">
+                    <c.icon className="w-7 h-7 text-accent group-hover:text-accent-foreground transition-colors" />
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-3">
+                  <h3 className="font-heading text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                     {c.title}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {c.lines.map((line, idx) => {
                       const LineIcon = (line as any).icon;
                       const content = (
-                        <span className="inline-flex items-center gap-2">
-                          {LineIcon && <LineIcon className="w-4 h-4 text-muted-foreground" />}
+                        <span className="inline-flex items-center gap-2.5">
+                          {LineIcon && <LineIcon className="w-4 h-4 text-accent shrink-0" />}
                           <span>{line.label}</span>
                         </span>
                       );
                       return (
-                        <li key={idx} className="text-base text-foreground">
+                        <li key={idx} className="text-lg md:text-xl font-heading text-foreground">
                           {line.href ? (
                             <a
                               href={line.href}
-                              className="hover:text-accent transition-colors font-medium"
+                              className="hover:text-accent transition-colors font-bold"
                             >
                               {content}
                             </a>
                           ) : (
-                            <span className="font-medium">{content}</span>
+                            <span className="font-bold">{content}</span>
                           )}
                         </li>
                       );
@@ -224,27 +218,27 @@ const Contatti = () => {
 
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-card rounded-2xl border-2 border-border shadow-card p-6 md:p-8 space-y-5"
+                  className="bg-card rounded-3xl border-2 border-border shadow-card p-8 md:p-10 space-y-6"
                 >
                   <div>
                     <Label htmlFor="nome" className="text-sm font-semibold">
                       Nome e cognome <span className="text-accent">*</span>
                     </Label>
-                    <Input id="nome" name="nome" required className="mt-2 h-11" placeholder="Mario Rossi" />
+                    <Input id="nome" name="nome" required className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="Mario Rossi" />
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="telefono" className="text-sm font-semibold">
                         Telefono <span className="text-accent">*</span>
                       </Label>
-                      <Input id="telefono" name="telefono" type="tel" required className="mt-2 h-11" placeholder="+39 ..." />
+                      <Input id="telefono" name="telefono" type="tel" required className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="+39 ..." />
                     </div>
                     <div>
                       <Label htmlFor="email" className="text-sm font-semibold">
                         Email
                       </Label>
-                      <Input id="email" name="email" type="email" className="mt-2 h-11" placeholder="nome@email.it" />
+                      <Input id="email" name="email" type="email" className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="nome@email.it" />
                     </div>
                   </div>
 
@@ -252,7 +246,7 @@ const Contatti = () => {
                     <Label htmlFor="zona" className="text-sm font-semibold">
                       Comune / zona intervento
                     </Label>
-                    <Input id="zona" name="zona" className="mt-2 h-11" placeholder="Es. Cittadella (PD)" />
+                    <Input id="zona" name="zona" className="mt-2 h-12 rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors" placeholder="Es. Cittadella (PD)" />
                   </div>
 
                   <div>
@@ -262,7 +256,7 @@ const Contatti = () => {
                     <select
                       id="tipo"
                       name="tipo"
-                      className="mt-2 flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="mt-2 flex h-12 w-full rounded-xl border-2 border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors"
                       defaultValue=""
                     >
                       <option value="" disabled>
@@ -283,7 +277,7 @@ const Contatti = () => {
                       id="messaggio"
                       name="messaggio"
                       rows={5}
-                      className="mt-2 resize-none"
+                      className="mt-2 resize-none rounded-xl border-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:border-accent transition-colors"
                       placeholder="Descrivi brevemente la situazione (tipologia di edificio, dimensioni indicative, eventuali urgenze)..."
                     />
                   </div>
@@ -301,10 +295,10 @@ const Contatti = () => {
 
                   <Button
                     type="submit"
-                    size="lg"
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
+                    size="xl"
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                   >
-                    <Send className="mr-2 w-4 h-4" />
+                    <Send className="mr-2 w-5 h-5" />
                     Richiedi sopralluogo
                   </Button>
                 </form>
@@ -361,10 +355,24 @@ const Contatti = () => {
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   RB SNC opera in Veneto per interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili.
                 </p>
-                <div className="flex items-center gap-3 text-sm text-foreground">
+                <div className="flex items-center gap-3 text-sm text-foreground mb-6">
                   <MapPin className="w-5 h-5 text-accent" />
                   <span className="font-semibold">Sede operativa: Cittadella (PD)</span>
                 </div>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=RB+SNC+Via+Sansughe+3+Cittadella"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MapPin className="mr-2 w-5 h-5" />
+                    Apri Google Maps e raggiungici
+                  </a>
+                </Button>
               </div>
 
               <div className="relative">
@@ -406,12 +414,12 @@ const Contatti = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-1 hover:border-accent/40 hover:shadow-card-hover transition-all duration-300 flex flex-col"
+                  className="group bg-card rounded-2xl border-2 border-border/70 p-7 hover:-translate-y-2 hover:border-accent hover:shadow-2xl transition-all duration-300 flex flex-col"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent/15 transition-colors">
-                    <link.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                    <link.icon className="w-7 h-7 text-primary group-hover:text-accent-foreground transition-colors" />
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-2">
+                  <h3 className="font-heading text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
                     {link.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
@@ -419,7 +427,7 @@ const Contatti = () => {
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent">
                     Scopri di più
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                   </span>
                 </Link>
               ))}
