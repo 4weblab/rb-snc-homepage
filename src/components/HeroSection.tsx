@@ -8,10 +8,10 @@ import heroBg3 from "@/assets/hero-bg-3.jpg";
 import heroBg4 from "@/assets/hero-bg-4.jpg";
 
 const heroImages = [
-  { src: heroBg1, alt: "Coperture industriali - 4 WEBLAB" },
-  { src: heroBg2, alt: "Installazione coperture metalliche" },
-  { src: heroBg3, alt: "Capannoni industriali" },
-  { src: heroBg4, alt: "Bonifica amianto su coperture" },
+  { src: heroBg1, alt: "Rifacimento copertura industriale RB SNC a Cittadella, Padova" },
+  { src: heroBg2, alt: "Installazione coperture metalliche su capannone in Veneto" },
+  { src: heroBg3, alt: "Capannoni industriali con nuove coperture realizzate da RB SNC" },
+  { src: heroBg4, alt: "Bonifica amianto e smaltimento eternit su copertura industriale" },
 ];
 
 const HeroSection = () => {
@@ -33,6 +33,11 @@ const HeroSection = () => {
             key={image.alt}
             src={image.src}
             alt={image.alt}
+            width={1920}
+            height={1080}
+            decoding="async"
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "low"}
             className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
             style={{ opacity: index === currentIndex ? 1 : 0 }}
           />
