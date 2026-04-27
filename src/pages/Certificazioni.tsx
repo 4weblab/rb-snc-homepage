@@ -153,29 +153,30 @@ const Certificazioni = () => {
               </div>
 
               <aside className="lg:col-span-5 lg:sticky lg:top-24">
-                <div className="bg-card rounded-2xl border-2 border-border shadow-card p-7 md:p-8">
+                <div className="relative bg-muted/60 rounded-2xl border-2 border-accent/30 shadow-card-hover p-7 md:p-8 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-accent" />
                   <div className="flex items-center gap-3 mb-6 pb-5 border-b border-border">
-                    <div className="w-11 h-11 rounded-lg bg-primary text-primary-foreground flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-lg bg-primary text-primary-foreground flex items-center justify-center shadow-sm">
                       <ScrollText className="w-5 h-5" />
                     </div>
                     <h3 className="font-heading text-lg font-bold text-foreground">Riferimenti normativi</h3>
                   </div>
-                  <ul className="space-y-5">
+                  <ul className="space-y-6">
                     <li className="flex gap-4">
-                      <div className="w-1 rounded-full bg-accent shrink-0" />
+                      <div className="w-1.5 rounded-full bg-accent shrink-0" />
                       <div>
-                        <p className="font-bold text-foreground mb-1">Legge 257/92</p>
+                        <p className="font-bold text-foreground mb-1.5">Legge 27 marzo 1992, n. 257</p>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          Cessazione dell'impiego dell'amianto e norme per la sua gestione.
+                          Cessazione dell'utilizzo dell'amianto e norme per la sua gestione.
                         </p>
                       </div>
                     </li>
                     <li className="flex gap-4">
-                      <div className="w-1 rounded-full bg-accent shrink-0" />
+                      <div className="w-1.5 rounded-full bg-accent shrink-0" />
                       <div>
-                        <p className="font-bold text-foreground mb-1">D.M. 6 settembre 1994</p>
+                        <p className="font-bold text-foreground mb-1.5">D.M. 6 settembre 1994</p>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          Metodologie tecniche per valutazione, controllo e gestione degli interventi sui materiali contenenti amianto.
+                          Metodologie tecniche per la gestione e la bonifica dei materiali contenenti amianto.
                         </p>
                       </div>
                     </li>
