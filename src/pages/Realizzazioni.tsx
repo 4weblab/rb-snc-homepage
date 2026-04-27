@@ -58,7 +58,7 @@ const projects = [
       { icon: Layers, label: "Contesto", value: "Copertura industriale" },
       { icon: MapPin, label: "Area servita", value: "Veneto" },
       { icon: Wrench, label: "Intervento", value: "Rimozione e smaltimento eternit" },
-      { icon: Clock, label: "Stato", value: "Contenuto provvisorio" },
+      { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
   },
   {
@@ -78,7 +78,7 @@ const projects = [
       { icon: Layers, label: "Contesto", value: "Capannone" },
       { icon: MapPin, label: "Area servita", value: "Veneto" },
       { icon: Wrench, label: "Intervento", value: "Rifacimento copertura" },
-      { icon: Clock, label: "Stato", value: "Contenuto provvisorio" },
+      { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
   },
   {
@@ -98,7 +98,7 @@ const projects = [
       { icon: Layers, label: "Contesto", value: "Abitazione privata" },
       { icon: MapPin, label: "Area servita", value: "Veneto" },
       { icon: Wrench, label: "Intervento", value: "Rifacimento copertura civile" },
-      { icon: Clock, label: "Stato", value: "Contenuto provvisorio" },
+      { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
   },
 ] as const;
