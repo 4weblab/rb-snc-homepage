@@ -4,11 +4,41 @@ import { useEffect, useRef, useState } from "react";
 import sectorsBg from "@/assets/sectors-bg.jpg";
 
 const sectors = [
-  { icon: Factory, title: "Industria e stabilimenti produttivi", description: "Interventi su coperture e bonifica amianto per stabilimenti produttivi e impianti industriali." },
-  { icon: Warehouse, title: "Capannoni industriali e prefabbricati", description: "Coperture e rifacimento tetti per capannoni, strutture prefabbricate e immobili industriali." },
-  { icon: Store, title: "Strutture commerciali", description: "Interventi su coperture per negozi, centri commerciali e grandi superfici di vendita." },
-  { icon: Home, title: "Abitazioni private e condomini", description: "Rifacimento tetti e interventi su coperture civili per abitazioni private e condomini." },
-  { icon: Building2, title: "Edifici direzionali e uffici", description: "Interventi su coperture per uffici, laboratori e strutture direzionali." },
+  {
+    icon: Factory,
+    title: "Industria e stabilimenti produttivi",
+    description: "Interventi su coperture e bonifica amianto per stabilimenti produttivi e impianti industriali.",
+    href: "/servizi#coperture-industriali",
+    ariaLabel: "Coperture industriali per stabilimenti produttivi",
+  },
+  {
+    icon: Warehouse,
+    title: "Capannoni industriali e prefabbricati",
+    description: "Coperture e rifacimento tetti per capannoni, strutture prefabbricate e immobili industriali.",
+    href: "/servizi#coperture-industriali",
+    ariaLabel: "Rifacimento coperture per capannoni e prefabbricati",
+  },
+  {
+    icon: Store,
+    title: "Strutture commerciali",
+    description: "Interventi su coperture per negozi, centri commerciali e grandi superfici di vendita.",
+    href: "/servizi",
+    ariaLabel: "Servizi su coperture per strutture commerciali",
+  },
+  {
+    icon: Home,
+    title: "Abitazioni private e condomini",
+    description: "Rifacimento tetti e interventi su coperture civili per abitazioni private e condomini.",
+    href: "/servizi#tetti-civili",
+    ariaLabel: "Rifacimento tetti civili per abitazioni e condomini",
+  },
+  {
+    icon: Building2,
+    title: "Edifici direzionali e uffici",
+    description: "Interventi su coperture per uffici, laboratori e strutture direzionali.",
+    href: "/servizi",
+    ariaLabel: "Servizi su coperture per uffici e edifici direzionali",
+  },
 ];
 
 const TimelineItem = ({
@@ -46,7 +76,8 @@ const TimelineItem = ({
         <div className={`flex ${isRight ? "justify-end" : "justify-end"}`}>
           {!isRight ? (
             <Link
-              to="/settori"
+              to={sector.href}
+              aria-label={sector.ariaLabel}
               className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${
                 isVisible
                   ? "opacity-100 translate-x-0"
@@ -82,7 +113,8 @@ const TimelineItem = ({
         <div className="flex justify-start">
           {isRight ? (
             <Link
-              to="/settori"
+              to={sector.href}
+              aria-label={sector.ariaLabel}
               className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${
                 isVisible
                   ? "opacity-100 translate-x-0"
@@ -116,7 +148,8 @@ const TimelineItem = ({
           />
         </div>
         <Link
-          to="/settori"
+          to={sector.href}
+          aria-label={sector.ariaLabel}
           className={`block flex-1 rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover transition-all duration-300 group overflow-hidden ${
             isVisible
               ? "opacity-100 translate-x-0"
