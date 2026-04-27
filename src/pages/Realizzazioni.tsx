@@ -38,9 +38,6 @@ import tetto3 from "@/assets/realizzazione-tetto-3.jpg";
 
 type GalleryImg = { src: string; alt: string };
 
-const placeholderText =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Intervento segnaposto: la scheda sarà aggiornata con descrizione reale del cantiere, fotografie definitive e dettagli dell’intervento eseguito.";
-
 const projects = [
   {
     id: "bonifica-amianto",
