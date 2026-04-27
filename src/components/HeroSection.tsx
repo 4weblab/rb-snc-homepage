@@ -54,7 +54,21 @@ const HeroSection = () => {
             RB snc - Il vostro partner per la bonifica amianto e rifacimento coperture in Veneto
           </h1>
           <p className="text-xl md:text-2xl font-heading font-semibold text-navy-foreground/85 mb-10 leading-relaxed max-w-2xl" style={{ animationDelay: "0.15s" }}>
-            RB SNC interviene a Cittadella, Padova e in tutto il Veneto per bonifica amianto, smaltimento eternit e rifacimento coperture. Lavoriamo con aziende, capannoni industriali e privati, garantendo interventi rapidi, esperienza sul campo e gestione diretta dei lavori senza intermediari.
+            RB SNC interviene a Cittadella, Padova e in tutto il Veneto per{" "}
+            <Link
+              to="/servizi"
+              className="text-accent hover:text-accent/80 underline-offset-4 hover:underline transition-colors"
+            >
+              bonifica amianto, smaltimento eternit e rifacimento coperture
+            </Link>
+            . Lavoriamo con aziende, capannoni industriali e privati, garantendo interventi rapidi, esperienza sul campo e{" "}
+            <Link
+              to="/realizzazioni"
+              className="text-accent hover:text-accent/80 underline-offset-4 hover:underline transition-colors"
+            >
+              gestione diretta dei lavori
+            </Link>{" "}
+            senza intermediari.
           </p>
           <div className="flex flex-col sm:flex-row gap-4" style={{ animationDelay: "0.3s" }}>
             <Button asChild variant="hero" size="xl" className="font-semibold">

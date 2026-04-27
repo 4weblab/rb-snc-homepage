@@ -1,4 +1,5 @@
 import { Zap, Users, Award, Scale } from "lucide-react";
+import { Link } from "react-router-dom";
 import strengthsBg from "@/assets/strengths-bg.jpg";
 
 const strengths = [
@@ -37,6 +38,24 @@ const StrengthsSection = () => {
             </div>
           )}
         </div>
+
+        <p className="text-center text-white/85 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-12">
+          Scopri la{" "}
+          <Link
+            to="/certificazioni"
+            className="text-accent font-semibold underline-offset-4 hover:underline"
+          >
+            normativa amianto e la documentazione
+          </Link>{" "}
+          che gestiamo per ogni intervento, oppure consulta gli{" "}
+          <Link
+            to="/realizzazioni"
+            className="text-accent font-semibold underline-offset-4 hover:underline"
+          >
+            interventi realizzati in Veneto
+          </Link>
+          .
+        </p>
       </div>
     </section>);
 

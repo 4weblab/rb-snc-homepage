@@ -1,4 +1,5 @@
 import { ShieldCheck, Factory, Home, ArrowRight, Star, Timer, Award, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 import serviceAmianto from "@/assets/service-amianto.jpg";
 import serviceCoperture from "@/assets/service-coperture-industriali.jpg";
 import serviceTetto from "@/assets/service-tetto-civile.jpg";
@@ -9,7 +10,8 @@ const services = [
     title: "Bonifica amianto e smaltimento eternit",
     description:
       "Rimozione e smaltimento amianto su capannoni, aziende e abitazioni nel rispetto delle normative vigenti.",
-    href: "/servizi",
+    href: "/servizi#bonifica-amianto",
+    ariaLabel: "Vai al servizio di bonifica amianto e smaltimento eternit in Veneto",
     image: serviceAmianto,
     featured: true,
   },
@@ -18,7 +20,8 @@ const services = [
     title: "Rifacimento coperture industriali",
     description:
       "Interventi su tetti e coperture per aziende e capannoni industriali, con soluzioni durevoli e sicure.",
-    href: "/servizi",
+    href: "/servizi#coperture-industriali",
+    ariaLabel: "Vai al servizio di rifacimento coperture industriali per capannoni e aziende",
     image: serviceCoperture,
     featured: false,
   },
@@ -27,7 +30,8 @@ const services = [
     title: "Rifacimento tetti civili",
     description:
       "Ristrutturazione e sostituzione coperture per abitazioni private.",
-    href: "/servizi",
+    href: "/servizi#tetti-civili",
+    ariaLabel: "Vai al servizio di rifacimento tetti civili per abitazioni private",
     image: serviceTetto,
     featured: false,
   },
@@ -80,9 +84,10 @@ const ServicesSection = () => {
             const Icon = service.icon;
             const isFeatured = service.featured;
             return (
-              <a
+              <Link
                 key={service.title}
-                href={service.href}
+                to={service.href}
+                aria-label={service.ariaLabel}
                 className={`group relative flex flex-col rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
                   isFeatured
                     ? "bg-primary text-primary-foreground ring-1 ring-primary/30"
@@ -141,11 +146,15 @@ const ServicesSection = () => {
                       isFeatured ? "text-accent" : "text-primary"
                     }`}
                   >
-                    Scopri di più
+                    {service.title === "Bonifica amianto e smaltimento eternit"
+                      ? "Scopri la bonifica amianto"
+                      : service.title === "Rifacimento coperture industriali"
+                      ? "Scopri le coperture industriali"
+                      : "Scopri il rifacimento tetti civili"}
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>

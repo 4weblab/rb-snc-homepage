@@ -8,12 +8,18 @@ const footerLinks = [
 { label: "Certificazioni", href: "/certificazioni" },
 { label: "Contatti", href: "/contatti" }];
 
+const serviceLinks = [
+  { label: "Bonifica amianto e smaltimento eternit", href: "/servizi#bonifica-amianto" },
+  { label: "Rifacimento coperture industriali", href: "/servizi#coperture-industriali" },
+  { label: "Rifacimento tetti civili", href: "/servizi#tetti-civili" },
+  { label: "Sicurezza e normativa amianto", href: "/certificazioni" },
+];
 
 const Footer = () => {
   return (
     <footer className="bg-foreground text-background/80 py-16">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
             <Link to="/" className="font-heading text-xl font-bold text-background leading-tight">
@@ -24,7 +30,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Links */}
+          {/* Pages */}
           <div>
             <h4 className="font-heading font-semibold text-background mb-4">Pagine</h4>
             <ul className="space-y-2">
@@ -37,6 +43,23 @@ const Footer = () => {
                   </Link>
                 </li>
               )}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-heading font-semibold text-background mb-4">Servizi</h4>
+            <ul className="space-y-2">
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="text-sm text-background/60 hover:text-background transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

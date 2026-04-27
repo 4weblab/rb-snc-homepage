@@ -8,8 +8,15 @@ const CTASection = () => {
         <h2 className="text-4xl lg:text-5xl font-heading font-bold mb-4">
           Richiedi informazioni per il tuo progetto
         </h2>
-        <p className="text-navy-foreground/70 max-w-lg mx-auto mb-10">
-          Contattaci per un sopralluogo gratuito e un preventivo personalizzato.
+        <p className="text-navy-foreground/70 max-w-xl mx-auto mb-10">
+          Contattaci per un sopralluogo gratuito e un preventivo personalizzato sui{" "}
+          <Link
+            to="/servizi"
+            className="text-accent font-semibold underline-offset-4 hover:underline"
+          >
+            nostri servizi di bonifica amianto e coperture
+          </Link>
+          .
         </p>
         <Button asChild variant="cta" size="xl">
           <Link to="/contatti">Contattaci</Link>

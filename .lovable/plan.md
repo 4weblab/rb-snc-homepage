@@ -1,136 +1,117 @@
 ## Obiettivo
 
-Configurare un sistema di **prerendering** automatico al build, in modo che lanciando `npm run build` venga generato un `dist/` contenente HTML statici per ogni rotta del sito (con meta tag, canonical, JSON-LD e contenuto già renderizzati nell'HTML), pronto per essere caricato via FTP su **Windows Server / IIS** senza bisogno di Node lato server.
+Migliorare l'**internal linking** del sito per favorire l'indicizzazione Google:
+1. eliminare i link rotti (che disperdono PageRank e generano 404),
+2. trasformare gli anchor `<a href>` interni in `<Link>` di React Router (no full reload, navigazione SPA pulita),
+3. arricchire le anchor text con parole chiave reali (Google le usa come segnale di pertinenza),
+4. aggiungere link contestuali "naturali" nelle sezioni dove oggi mancano, per distribuire link juice in modo equilibrato tra Home → Servizi → Realizzazioni → Certificazioni → Contatti.
 
-Il flusso per te resta identico: `npm run build` → upload `dist/` via FTP → fine.
-
----
-
-## Cosa cambia rispetto a oggi
-
-**Oggi**: il build produce un solo `index.html` quasi vuoto. Tutto il contenuto e i meta tag (`<title>`, `description`, `og:*`, JSON-LD per pagina) sono iniettati lato client da React + Helmet. Crawler che non eseguono JS (anteprime social, alcuni bot SEO, scanner) vedono solo il template della home.
-
-**Dopo**: il build produce un HTML reale per ogni rotta, con DOM completo, meta tag specifici e JSON-LD già nel sorgente. Il sito resta una SPA per la navigazione interna (rimane fluido, niente reload tra pagine), ma il primo caricamento di qualsiasi URL serve HTML statico già pronto.
+Tutti i link sono **inseriti nel testo o in elementi visivi già esistenti**, non aggiungo "barre di link" artificiali. L'obiettivo è che restino naturali per il visitatore.
 
 ---
 
-## Mappa finale del `dist/` dopo il build
+## Problemi rilevati
 
-```text
-dist/
-├── index.html                 ← Home (meta + JSON-LD LocalBusiness)
-├── 404.html                   ← Pagina 404 statica per IIS
-├── web.config                 ← Routing IIS + MIME + compressione + cache
-├── robots.txt
-├── sitemap.xml
-├── favicon.webp
-├── og-image.webp
-├── placeholder.svg
-├── servizi/
-│   └── index.html             ← /servizi prerenderizzata
-├── realizzazioni/
-│   └── index.html             ← /realizzazioni prerenderizzata
-├── certificazioni/
-│   └── index.html             ← /certificazioni prerenderizzata
-├── contatti/
-│   └── index.html             ← /contatti prerenderizzata
-├── cookie-policy/
-│   └── index.html             ← /cookie-policy prerenderizzata
-├── privacy-policy/
-│   └── index.html             ← /privacy-policy prerenderizzata
-└── assets/
-    ├── index-[hash].js
-    ├── index-[hash].css
-    ├── servizi-hero-[hash].jpg
-    ├── ... (tutti gli asset bundle hashati da Vite)
+### 1. Link rotti (priorità massima)
+
+| File | Link | Problema |
+|---|---|---|
+| `src/components/CompanySection.tsx` | `<Link to="/chi-siamo">Scopri l'azienda</Link>` | La rotta `/chi-siamo` **non esiste** nel router → 404 |
+| `src/components/SectorsSection.tsx` | 3 × `<Link to="/settori">` (desktop sx, desktop dx, mobile) | La rotta `/settori` **non esiste** → 404 |
+
+### 2. `<a href>` interni che dovrebbero essere `<Link>`
+
+| File | Elemento |
+|---|---|
+| `src/components/Navbar.tsx` | logo + 5 voci menu desktop + 5 voci menu mobile |
+| `src/components/ServicesSection.tsx` | 3 schede servizio (`<a href="/servizi">`) |
+| `src/components/ProblemsSection.tsx` | CTA finale (`<a href="/contatti">`) |
+| `src/pages/Contatti.tsx` | CTA hero (`<a href="#form">` — questo resta href perché è anchor di pagina) |
+
+I `<a href>` interni causano un **full page reload**, perdono lo stato React e impediscono al prerender/idratazione di mantenere la SPA fluida. Per Google sono comunque link validi, ma la conversione a `<Link>` migliora UX e Core Web Vitals (no LCP ricalcolato).
+
+### 3. Anchor text deboli o duplicate
+
+- `ServicesSection.tsx`: 3 cards puntano tutte a `/servizi` con label visivo "Scopri di più" (identico) → Google vede 3 link al servizio con anchor "Scopri di più" invece che con le keyword. Le farò puntare alle **ancore specifiche della pagina Servizi** (`#bonifica-amianto`, `#coperture-industriali`, `#tetti-civili`) e darò un `aria-label` o testo nascosto descrittivo ("Bonifica amianto e smaltimento eternit", ecc.).
+- `CompanySection`: "Scopri l'azienda" → trasformerò in link contestuale verso `/servizi` o `/certificazioni` (con anchor descrittiva).
+- `CTASection.tsx`: "Contattaci" generico → resta come CTA, ma aggiungo nel testo della sezione un secondo link descrittivo ai servizi.
+
+### 4. Link contestuali mancanti (opportunità SEO)
+
+- **`HeroSection`**: il sottotitolo nomina "bonifica amianto", "rifacimento coperture", "Cittadella, Padova" senza nessun link. Inserisco 1-2 link inline nel paragrafo verso `/servizi` e (eventualmente) `/realizzazioni`.
+- **`ProblemsSection`**: i 3 box (rischio amianto / danni coperture / intervento tardivo) sono perfetti per linkare in modo tematico verso `/servizi#bonifica-amianto`, `/servizi#coperture-industriali`, `/certificazioni`. Aggiungo un link "leggi di più" o trasformo l'intera card in cliccabile.
+- **`StrengthsSection`**: oggi zero link. Aggiungo un piccolo CTA testuale finale che linka `/certificazioni` ("lavori a norma → vedi normativa e documentazione") e `/realizzazioni` ("esperienza sul campo → vedi interventi realizzati").
+- **`CompanySection`**: oltre a sostituire il link rotto, aggiungo nei due paragrafi descrittivi un link inline a `/servizi` (parole "bonifica amianto e coperture") e uno a `/contatti` ("interventi senza intermediari").
+- **`SectorsSection`**: dato che `/settori` non esiste, faccio puntare ogni card al servizio più pertinente (Industria/Capannoni → `/servizi#coperture-industriali`, Abitazioni/Condomini → `/servizi#tetti-civili`, Strutture commerciali/Direzionali → `/servizi`). Anchor text contestuali.
+
+### 5. Footer: blocco "Servizi" granulare
+
+Aggiungo nel footer una colonna "Servizi" con 3 link diretti alle ancore di `/servizi`:
+- Bonifica amianto e smaltimento eternit → `/servizi#bonifica-amianto`
+- Rifacimento coperture industriali → `/servizi#coperture-industriali`
+- Rifacimento tetti civili → `/servizi#tetti-civili`
+
+Questo è un pattern SEO standard: il footer è presente in ogni pagina e crea link siteribbon-wide con anchor text ricche di keyword verso le sezioni profonde del sito.
+
+### 6. Sitemap
+
+`public/sitemap.xml` è già corretto (5 URL principali, esclude privacy/cookie come da `noindex`). Non lo modifico.
+
+---
+
+## Mappa interventi per file
+
+| File | Cosa cambio |
+|---|---|
+| `src/components/Navbar.tsx` | Logo + voci menu (desktop + mobile) → `<Link>` invece di `<a href>` |
+| `src/components/HeroSection.tsx` | Inserisco 2 link inline nel paragrafo hero (`/servizi`, `/realizzazioni`) con anchor descrittive |
+| `src/components/ServicesSection.tsx` | 3 schede: `<a href="/servizi">` → `<Link to="/servizi#bonifica-amianto">` etc. + label "Vai al servizio: bonifica amianto" come `aria-label` per anchor text accessibile |
+| `src/components/ProblemsSection.tsx` | CTA `<a>` → `<Link>`. Aggiungo a ogni card un link "Approfondisci" verso la sezione pertinente (`/servizi#bonifica-amianto`, `/servizi#coperture-industriali`, `/certificazioni`) |
+| `src/components/CompanySection.tsx` | Rimuovo `/chi-siamo` (rotto). Sostituisco con `<Link to="/servizi">Scopri i nostri servizi</Link>`. Aggiungo 2 link inline nei paragrafi verso `/servizi` e `/certificazioni` |
+| `src/components/SectorsSection.tsx` | Sostituisco i 3 link a `/settori` con link al servizio pertinente per ogni settore (mappatura: Industria → `/servizi#coperture-industriali`, Capannoni → `/servizi#coperture-industriali`, Strutture commerciali → `/servizi`, Abitazioni/Condomini → `/servizi#tetti-civili`, Edifici direzionali → `/servizi`) |
+| `src/components/StrengthsSection.tsx` | Aggiungo sotto la griglia un piccolo paragrafo con 2 link inline: "lavori a norma" → `/certificazioni`, "esperienza sul campo" → `/realizzazioni` |
+| `src/components/CTASection.tsx` | Mantengo il CTA principale a `/contatti`. Aggiungo nel paragrafo descrittivo un link inline a `/servizi` ("preventivo personalizzato sui nostri servizi") |
+| `src/components/Footer.tsx` | Aggiungo una colonna "Servizi" con 3 link granulari alle ancore di `/servizi` (mantengo la colonna "Pagine" esistente). Layout grid passa da 3 a 4 colonne su desktop |
+| `src/pages/Contatti.tsx` | Verifica: i 3 utilityLinks sono già `<a href>` — li converto in `<Link>` |
+
+---
+
+## Esempio concreto del pattern di anchor text
+
+**Prima (anchor generico):**
+```tsx
+<a href="/servizi">Scopri di più</a>
 ```
 
-Le sottocartelle (`servizi/index.html`, ecc.) garantiscono che IIS, quando l'utente entra direttamente su `https://rb-snc.it/servizi`, serva subito il file `servizi/index.html` corretto, senza dover passare dal fallback SPA. Il `web.config` interviene solo per le rotte ulteriori non prerenderizzate.
+**Dopo (anchor descrittivo + link a sezione specifica):**
+```tsx
+<Link
+  to="/servizi#bonifica-amianto"
+  aria-label="Vai al servizio di bonifica amianto e smaltimento eternit"
+>
+  Scopri il servizio di bonifica amianto
+</Link>
+```
+
+Per il visitatore il testo cliccabile può restare sintetico ("Scopri di più"), ma uso `aria-label` o un wrapper di testo nascosto (`sr-only`) per fornire a Google un'anchor text ricca di keyword. In altri punti, dove il design lo permette, uso direttamente l'anchor descrittiva visibile.
 
 ---
 
-## Rotte che verranno prerenderizzate
+## Cosa NON cambio
 
-Estratte dal router (`src/App.tsx`):
-
-- `/`
-- `/servizi`
-- `/realizzazioni`
-- `/certificazioni`
-- `/contatti`
-- `/cookie-policy`
-- `/privacy-policy`
-
-La rotta catch-all `*` → `NotFound` viene prerenderizzata come `404.html` separato per IIS.
+- Nessuna modifica al routing (`App.tsx`) — non creo pagine fittizie tipo `/chi-siamo` o `/settori` solo per coprire link rotti, perché creerebbero pagine sottili penalizzanti.
+- Nessuna modifica a Privacy/Cookie Policy (sono `noindex`, non rilevanti per il link juice).
+- Nessuna modifica al `web.config`, `vite.config.ts`, prerender (già configurato nel passo precedente).
+- Nessun cambio grafico significativo: i nuovi link inline usano lo stile già esistente (`text-primary font-semibold underline-offset-4 hover:underline`) già applicato in Servizi/Certificazioni/Realizzazioni.
 
 ---
 
-## Cosa verrà aggiunto / modificato
+## Risultato atteso
 
-### Dipendenze (devDependencies)
+- **0 link rotti** sul sito (oggi: 4 link rotti, tutti su componenti della home).
+- **Distribuzione link juice migliorata**: ogni pagina del menu riceve link contestuali da almeno 2-3 punti diversi della home + footer.
+- **Anchor text varia e tematica**: Google riceve segnali chiari su cosa ogni pagina tratti (bonifica amianto, coperture industriali, tetti civili, normativa, sopralluogo).
+- **Navigazione SPA coerente**: tutti i link interni passano per React Router → niente full reload, idratazione preservata, performance migliore.
+- **Deep linking alle ancore**: Google indicizza meglio le sotto-sezioni di `/servizi` (`#bonifica-amianto`, `#coperture-industriali`, `#tetti-civili`) come "site links" potenziali nelle SERP.
 
-- `vite-plugin-prerender` (oppure `react-snap` come alternativa). Userò `vite-plugin-prerender` perché:
-  - È nativo Vite (zero hack)
-  - Include Puppeteer come transitive dependency
-  - Genera la struttura `route/index.html` automaticamente
-  - Non richiede modifiche al codice React
-
-### File nuovi
-
-1. **`public/web.config`** — file di configurazione IIS che gestisce:
-   - **URL Rewrite**: se l'utente entra su una rotta non esistente come file fisico, fallback a `/index.html` (per qualsiasi rotta dinamica futura non prerenderizzata)
-   - **MIME types**: aggiunge `image/webp` per IIS vecchi
-   - **Compressione**: abilita gzip per HTML/CSS/JS
-   - **Cache headers**:
-     - asset hashati (`/assets/*`) → cache 1 anno (`max-age=31536000, immutable`)
-     - HTML → no-cache (così gli aggiornamenti si propagano subito al prossimo deploy)
-   - **Default document**: `index.html`
-   - **Custom error 404** → `/404.html`
-
-2. **`scripts/prerender.config.ts`** (o configurazione inline nel `vite.config.ts`) — elenco delle rotte da prerenderizzare e opzioni Puppeteer (timeout, attesa che Helmet abbia popolato il `<head>`, attesa che React abbia idratato).
-
-### File modificati
-
-1. **`vite.config.ts`** — aggiunta del plugin prerender nella pipeline di build (attivo solo in `mode === "production"`), con la lista delle rotte e l'hook che, dopo il rendering, salva l'HTML nelle sottocartelle.
-
-2. **`package.json`** — nessuna modifica agli script: `npm run build` continua a fare tutto. Aggiunte solo le devDependencies.
-
-3. **`src/main.tsx`** — sostituzione di `createRoot(...).render(...)` con un pattern che usi `hydrateRoot` se l'HTML iniziale è già renderizzato (rilevato dalla presenza di figli in `#root`), altrimenti `createRoot`. Questo evita warning di mismatch e mantiene l'idratazione corretta sia in dev sia in prod.
-
-4. **`index.html`** — nessuna modifica strutturale. Il prerender riempirà `<div id="root">` con il DOM renderizzato e aggiornerà `<head>` con i meta tag emessi da Helmet di ogni pagina.
-
-5. **`src/pages/NotFound.tsx`** — aggiunto `<Helmet>` con `title`, `meta robots="noindex"` e `link canonical` per produrre un `404.html` SEO-pulito.
-
----
-
-## Dettagli tecnici (per riferimento, non serve agire)
-
-- **Come funziona il prerender**: al termine di `vite build`, il plugin avvia un server statico interno che serve `dist/`, lancia Chromium headless, visita ogni rotta della lista, attende che `document.querySelector('[data-helmet-injected]')` o un evento custom indichi il completamento dell'idratazione, fa lo `outerHTML` di `<html>` e lo scrive su disco nella struttura `dist/<rotta>/index.html`.
-- **JSON-LD**: viene già emesso da `react-helmet-async` come `<script type="application/ld+json">`. Dopo il prerender finirà nel sorgente HTML statico, leggibile da qualsiasi crawler senza JS.
-- **Hydration**: il bundle JS resta identico, viene caricato e idrata l'HTML statico — la SPA continua a funzionare normalmente per le navigazioni client-side.
-- **Form contatti**: nessun impatto, è puro client-side. Il prerender cattura solo lo stato iniziale.
-- **Carousel/Dialog di Realizzazioni**: vengono prerenderizzati nel loro stato chiuso/iniziale (corretto). Le interazioni funzionano dopo idratazione.
-- **Tempo aggiuntivo al build**: ~10-30 secondi in più (Puppeteer + 7 visite). Il primo `npm install` scaricherà Chromium (~150 MB), una sola volta.
-- **`web.config` per IIS**: serve assicurarsi che sul server siano installati i moduli **URL Rewrite** e (opzionale) **Application Request Routing**. Se mancano, l'unica conseguenza è che il fallback SPA non funziona: ma siccome tutte le rotte attuali sono prerenderizzate come file fisici, **il sito funziona comunque** anche senza URL Rewrite. Il modulo serve solo per future rotte dinamiche.
-
----
-
-## Workflow finale per te
-
-1. `npm install` (una volta sola, per scaricare le nuove devDependencies + Chromium)
-2. `npm run build`
-3. Carichi tutto il contenuto di `dist/` via FTP nella root del sito IIS
-4. Fine
-
-Nessuna configurazione manuale lato server, nessuno script extra da lanciare, nessun comando aggiuntivo.
-
----
-
-## Verifica post-implementazione
-
-Dopo il build farò `view-source:` (concettualmente) di un paio di file generati per confermare che:
-- `dist/servizi/index.html` contiene `<title>Servizi…</title>`, meta description specifica, JSON-LD del servizio e il DOM completo della pagina
-- `dist/contatti/index.html` contiene il DOM del form e la mappa
-- `dist/index.html` contiene il JSON-LD `LocalBusiness` nel sorgente
-
-Una volta confermato, il piano è completato.
+Tutto resta compatibile con il prerender configurato in precedenza: i nuovi `<Link>` finiscono come `<a href="/...">` nell'HTML statico generato, perfettamente leggibili dai crawler.

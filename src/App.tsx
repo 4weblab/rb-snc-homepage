@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import CookiePolicy from "./pages/CookiePolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookieBanner from "./components/CookieBanner";
+import ScrollToHash from "./components/ScrollToHash";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToHash />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/servizi" element={<Servizi />} />
