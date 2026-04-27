@@ -385,8 +385,8 @@ const Realizzazioni = () => {
         >
           <div className="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-accent/5 blur-3xl pointer-events-none" />
           <div className="container mx-auto px-4 lg:px-8 relative">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-              <div className="lg:order-1">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+              <div className="lg:order-1 lg:col-span-5">
                 <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-wider">
                   <Factory className="w-3.5 h-3.5" />
                   {projects[1].tag}
@@ -395,7 +395,7 @@ const Realizzazioni = () => {
                   {projects[1].title}
                 </h2>
                 <div className="w-20 h-1.5 bg-accent rounded-full mb-6" />
-                <p className="text-muted-foreground leading-relaxed mb-8">
+                <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
                   {projects[1].text}
                 </p>
                 <DetailsList details={[...projects[1].details]} />
@@ -404,7 +404,8 @@ const Realizzazioni = () => {
               <button
                 type="button"
                 onClick={() => setLightbox(projects[1].main)}
-                className="group relative block w-full overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-border/60 lg:order-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                aria-label="Apri immagine ingrandita"
+                className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-border/60 lg:order-2 lg:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
               >
                 <img
                   src={projects[1].main.src}
@@ -412,9 +413,13 @@ const Realizzazioni = () => {
                   loading="lazy"
                   width={1280}
                   height={896}
-                  className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  className="w-full h-auto object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out"
                 />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                  <ZoomIn className="w-5 h-5" />
+                </div>
               </button>
             </div>
 
