@@ -1,20 +1,527 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  ShieldCheck,
+  Factory,
+  Home,
+  ArrowRight,
+  Info,
+  MapPin,
+  Wrench,
+  Tag,
+  Layers,
+  Clock,
+} from "lucide-react";
 
-const Realizzazioni = () => (
-  <>
-    <Helmet>
-      <title>Realizzazioni | RB SNC</title>
-      <meta name="description" content="Scopri le realizzazioni di RB SNC: interventi su coperture industriali, rifacimento tetti e bonifica amianto in Veneto." />
-      <link rel="canonical" href="https://rb-snc.it/realizzazioni" />
-    </Helmet>
-    <Navbar />
-    <main className="pt-16 container mx-auto px-4 py-12">
-      <h1 className="font-heading text-4xl font-bold text-foreground">Realizzazioni</h1>
-    </main>
-    <Footer />
-  </>
+import heroImg from "@/assets/realizzazioni-hero.jpg";
+import amianto1 from "@/assets/realizzazione-amianto-1.jpg";
+import amianto2 from "@/assets/realizzazione-amianto-2.jpg";
+import amianto3 from "@/assets/realizzazione-amianto-3.jpg";
+import coperture1 from "@/assets/realizzazione-coperture-1.jpg";
+import coperture2 from "@/assets/realizzazione-coperture-2.jpg";
+import coperture3 from "@/assets/realizzazione-coperture-3.jpg";
+import tetto1 from "@/assets/realizzazione-tetto-1.jpg";
+import tetto2 from "@/assets/realizzazione-tetto-2.jpg";
+import tetto3 from "@/assets/realizzazione-tetto-3.jpg";
+
+type GalleryImg = { src: string; alt: string };
+
+const projects = [
+  {
+    id: "bonifica-amianto",
+    icon: ShieldCheck,
+    tag: "Bonifica amianto",
+    title: "Bonifica amianto su copertura industriale",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Intervento segnaposto dedicato alla bonifica amianto e allo smaltimento eternit su copertura industriale. La scheda sarà aggiornata con descrizione reale del cantiere, fotografie definitive e dettagli dell’intervento eseguito.",
+    main: { src: amianto1, alt: "Realizzazione bonifica amianto su copertura industriale in Veneto" },
+    gallery: [
+      { src: amianto2, alt: "Dettaglio rimozione eternit da copertura" },
+      { src: amianto3, alt: "Cantiere bonifica amianto con materiali confezionati per smaltimento" },
+      { src: amianto1, alt: "Operatori specializzati durante intervento di bonifica amianto" },
+    ] as GalleryImg[],
+    details: [
+      { icon: Tag, label: "Tipologia", value: "Bonifica amianto" },
+      { icon: Layers, label: "Contesto", value: "Copertura industriale" },
+      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: Wrench, label: "Intervento", value: "Rimozione e smaltimento eternit" },
+      { icon: Clock, label: "Stato", value: "Contenuto provvisorio" },
+    ],
+  },
+  {
+    id: "coperture-industriali",
+    icon: Factory,
+    tag: "Coperture industriali",
+    title: "Rifacimento copertura industriale",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Intervento segnaposto dedicato al rifacimento di una copertura industriale su capannone. La scheda sarà completata con immagini reali, materiali utilizzati e descrizione dell’intervento una volta ricevuti i contenuti dal cliente.",
+    main: { src: coperture1, alt: "Rifacimento copertura industriale su capannone" },
+    gallery: [
+      { src: coperture2, alt: "Posa di pannelli sandwich su copertura industriale" },
+      { src: coperture3, alt: "Dettaglio nuova copertura industriale con lucernario" },
+      { src: coperture1, alt: "Nuova copertura industriale completata" },
+    ] as GalleryImg[],
+    details: [
+      { icon: Tag, label: "Tipologia", value: "Copertura industriale" },
+      { icon: Layers, label: "Contesto", value: "Capannone" },
+      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: Wrench, label: "Intervento", value: "Rifacimento copertura" },
+      { icon: Clock, label: "Stato", value: "Contenuto provvisorio" },
+    ],
+  },
+  {
+    id: "tetto-civile",
+    icon: Home,
+    tag: "Tetto civile",
+    title: "Rifacimento tetto civile",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Intervento segnaposto dedicato al rifacimento di un tetto civile. La scheda sarà aggiornata con fotografie definitive, informazioni sull’edificio e descrizione del lavoro eseguito appena disponibili.",
+    main: { src: tetto1, alt: "Rifacimento tetto civile con copertura in tegole" },
+    gallery: [
+      { src: tetto2, alt: "Posa di nuova orditura e isolamento su tetto civile" },
+      { src: tetto3, alt: "Dettaglio tetto civile dopo intervento di rifacimento" },
+      { src: tetto1, alt: "Tetto civile completato con copertura in tegole" },
+    ] as GalleryImg[],
+    details: [
+      { icon: Tag, label: "Tipologia", value: "Tetto civile" },
+      { icon: Layers, label: "Contesto", value: "Abitazione privata" },
+      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: Wrench, label: "Intervento", value: "Rifacimento copertura civile" },
+      { icon: Clock, label: "Stato", value: "Contenuto provvisorio" },
+    ],
+  },
+] as const;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Realizzazioni bonifica amianto e coperture in Veneto",
+  description:
+    "Pagina realizzazioni RB SNC con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto.",
+  url: "https://www.rb-snc.it/realizzazioni",
+  publisher: {
+    "@type": "LocalBusiness",
+    name: "RB SNC di Bertoluzzo e Ragazzo",
+    areaServed: { "@type": "AdministrativeArea", name: "Veneto" },
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    name: "Realizzazioni RB SNC",
+    itemListElement: [
+      {
+        "@type": "CreativeWork",
+        position: 1,
+        name: "Bonifica amianto su copertura industriale",
+        description:
+          "Realizzazione segnaposto dedicata a un intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto.",
+      },
+      {
+        "@type": "CreativeWork",
+        position: 2,
+        name: "Rifacimento copertura industriale",
+        description:
+          "Realizzazione segnaposto dedicata al rifacimento di una copertura industriale su capannone in Veneto.",
+      },
+      {
+        "@type": "CreativeWork",
+        position: 3,
+        name: "Rifacimento tetto civile",
+        description:
+          "Realizzazione segnaposto dedicata al rifacimento di un tetto civile in Veneto.",
+      },
+    ],
+  },
+};
+
+/* Reusable details card list */
+const DetailsList = ({
+  details,
+}: {
+  details: { icon: typeof Tag; label: string; value: string }[];
+}) => (
+  <div className="rounded-2xl bg-card border border-border/60 shadow-md p-5 md:p-6 relative overflow-hidden">
+    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+    <h3 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">
+      Dettagli intervento
+    </h3>
+    <div className="w-10 h-1 bg-accent rounded-full mb-5" />
+    <ul className="divide-y divide-border/60">
+      {details.map((d) => {
+        const Icon = d.icon;
+        return (
+          <li key={d.label} className="flex items-start gap-3 py-3">
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+              <Icon className="w-4 h-4 text-primary" strokeWidth={2} />
+            </div>
+            <div className="flex-1">
+              <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
+                {d.label}
+              </p>
+              <p className="text-foreground font-semibold">{d.value}</p>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
 );
+
+/* Reusable gallery slider with lightbox */
+const GallerySlider = ({
+  images,
+  onOpen,
+}: {
+  images: GalleryImg[];
+  onOpen: (img: GalleryImg) => void;
+}) => (
+  <Carousel opts={{ align: "start", loop: true }} className="w-full">
+    <CarouselContent className="-ml-4">
+      {images.map((img, i) => (
+        <CarouselItem
+          key={`${img.src}-${i}`}
+          className="pl-4 md:basis-1/2 lg:basis-1/3"
+        >
+          <button
+            type="button"
+            onClick={() => onOpen(img)}
+            className="group relative block w-full aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+              width={1280}
+              height={896}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          </button>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious className="hidden md:flex -left-4 lg:-left-6" />
+    <CarouselNext className="hidden md:flex -right-4 lg:-right-6" />
+  </Carousel>
+);
+
+const Realizzazioni = () => {
+  const [lightbox, setLightbox] = useState<GalleryImg | null>(null);
+
+  return (
+    <>
+      <Helmet>
+        <title>Realizzazioni bonifica amianto e coperture in Veneto | RB SNC</title>
+        <meta
+          name="description"
+          content="Guarda le realizzazioni RB SNC: interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
+        />
+        <link rel="canonical" href="https://rb-snc.it/realizzazioni" />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
+      <Navbar />
+
+      <main className="pt-16">
+        {/* HERO */}
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={heroImg}
+              alt="Cantiere RB SNC su copertura industriale in Veneto"
+              width={1920}
+              height={896}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/75 to-navy/55" />
+          </div>
+
+          <div className="relative container mx-auto px-4 lg:px-8 py-20 lg:py-24">
+            <div className="max-w-3xl rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 md:p-10 shadow-xl animate-fade-in-up">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">
+                Realizzazioni RB SNC
+              </span>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white leading-tight mb-5">
+                Realizzazioni di bonifica amianto e coperture in Veneto
+              </h1>
+              <p className="text-base md:text-lg text-white/85 leading-relaxed mb-8 max-w-2xl">
+                Una selezione di interventi su amianto, eternit, coperture
+                industriali e tetti civili. In attesa delle immagini definitive,
+                questa pagina mostra la struttura prevista per presentare i
+                lavori RB SNC in modo chiaro, ordinato e professionale.
+              </p>
+              <Button asChild variant="cta" size="xl">
+                <Link to="/contatti">Richiedi sopralluogo</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* INTRO */}
+        <section className="py-20 lg:py-28 bg-muted/30 relative">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
+                Panoramica
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-5">
+                Interventi eseguiti su edifici industriali e civili
+              </h2>
+              <div className="w-20 h-1 bg-accent rounded-full mb-8" />
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                Questa sezione raccoglie le principali tipologie di intervento
+                gestite da RB SNC: bonifica amianto, smaltimento eternit,
+                rifacimento coperture industriali e rifacimento tetti civili.
+                Ogni scheda sarà aggiornata con immagini reali, dettagli del
+                lavoro e informazioni utili appena il materiale definitivo sarà
+                disponibile. Per approfondire l’offerta puoi consultare i{" "}
+                <Link
+                  to="/servizi"
+                  className="text-primary font-semibold underline-offset-4 hover:underline"
+                >
+                  servizi di bonifica amianto e rifacimento coperture
+                </Link>
+                .
+              </p>
+              <div className="inline-flex items-start gap-3 rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 text-sm text-foreground">
+                <Info className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                <span>
+                  Contenuti provvisori in attesa di materiale fotografico
+                  definitivo.
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECT 1 — side by side, image left */}
+        <section
+          id={projects[0].id}
+          className="py-20 lg:py-28 bg-background relative overflow-hidden"
+        >
+          <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+          <div className="container mx-auto px-4 lg:px-8 relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+              <button
+                type="button"
+                onClick={() => setLightbox(projects[0].main)}
+                className="group relative block w-full overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                <img
+                  src={projects[0].main.src}
+                  alt={projects[0].main.alt}
+                  loading="lazy"
+                  width={1280}
+                  height={896}
+                  className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+              </button>
+
+              <div>
+                <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-wider">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  {projects[0].tag}
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-foreground mb-5 leading-tight">
+                  {projects[0].title}
+                </h2>
+                <div className="w-20 h-1.5 bg-accent rounded-full mb-6" />
+                <p className="text-muted-foreground leading-relaxed mb-8">
+                  {projects[0].text}
+                </p>
+                <DetailsList details={[...projects[0].details]} />
+              </div>
+            </div>
+
+            <div className="mt-14 lg:mt-20">
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                Galleria intervento
+              </h3>
+              <div className="w-12 h-1 bg-accent rounded-full mb-8" />
+              <GallerySlider
+                images={[...projects[0].gallery]}
+                onOpen={setLightbox}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECT 2 — alternated, image right */}
+        <section
+          id={projects[1].id}
+          className="py-20 lg:py-28 bg-muted/40 relative overflow-hidden"
+        >
+          <div className="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-accent/5 blur-3xl pointer-events-none" />
+          <div className="container mx-auto px-4 lg:px-8 relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+              <div className="lg:order-1">
+                <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-wider">
+                  <Factory className="w-3.5 h-3.5" />
+                  {projects[1].tag}
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-foreground mb-5 leading-tight">
+                  {projects[1].title}
+                </h2>
+                <div className="w-20 h-1.5 bg-accent rounded-full mb-6" />
+                <p className="text-muted-foreground leading-relaxed mb-8">
+                  {projects[1].text}
+                </p>
+                <DetailsList details={[...projects[1].details]} />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setLightbox(projects[1].main)}
+                className="group relative block w-full overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-border/60 lg:order-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                <img
+                  src={projects[1].main.src}
+                  alt={projects[1].main.alt}
+                  loading="lazy"
+                  width={1280}
+                  height={896}
+                  className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+              </button>
+            </div>
+
+            <div className="mt-14 lg:mt-20">
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                Galleria intervento
+              </h3>
+              <div className="w-12 h-1 bg-accent rounded-full mb-8" />
+              <GallerySlider
+                images={[...projects[1].gallery]}
+                onOpen={setLightbox}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECT 3 — centered, image on top */}
+        <section
+          id={projects[2].id}
+          className="py-20 lg:py-28 bg-background relative overflow-hidden"
+        >
+          <div className="container mx-auto px-4 lg:px-8 relative">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-wider">
+                  <Home className="w-3.5 h-3.5" />
+                  {projects[2].tag}
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-foreground mb-5 leading-tight">
+                  {projects[2].title}
+                </h2>
+                <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setLightbox(projects[2].main)}
+                className="group relative block w-full overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-border/60 mb-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                <img
+                  src={projects[2].main.src}
+                  alt={projects[2].main.alt}
+                  loading="lazy"
+                  width={1920}
+                  height={896}
+                  className="w-full h-auto object-cover aspect-[16/8] group-hover:scale-[1.02] transition-transform duration-500"
+                />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+              </button>
+
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+                <div className="lg:col-span-3">
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    {projects[2].text}
+                  </p>
+                </div>
+                <div className="lg:col-span-2">
+                  <DetailsList details={[...projects[2].details]} />
+                </div>
+              </div>
+
+              <div className="mt-14 lg:mt-20">
+                <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                  Galleria intervento
+                </h3>
+                <div className="w-12 h-1 bg-accent rounded-full mb-8" />
+                <GallerySlider
+                  images={[...projects[2].gallery]}
+                  onOpen={setLightbox}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="py-20 lg:py-28 bg-primary text-primary-foreground relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-accent/15 blur-3xl" />
+            <div className="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] rounded-full bg-white/5 blur-3xl" />
+          </div>
+          <div className="container mx-auto px-4 lg:px-8 relative">
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">
+                Parlaci del tuo caso
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mb-5 leading-tight">
+                Hai bisogno di un intervento simile?
+              </h2>
+              <div className="w-20 h-1.5 bg-accent rounded-full mx-auto mb-6" />
+              <p className="text-primary-foreground/85 text-lg leading-relaxed mb-8">
+                Se devi rimuovere amianto, sostituire una copertura in eternit,
+                rifare il tetto di un capannone o intervenire su una copertura
+                civile, RB SNC può valutare il caso con un sopralluogo
+                dedicato. Richiedi anche la{" "}
+                <Link
+                  to="/certificazioni"
+                  className="text-accent font-semibold underline-offset-4 hover:underline"
+                >
+                  documentazione e certificazioni
+                </Link>{" "}
+                relative all’intervento.
+              </p>
+              <Button asChild variant="cta" size="xl">
+                <Link to="/contatti">
+                  Richiedi sopralluogo <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+
+      {/* LIGHTBOX */}
+      <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
+        <DialogContent className="max-w-5xl p-0 overflow-hidden bg-card border-border/60">
+          {lightbox && (
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="w-full h-auto object-contain"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
 
 export default Realizzazioni;
