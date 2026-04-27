@@ -313,15 +313,17 @@ const Realizzazioni = () => {
         {/* PROJECT 1 — side by side, image left */}
         <section
           id={projects[0].id}
-          className="py-20 lg:py-28 bg-background relative overflow-hidden"
+          className="py-24 lg:py-36 bg-gradient-to-b from-background via-accent/[0.04] to-background relative overflow-hidden border-y-2 border-accent/20"
         >
-          <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+          <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-accent rounded-b-full" />
           <div className="container mx-auto px-4 lg:px-8 relative">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
               <button
                 type="button"
                 onClick={() => setLightbox(projects[0].main)}
-                className="group relative block w-full overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                aria-label="Apri immagine ingrandita"
+                className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-2 ring-accent/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
               >
                 <img
                   src={projects[0].main.src}
@@ -329,21 +331,34 @@ const Realizzazioni = () => {
                   loading="lazy"
                   width={1280}
                   height={896}
-                  className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  className="w-full h-auto object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out"
                 />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                  <ZoomIn className="w-5 h-5" />
+                </div>
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-accent text-accent-foreground text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
+                  <ShieldCheck className="w-3 h-3" />
+                  Intervento principale
+                </div>
               </button>
 
               <div>
-                <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-wider">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  {projects[0].tag}
+                <div className="flex flex-wrap items-center gap-2 mb-5">
+                  <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    {projects[0].tag}
+                  </div>
+                  <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border border-primary/20">
+                    Intervento su amianto
+                  </div>
                 </div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-foreground mb-5 leading-tight">
                   {projects[0].title}
                 </h2>
                 <div className="w-20 h-1.5 bg-accent rounded-full mb-6" />
-                <p className="text-muted-foreground leading-relaxed mb-8">
+                <p className="text-muted-foreground leading-relaxed mb-8 text-base md:text-lg">
                   {projects[0].text}
                 </p>
                 <DetailsList details={[...projects[0].details]} />
