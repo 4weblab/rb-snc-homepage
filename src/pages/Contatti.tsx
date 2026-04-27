@@ -371,7 +371,7 @@ const Contatti = () => {
                   className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                 >
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=RB+SNC+Via+Sansughe+3+Cittadella"
+                    href="https://www.google.com/maps/search/?api=1&query=RB+SNC+Via+Sansughe+6+Cittadella"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
