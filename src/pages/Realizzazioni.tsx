@@ -23,6 +23,7 @@ import {
   Tag,
   Layers,
   Clock,
+  ZoomIn,
 } from "lucide-react";
 
 import heroImg from "@/assets/realizzazioni-hero.jpg";
