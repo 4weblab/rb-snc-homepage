@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { localBusiness } from "@/lib/business";
 import {
   Carousel,
   CarouselContent,
@@ -137,8 +138,6 @@ const collectionPage = {
     ],
   },
 };
-
-import { localBusiness } from "@/lib/business";
 
 const jsonLd = {
   "@context": "https://schema.org",
