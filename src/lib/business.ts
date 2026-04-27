@@ -7,7 +7,7 @@ export const SITE_URL = "https://rb-snc.it";
 
 export const businessAddress = {
   "@type": "PostalAddress" as const,
-  streetAddress: "Via Sansughe 3",
+  streetAddress: "Via Sansughe 6",
   addressLocality: "Cittadella",
   postalCode: "35013",
   addressRegion: "PD",
@@ -42,16 +42,31 @@ export const contactPoints = [
  * Importato e referenziato/embedded da tutte le pagine.
  */
 export const localBusiness = {
-  "@type": "LocalBusiness" as const,
+  "@type": ["LocalBusiness", "RoofingContractor"] as const,
   "@id": `${SITE_URL}/#business`,
   name: "RB SNC di Bertoluzzo e Ragazzo",
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}/og-image.webp`,
+  logo: `${SITE_URL}/favicon.webp`,
   url: SITE_URL,
   telephone: "+39 049 7382238",
   email: "info@rb-snc.it",
   taxID: "04244010288",
   vatID: "04244010288",
+  priceRange: "€€",
   address: businessAddress,
+  geo: {
+    "@type": "GeoCoordinates" as const,
+    latitude: 45.6485,
+    longitude: 11.7895,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification" as const,
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+  ],
   areaServed,
   contactPoint: contactPoints,
 };
