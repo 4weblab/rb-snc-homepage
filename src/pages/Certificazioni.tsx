@@ -40,7 +40,7 @@ const webPage = {
   "@type": "WebPage",
   name: "Sicurezza e normativa amianto in Veneto",
   description:
-    "RB SNC opera nel rispetto della normativa amianto (Legge 257/92 e D.M. 6 settembre 1994), gestendo sicurezza, smaltimento e documentazione degli interventi.",
+    "R.B. s.n.c. opera nel rispetto della normativa amianto (Legge 257/92 e D.M. 6 settembre 1994), gestendo sicurezza, smaltimento e documentazione degli interventi.",
   url: "https://rb-snc.it/certificazioni",
   about: {
     "@type": "Thing",
@@ -61,10 +61,10 @@ const Certificazioni = () => {
   return (
     <>
       <Helmet>
-        <title>Sicurezza e normativa amianto in Veneto | RB SNC</title>
+        <title>Sicurezza e normativa amianto in Veneto | R.B. s.n.c.</title>
         <meta
           name="description"
-          content="RB SNC opera nel rispetto della normativa amianto (Legge 257/92 e D.M. 6 settembre 1994). Scopri come vengono gestiti sicurezza, smaltimento e documentazione."
+          content="R.B. s.n.c. opera nel rispetto della normativa amianto (Legge 257/92 e D.M. 6 settembre 1994). Scopri come vengono gestiti sicurezza, smaltimento e documentazione."
         />
         <link rel="canonical" href="https://rb-snc.it/certificazioni" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -97,7 +97,7 @@ const Certificazioni = () => {
                 Sicurezza, normativa e gestione degli interventi su amianto
               </h1>
               <p className="text-lg md:text-xl text-navy-foreground/95 leading-relaxed mb-8 max-w-2xl">
-                Gli interventi su amianto e coperture richiedono attenzione, competenza e rispetto delle normative. RB SNC opera seguendo procedure precise, gestendo ogni fase del lavoro in modo ordinato, dalla valutazione iniziale fino alla documentazione finale.
+                Gli interventi su amianto e coperture richiedono attenzione, competenza e rispetto delle normative. R.B. s.n.c. opera seguendo procedure precise, gestendo ogni fase del lavoro in modo ordinato, dalla valutazione iniziale fino alla documentazione finale.
               </p>
               <Button asChild variant="hero" size="xl" className="font-semibold">
                 <Link to="/contatti">Richiedi sopralluogo</Link>
@@ -145,7 +145,7 @@ const Certificazioni = () => {
                 <div className="w-20 h-1 bg-accent rounded-full mb-7" />
                 <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
                   <p>
-                    La gestione dei materiali contenenti amianto è regolata da normative specifiche a livello nazionale. RB SNC opera nel rispetto della <strong className="text-foreground font-semibold">Legge 27 marzo 1992, n. 257</strong>, che disciplina la cessazione dell'impiego dell'amianto, e del <strong className="text-foreground font-semibold">D.M. 6 settembre 1994</strong>, che definisce le metodologie tecniche per la valutazione, il controllo e la bonifica dei materiali presenti negli edifici.
+                    La gestione dei materiali contenenti amianto è regolata da normative specifiche a livello nazionale. R.B. s.n.c. opera nel rispetto della <strong className="text-foreground font-semibold">Legge 27 marzo 1992, n. 257</strong>, che disciplina la cessazione dell'impiego dell'amianto, e del <strong className="text-foreground font-semibold">D.M. 6 settembre 1994</strong>, che definisce le metodologie tecniche per la valutazione, il controllo e la bonifica dei materiali presenti negli edifici.
                   </p>
                   <p>
                     Questi riferimenti normativi stabiliscono come devono essere valutati i rischi, come devono essere eseguiti gli interventi e come deve essere gestito lo smaltimento dei materiali.
@@ -256,7 +256,7 @@ const Certificazioni = () => {
                 Un intervento su amianto o su una copertura non riguarda solo l'esecuzione pratica del lavoro. È un processo che deve essere gestito in modo preciso in ogni fase.
               </p>
               <p className="mt-3 text-base md:text-lg text-muted-foreground leading-relaxed">
-                RB SNC segue un percorso strutturato:
+                R.B. s.n.c. segue un percorso strutturato:
               </p>
             </div>
 
@@ -356,7 +356,7 @@ const Certificazioni = () => {
                 Hai bisogno di verificare la tua situazione?
               </h2>
               <p className="text-lg md:text-xl text-navy-foreground/85 leading-relaxed mb-10">
-                Se hai dubbi su una copertura, sulla presenza di amianto o sulla necessità di intervenire, il primo passo è una valutazione. RB SNC può analizzare la situazione e indicarti come procedere in modo chiaro e senza complicazioni.
+                Se hai dubbi su una copertura, sulla presenza di amianto o sulla necessità di intervenire, il primo passo è una valutazione. R.B. s.n.c. può analizzare la situazione e indicarti come procedere in modo chiaro e senza complicazioni.
               </p>
               <Button asChild variant="hero" size="xl" className="font-semibold">
                 <Link to="/contatti">

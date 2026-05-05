@@ -8,9 +8,9 @@ import heroBg3 from "@/assets/hero-bg-3.jpg";
 import heroBg4 from "@/assets/hero-bg-4.jpg";
 
 const heroImages = [
-  { src: heroBg1, alt: "Rifacimento copertura industriale RB SNC a Cittadella, Padova" },
+  { src: heroBg1, alt: "Rifacimento copertura industriale R.B. s.n.c. a Cittadella, Padova" },
   { src: heroBg2, alt: "Installazione coperture metalliche su capannone in Veneto" },
-  { src: heroBg3, alt: "Capannoni industriali con nuove coperture realizzate da RB SNC" },
+  { src: heroBg3, alt: "Capannoni industriali con nuove coperture realizzate da R.B. s.n.c." },
   { src: heroBg4, alt: "Bonifica amianto e smaltimento eternit su copertura industriale" },
 ];
 
@@ -51,10 +51,10 @@ const HeroSection = () => {
       <div className="relative container mx-auto px-4 lg:px-8 py-32">
         <div className="max-w-2xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-navy-foreground leading-tight mb-6 animate-fade-in-up">
-            RB snc - Il vostro partner per la bonifica amianto e rifacimento coperture in Veneto
+            R.B. s.n.c. - Il vostro partner per la bonifica amianto e rifacimento coperture in Veneto
           </h1>
           <p className="text-xl md:text-2xl font-heading font-semibold text-navy-foreground/85 mb-10 leading-relaxed max-w-2xl" style={{ animationDelay: "0.15s" }}>
-            RB SNC interviene a Cittadella, Padova e in tutto il Veneto per{" "}
+            R.B. s.n.c. interviene a Cittadella, Padova e in tutto il Veneto per{" "}
             <Link
               to="/servizi"
               className="text-accent hover:text-accent/80 underline-offset-4 hover:underline transition-colors"

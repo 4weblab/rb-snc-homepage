@@ -20,7 +20,7 @@ const StrengthsSection = () => {
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-14">
           <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
-            Perché scegliere RB SNC
+            Perché scegliere R.B. s.n.c.
           </h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
             Interventi professionali su amianto e coperture, con gestione diretta e tempi rapidi in tutto il Veneto.

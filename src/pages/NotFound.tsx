@@ -12,7 +12,7 @@ const NotFound = () => {
   return (
     <>
       <Helmet>
-        <title>Pagina non trovata (404) | RB SNC</title>
+        <title>Pagina non trovata (404) | R.B. s.n.c.</title>
         <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href="https://rb-snc.it/404" />
       </Helmet>

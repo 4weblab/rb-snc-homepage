@@ -79,9 +79,9 @@ const utilityLinks = [
 
 const contactPage = {
   "@type": "ContactPage",
-  name: "Contatti RB SNC",
+  name: "Contatti R.B. s.n.c.",
   description:
-    "Contatta RB SNC per sopralluoghi su amianto, coperture e tetti in Veneto.",
+    "Contatta R.B. s.n.c. per sopralluoghi su amianto, coperture e tetti in Veneto.",
   url: "https://rb-snc.it/contatti",
   publisher: { "@id": "https://rb-snc.it/#business" },
 };
@@ -116,10 +116,10 @@ const Contatti = () => {
   return (
     <>
       <Helmet>
-        <title>Contatti RB SNC | Richiedi sopralluogo in Veneto</title>
+        <title>Contatti R.B. s.n.c. | Richiedi sopralluogo in Veneto</title>
         <meta
           name="description"
-          content="Contatta RB SNC per sopralluoghi su bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
+          content="Contatta R.B. s.n.c. per sopralluoghi su bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
         />
         <link rel="canonical" href="https://rb-snc.it/contatti" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -131,7 +131,7 @@ const Contatti = () => {
           <div className="absolute inset-0">
             <img
               src={heroImg}
-              alt="Cantiere RB SNC con operatori in sicurezza su copertura industriale"
+              alt="Cantiere R.B. s.n.c. con operatori in sicurezza su copertura industriale"
               width={1600}
               height={900}
               className="w-full h-full object-cover"
@@ -142,13 +142,13 @@ const Contatti = () => {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 bg-accent/15 border border-accent/30 text-accent text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                Contatti RB SNC
+                Contatti R.B. s.n.c.
               </div>
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
                 Richiedi un sopralluogo
               </h1>
               <p className="text-lg md:text-xl text-white/85 leading-relaxed max-w-2xl">
-                Hai bisogno di rimuovere amianto, sostituire una copertura in eternit o intervenire su un tetto civile o industriale? Contatta RB SNC: valuteremo la situazione e ti indicheremo come procedere in modo chiaro.
+                Hai bisogno di rimuovere amianto, sostituire una copertura in eternit o intervenire su un tetto civile o industriale? Contatta R.B. s.n.c.: valuteremo la situazione e ti indicheremo come procedere in modo chiaro.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg hover:shadow-xl transition-all">
@@ -407,7 +407,7 @@ const Contatti = () => {
                   Interventi in tutto il Veneto
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  RB SNC opera in Veneto per interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili.
+                  R.B. s.n.c. opera in Veneto per interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili.
                 </p>
                 <div className="flex items-center gap-3 text-sm text-foreground mb-6">
                   <MapPin className="w-5 h-5 text-accent" />

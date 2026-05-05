@@ -1,5 +1,5 @@
 /**
- * Dati aziendali canonici di RB SNC.
+ * Dati aziendali canonici di R.B. s.n.c..
  * Unica fonte di verità per i JSON-LD del sito.
  */
 
@@ -44,7 +44,7 @@ export const contactPoints = [
 export const localBusiness = {
   "@type": ["LocalBusiness", "RoofingContractor"] as const,
   "@id": `${SITE_URL}/#business`,
-  name: "RB SNC di Bertoluzzo e Ragazzo",
+  name: "R.B. s.n.c. di Bertoluzzo e Ragazzo",
   image: `${SITE_URL}/og-image.webp`,
   logo: `${SITE_URL}/favicon.webp`,
   url: SITE_URL,

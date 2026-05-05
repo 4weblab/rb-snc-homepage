@@ -23,7 +23,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <Link to="/" className="font-heading text-xl font-bold text-background leading-tight">
-              RB snc <span className="text-primary-foreground/60 font-normal text-sm">di Bertoluzzo e Ragazzo</span>
+              R.B. s.n.c. <span className="text-primary-foreground/60 font-normal text-sm">di Bertoluzzo e Ragazzo</span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-background/60">
               Coperture industriali, bonifica amianto e manutenzione tetti per il settore industriale e commerciale.
@@ -134,7 +134,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/10 mt-12 pt-8 text-center text-xs text-background/40 space-y-2">
-          <p>© {new Date().getFullYear()} RB SNC di Bertoluzzo e Ragazzo — Tutti i diritti riservati.</p>
+          <p>© {new Date().getFullYear()} R.B. s.n.c. di Bertoluzzo e Ragazzo — Tutti i diritti riservati.</p>
           <p className="flex items-center justify-center gap-3 flex-wrap">
             <Link to="/privacy-policy" className="text-background/60 hover:text-background transition-colors">
               Privacy Policy
