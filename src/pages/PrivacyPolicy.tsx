@@ -10,7 +10,7 @@ const sections = [
     title: "1. Titolare del trattamento",
     body: (
       <ul className="space-y-1.5 text-base text-muted-foreground leading-relaxed">
-        <li><span className="font-semibold text-foreground">RB SNC di Bertoluzzo e Ragazzo</span></li>
+        <li><span className="font-semibold text-foreground">R.B. s.n.c. di Bertoluzzo e Ragazzo</span></li>
         <li>Email: <a href="mailto:info@rb-snc.it" className="text-accent hover:underline">info@rb-snc.it</a></li>
         <li>PEC: <a href="mailto:info@pec.rb-snc.it" className="text-accent hover:underline">info@pec.rb-snc.it</a></li>
         <li>Partita IVA: 04244010288</li>
@@ -121,10 +121,10 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy | RB SNC</title>
+        <title>Privacy Policy | R.B. s.n.c.</title>
         <meta
           name="description"
-          content="Privacy Policy di RB SNC di Bertoluzzo e Ragazzo: titolare, dati raccolti, finalità, conservazione e diritti dell'utente."
+          content="Privacy Policy di R.B. s.n.c. di Bertoluzzo e Ragazzo: titolare, dati raccolti, finalità, conservazione e diritti dell'utente."
         />
         <link rel="canonical" href="https://rb-snc.it/privacy-policy" />
         <meta name="robots" content="noindex, follow" />
@@ -143,7 +143,7 @@ const PrivacyPolicy = () => {
                 Privacy Policy
               </h1>
               <p className="text-lg text-white/80 leading-relaxed">
-                Informazioni su come RB SNC tratta i dati personali raccolti tramite il form contatti.
+                Informazioni su come R.B. s.n.c. tratta i dati personali raccolti tramite il form contatti.
               </p>
             </div>
           </div>

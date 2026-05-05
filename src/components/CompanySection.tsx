@@ -53,7 +53,7 @@ const CompanySection = () => {
               Esperienza e affidabilità nel settore amianto e coperture
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4 text-base">
-              RB SNC opera a Cittadella, Padova e in tutto il Veneto nel settore della{" "}
+              R.B. s.n.c. opera a Cittadella, Padova e in tutto il Veneto nel settore della{" "}
               <Link
                 to="/servizi"
                 className="text-primary font-semibold underline-offset-4 hover:underline"

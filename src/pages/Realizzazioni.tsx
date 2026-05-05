@@ -46,7 +46,7 @@ const projects = [
     icon: ShieldCheck,
     tag: "Bonifica amianto",
     title: "Bonifica amianto su copertura industriale",
-    text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto. RB SNC gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
+    text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto. R.B. s.n.c. gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
     main: { src: amianto1, alt: "Realizzazione bonifica amianto su copertura industriale in Veneto" },
     gallery: [
       { src: amianto2, alt: "Dettaglio rimozione eternit da copertura" },
@@ -66,7 +66,7 @@ const projects = [
     icon: Factory,
     tag: "Coperture industriali",
     title: "Rifacimento copertura industriale",
-    text: "Rifacimento completo della copertura di un capannone industriale: smontaggio della copertura esistente, posa di pannelli sandwich coibentati e finiture perimetrali. Intervento gestito direttamente da RB SNC, con attenzione a tempi, sicurezza in quota e continuità dell’attività produttiva.",
+    text: "Rifacimento completo della copertura di un capannone industriale: smontaggio della copertura esistente, posa di pannelli sandwich coibentati e finiture perimetrali. Intervento gestito direttamente da R.B. s.n.c., con attenzione a tempi, sicurezza in quota e continuità dell’attività produttiva.",
     main: { src: coperture1, alt: "Rifacimento copertura industriale su capannone" },
     gallery: [
       { src: coperture2, alt: "Posa di pannelli sandwich su copertura industriale" },
@@ -107,19 +107,19 @@ const collectionPage = {
   "@type": "CollectionPage",
   name: "Realizzazioni bonifica amianto e coperture in Veneto",
   description:
-    "Pagina realizzazioni RB SNC con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto.",
+    "Pagina realizzazioni R.B. s.n.c. con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto.",
   url: "https://rb-snc.it/realizzazioni",
   publisher: { "@id": "https://rb-snc.it/#business" },
   mainEntity: {
     "@type": "ItemList",
-    name: "Realizzazioni RB SNC",
+    name: "Realizzazioni R.B. s.n.c.",
     itemListElement: [
       {
         "@type": "CreativeWork",
         position: 1,
         name: "Bonifica amianto su copertura industriale",
         description:
-          "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto, eseguito da RB SNC nel rispetto della normativa vigente.",
+          "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto, eseguito da R.B. s.n.c. nel rispetto della normativa vigente.",
       },
       {
         "@type": "CreativeWork",
@@ -231,10 +231,10 @@ const Realizzazioni = () => {
   return (
     <>
       <Helmet>
-        <title>Realizzazioni bonifica amianto e coperture in Veneto | RB SNC</title>
+        <title>Realizzazioni bonifica amianto e coperture in Veneto | R.B. s.n.c.</title>
         <meta
           name="description"
-          content="Guarda le realizzazioni RB SNC: interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
+          content="Guarda le realizzazioni R.B. s.n.c.: interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
         />
         <link rel="canonical" href="https://rb-snc.it/realizzazioni" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -247,7 +247,7 @@ const Realizzazioni = () => {
           <div className="absolute inset-0">
             <img
               src={heroImg}
-              alt="Cantiere RB SNC su copertura industriale in Veneto"
+              alt="Cantiere R.B. s.n.c. su copertura industriale in Veneto"
               width={1920}
               height={896}
               className="w-full h-full object-cover"
@@ -258,7 +258,7 @@ const Realizzazioni = () => {
           <div className="relative container mx-auto px-4 lg:px-8 py-20 lg:py-24">
             <div className="max-w-3xl rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 md:p-10 shadow-xl animate-fade-in-up">
               <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">
-                Realizzazioni RB SNC
+                Realizzazioni R.B. s.n.c.
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white leading-tight mb-5">
                 Realizzazioni di bonifica amianto e coperture in Veneto
@@ -267,7 +267,7 @@ const Realizzazioni = () => {
                 Una selezione di interventi su amianto, eternit, coperture
                 industriali e tetti civili. In attesa delle immagini definitive,
                 questa pagina mostra la struttura prevista per presentare i
-                lavori RB SNC in modo chiaro, ordinato e professionale.
+                lavori R.B. s.n.c. in modo chiaro, ordinato e professionale.
               </p>
               <Button asChild variant="cta" size="xl">
                 <Link to="/contatti">Richiedi sopralluogo</Link>
@@ -290,7 +290,7 @@ const Realizzazioni = () => {
               <div className="w-24 h-1.5 bg-accent rounded-full mb-10" />
               <p className="text-foreground/85 text-lg md:text-xl leading-relaxed mb-8">
                 Questa sezione raccoglie le principali tipologie di intervento
-                gestite da RB SNC: bonifica amianto, smaltimento eternit,
+                gestite da R.B. s.n.c.: bonifica amianto, smaltimento eternit,
                 rifacimento coperture industriali e rifacimento tetti civili.
                 Ogni scheda sarà aggiornata con immagini reali, dettagli del
                 lavoro e informazioni utili appena il materiale definitivo sarà
@@ -525,7 +525,7 @@ const Realizzazioni = () => {
               <p className="text-primary-foreground/85 text-lg leading-relaxed mb-8">
                 Se devi rimuovere amianto, sostituire una copertura in eternit,
                 rifare il tetto di un capannone o intervenire su una copertura
-                civile, RB SNC può valutare il caso con un sopralluogo
+                civile, R.B. s.n.c. può valutare il caso con un sopralluogo
                 dedicato. Richiedi anche la{" "}
                 <Link
                   to="/certificazioni"

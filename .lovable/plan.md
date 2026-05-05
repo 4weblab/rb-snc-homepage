@@ -1,35 +1,34 @@
-# Validazione consenso privacy nel form contatti
-
 ## Obiettivo
-Il form della pagina Contatti deve inviare la richiesta **solo** se l'utente ha spuntato la checkbox di consenso privacy. In caso contrario, mostrare un errore visibile e indicare come risolverlo.
 
-## Comportamento previsto
+Rinominare il brand visibile da "RB snc" / "RB SNC" a **"R.B. s.n.c."** ovunque compaia nei contenuti del sito (testi, titoli, meta description, alt immagini, dati strutturati JSON-LD).
 
-1. L'utente compila il form ma **non spunta** "Ho letto l'informativa privacy"
-2. Al click su "Invia Richiesta":
-   - L'invio viene **bloccato**
-   - Compare un messaggio di errore rosso sotto la checkbox: *"Per inviare la richiesta devi accettare l'informativa privacy spuntando la casella qui sopra."*
-   - La checkbox e il suo bordo si evidenziano in rosso (accent error state)
-   - La pagina scorre dolcemente alla checkbox e il focus si sposta su di essa
-   - Compare anche un toast di errore (`sonner`): *"Consenso privacy mancante"*
-3. Quando l'utente spunta la casella, il messaggio di errore scompare automaticamente
-4. Se il consenso è dato, il form procede al normale flusso di invio (attualmente solo `preventDefault`, non viene modificato)
+## Cosa NON viene modificato
 
-## Modifiche tecniche
+- Email: `info@rb-snc.it`, `info@pec.rb-snc.it`
+- URL/dominio: `https://rb-snc.it` e tutti i `canonical`/`url` JSON-LD
+- File `mem://` (memoria interna del progetto)
 
-**File:** `src/pages/Contatti.tsx`
+## File da modificare
 
-1. Aggiungere stato locale:
-   - `privacyAccepted: boolean` (default `false`)
-   - `privacyError: boolean` (default `false`)
-2. Collegare la `Checkbox` (Radix) a `privacyAccepted` tramite `checked` e `onCheckedChange`. Quando viene spuntata, resettare `privacyError` a `false`.
-3. Rimuovere l'attributo `required` dalla Checkbox Radix (non affidabile per validazione HTML5) e gestire la validazione manualmente in `handleSubmit`.
-4. In `handleSubmit`:
-   - Se `!privacyAccepted` → `e.preventDefault()`, set `privacyError = true`, mostrare `toast.error("Consenso privacy mancante", { description: "Spunta la casella di accettazione per procedere." })`, e fare `scrollIntoView` + `focus()` sulla checkbox tramite `ref`.
-5. Rendering condizionale del messaggio di errore sotto la checkbox (testo `text-destructive text-sm` con icona `AlertCircle`).
-6. Quando `privacyError` è `true`, applicare classi condizionali alla checkbox: `border-destructive ring-2 ring-destructive/30`.
+| File | Occorrenze |
+|---|---|
+| `src/components/Navbar.tsx` | logo testuale |
+| `src/components/Footer.tsx` | logo + copyright |
+| `src/components/HeroSection.tsx` | H1 + alt immagini carosello |
+| `src/components/CompanySection.tsx` | testo paragrafo |
+| `src/components/StrengthsSection.tsx` | titolo "Perché scegliere…" |
+| `src/lib/business.ts` | commento, `legalName`, `name` |
+| `src/pages/Index.tsx` | `<title>` + meta description |
+| `src/pages/Servizi.tsx` | title, description, JSON-LD |
+| `src/pages/Certificazioni.tsx` | title, description, JSON-LD, testi pagina |
+| `src/pages/Contatti.tsx` | title, description, JSON-LD, alt, testi pagina |
+| `src/pages/Realizzazioni.tsx` | title, description, JSON-LD, alt, testi pagina |
+| `src/pages/PrivacyPolicy.tsx` | titolare + meta + testi |
+| `src/pages/CookiePolicy.tsx` | title + meta |
+| `src/pages/NotFound.tsx` | title |
 
-## Coerenza con il design system
-- Usare il token semantico `destructive` (già definito in `index.css`) per il colore dell'errore
-- Toast tramite `sonner` (già configurato a livello root)
-- Nessuna modifica al layout o alla tipografia esistente
+## Approccio tecnico
+
+Sostituzione testuale mirata (case-insensitive sulle varianti `RB SNC` e `RB snc`) limitata ai contenuti visibili e SEO. Le stringhe contenenti `rb-snc.it` (email/URL) restano intatte perché il pattern è diverso (con trattino e dominio).
+
+Verifica finale con `grep` per assicurarsi che resti solo nelle email/URL.

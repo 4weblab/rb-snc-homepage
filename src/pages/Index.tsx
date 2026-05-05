@@ -16,10 +16,10 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>RB SNC — Coperture Industriali e Bonifica Amianto</title>
+        <title>R.B. s.n.c. — Coperture Industriali e Bonifica Amianto</title>
         <meta
           name="description"
-          content="RB SNC: coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione. Soluzioni professionali per l'edilizia industriale."
+          content="R.B. s.n.c.: coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione. Soluzioni professionali per l'edilizia industriale."
         />
         <link rel="canonical" href="https://rb-snc.it/" />
         <script type="application/ld+json">{JSON.stringify(localBusinessJsonLd)}</script>

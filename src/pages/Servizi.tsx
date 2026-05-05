@@ -145,7 +145,7 @@ const jsonLd = {
         "Rifacimento tetti civili",
       ],
       description:
-        "RB SNC offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto, con gestione dell’intervento, smaltimento e documentazione finale.",
+        "R.B. s.n.c. offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto, con gestione dell’intervento, smaltimento e documentazione finale.",
       url: "https://rb-snc.it/servizi",
     },
   ],
@@ -154,10 +154,10 @@ const jsonLd = {
 const Servizi = () => (
   <>
     <Helmet>
-      <title>Servizi di bonifica amianto e coperture in Veneto | RB SNC</title>
+      <title>Servizi di bonifica amianto e coperture in Veneto | R.B. s.n.c.</title>
       <meta
         name="description"
-        content="RB SNC offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto. Richiedi un sopralluogo."
+        content="R.B. s.n.c. offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto. Richiedi un sopralluogo."
       />
       <link rel="canonical" href="https://rb-snc.it/servizi" />
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -181,13 +181,13 @@ const Servizi = () => (
         <div className="relative container mx-auto px-4 lg:px-8 py-20 lg:py-28">
           <div className="max-w-3xl rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 md:p-10 shadow-xl animate-fade-in-up">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">
-              Servizi RB SNC
+              Servizi R.B. s.n.c.
             </span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white leading-tight mb-5">
               Servizi di bonifica amianto e coperture in Veneto
             </h1>
             <p className="text-base md:text-lg text-white/85 leading-relaxed mb-8 max-w-2xl">
-              RB SNC affianca aziende, capannoni, condomini e privati con
+              R.B. s.n.c. affianca aziende, capannoni, condomini e privati con
               interventi professionali su amianto, eternit, coperture
               industriali e tetti civili in tutto il Veneto. Ogni lavoro viene
               gestito con attenzione alla sicurezza, alla normativa e alla
@@ -217,7 +217,7 @@ const Servizi = () => (
                 Ogni edificio ha esigenze diverse: una copertura industriale
                 da mettere in sicurezza, un tetto civile da rifare, una
                 vecchia lastra in eternit da rimuovere o un intervento che
-                richiede documentazione precisa. Per questo RB SNC non propone
+                richiede documentazione precisa. Per questo R.B. s.n.c. non propone
                 soluzioni standard, ma valuta il contesto, lo stato della
                 copertura e le necessità operative prima di programmare il
                 lavoro.
@@ -338,7 +338,7 @@ const Servizi = () => (
                   preparato e smaltimento presso canali autorizzati.
                 </p>
                 <p>
-                  RB SNC opera in Veneto occupandosi della rimozione e dello
+                  R.B. s.n.c. opera in Veneto occupandosi della rimozione e dello
                   smaltimento di materiali contenenti amianto, con particolare
                   attenzione a coperture di capannoni, edifici produttivi,
                   abitazioni private, garage, tettoie e strutture civili. Il
@@ -366,7 +366,7 @@ const Servizi = () => (
                   >
                     documentazione e certificazioni previste
                   </Link>
-                  . Per questo RB SNC accompagna il cliente lungo tutto il
+                  . Per questo R.B. s.n.c. accompagna il cliente lungo tutto il
                   percorso, dalla prima valutazione fino alla chiusura
                   dell’intervento, con il supporto di esempi concreti tratti
                   dagli{" "}
@@ -478,7 +478,7 @@ const Servizi = () => (
                 <p>
                   Le coperture industriali richiedono interventi pensati per
                   superfici ampie, strutture produttive e capannoni soggetti
-                  a usura, infiltrazioni o necessità di adeguamento. RB SNC
+                  a usura, infiltrazioni o necessità di adeguamento. R.B. s.n.c.
                   si occupa del rifacimento di coperture industriali
                   valutando lo stato del tetto, le condizioni della
                   struttura e le esigenze operative dell’attività.
@@ -535,7 +535,7 @@ const Servizi = () => (
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  RB SNC interviene anche su tetti civili, abitazioni
+                  R.B. s.n.c. interviene anche su tetti civili, abitazioni
                   private, garage, pertinenze e piccole strutture che
                   necessitano di rifacimento o sostituzione della
                   copertura. Il lavoro viene valutato in base allo stato del
@@ -756,7 +756,7 @@ const Servizi = () => (
           <p className="text-navy-foreground/75 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
             Se devi rimuovere amianto, sostituire una copertura in eternit,
             rifare il tetto di un capannone o intervenire su una copertura
-            civile, il primo passo è un sopralluogo. RB SNC può valutare la
+            civile, il primo passo è un sopralluogo. R.B. s.n.c. può valutare la
             situazione e indicarti il percorso più adatto.
           </p>
           <Button asChild variant="cta" size="xl">

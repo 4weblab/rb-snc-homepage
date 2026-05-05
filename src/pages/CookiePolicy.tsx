@@ -8,10 +8,10 @@ const CookiePolicy = () => {
   return (
     <>
       <Helmet>
-        <title>Cookie Policy | RB SNC</title>
+        <title>Cookie Policy | R.B. s.n.c.</title>
         <meta
           name="description"
-          content="Cookie Policy di RB SNC: il sito utilizza esclusivamente cookie tecnici necessari al funzionamento, senza profilazione né tracciamento."
+          content="Cookie Policy di R.B. s.n.c.: il sito utilizza esclusivamente cookie tecnici necessari al funzionamento, senza profilazione né tracciamento."
         />
         <link rel="canonical" href="https://rb-snc.it/cookie-policy" />
         <meta name="robots" content="noindex, follow" />

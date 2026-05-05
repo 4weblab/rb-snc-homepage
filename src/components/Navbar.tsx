@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
         <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight text-primary leading-tight">
-          RB snc <span className="text-foreground font-normal text-sm md:text-base">di Bertoluzzo e Ragazzo</span>
+          R.B. s.n.c. <span className="text-foreground font-normal text-sm md:text-base">di Bertoluzzo e Ragazzo</span>
         </Link>
 
         {/* Desktop */}
