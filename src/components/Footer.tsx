@@ -149,7 +149,7 @@ const Footer = () => {
             </Link>
           </p>
           <p>
-            Soluzione web aziendale a Padova a cura di{" "}
+            Sito web aziendale a Padova a cura di{" "}
             <a
               href="https://4weblab.it"
               target="_blank"
