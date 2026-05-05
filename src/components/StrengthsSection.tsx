@@ -1,6 +1,6 @@
 import { Zap, Users, Award, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
-import strengthsBg from "@/assets/strengths-bg.jpg";
+import strengthsBg from "@/assets/strengths-bg.webp";
 
 const strengths = [
   { icon: Zap, title: "Interventi rapidi", description: "Siamo organizzati per intervenire rapidamente su tutto il territorio, riducendo tempi di attesa e disagi." },
