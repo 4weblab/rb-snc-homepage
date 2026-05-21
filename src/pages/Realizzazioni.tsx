@@ -57,7 +57,7 @@ const projects = [
       { src: amiantoPrima3, alt: "Panoramica della copertura in amianto prima dell'intervento di rimozione" },
       { src: amiantoDopo1, alt: "Nuova sovracopertura coibentata posata da R.B. s.n.c. dopo la bonifica amianto" },
       { src: amiantoDopo2, alt: "Vista prospettica della nuova copertura industriale dopo lo smaltimento eternit" },
-      { src: amiantoDopo3, alt: "Dettaglio della nuova copertura ondulata bianca su capannone in Veneto" },
+      { src: amiantoDopo3, alt: "Dettaglio della nuova copertura ondulata bianca su capannone a Bassano del Grappa ( Vicenza )" },
     ] as GalleryImg[],
     details: [
       { icon: Tag, label: "Tipologia", value: "Bonifica amianto" },
