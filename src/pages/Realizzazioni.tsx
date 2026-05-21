@@ -62,7 +62,7 @@ const projects = [
     details: [
       { icon: Tag, label: "Tipologia", value: "Bonifica amianto" },
       { icon: Layers, label: "Contesto", value: "Copertura industriale" },
-      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: MapPin, label: "Area servita", value: "Bassano del Grappa ( Vicenza )" },
       { icon: Wrench, label: "Intervento", value: "Rimozione e smaltimento eternit" },
       { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
