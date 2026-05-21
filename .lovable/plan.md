@@ -1,40 +1,27 @@
 ## Obiettivo
+Sostituire lo scroll verticale nel lightbox con la navigazione tra immagini tramite frecce (desktop) e swipe (mobile/touch), per tutte e tre le gallerie della pagina Realizzazioni.
 
-Sostituire le immagini della sezione **"Bonifica amianto su copertura industriale"** nella pagina `/realizzazioni` con le 6 foto caricate (`amianto_1.webp` … `amianto_6.webp`), eliminare i vecchi file e uniformare il rapporto d'aspetto.
+## Modifiche a `src/pages/Realizzazioni.tsx`
 
-## Cosa farò
+1. **Cambiare lo stato del lightbox**: invece di `lightbox: GalleryImg | null`, usare:
+   - `lightboxImages: GalleryImg[] | null` — l'intero set di immagini del progetto cliccato (main + gallery)
+   - `lightboxIndex: number` — l'immagine iniziale da mostrare
 
-1. **Import asset**
-   - Copiare le 6 foto in `src/assets/` con nomi parlanti:
-     - `realizzazione-amianto-prima-1.webp` (amianto_1 — copertura ondulata con parabola, ancora da bonificare)
-     - `realizzazione-amianto-prima-2.webp` (amianto_2 — frontale lastre eternit deteriorate)
-     - `realizzazione-amianto-prima-3.webp` (amianto_3 — panoramica copertura amianto pre-intervento)
-     - `realizzazione-amianto-dopo-1.webp` (amianto_4 — nuova sovracopertura bianca, campagna)
-     - `realizzazione-amianto-dopo-2.webp` (amianto_5 — vista prospettica nuova copertura coibentata)
-     - `realizzazione-amianto-dopo-3.webp` (amianto_6 — dettaglio nuova copertura ondulata bianca)
+2. **Costruire l'array per progetto**: per ciascun progetto passare a `GallerySlider` e al pulsante della main image l'array completo `[main, ...gallery]`, così l'utente può sfogliare anche partendo dall'immagine principale.
 
-2. **Uniformare il rapporto**
-   - Tutte le foto vengono normalizzate a **4:3** (lo stesso rapporto già usato dalla galleria/main image della pagina) tramite crop centrato con uno script (sharp/imagemagick), mantenendo formato WebP. Le 6 foto caricate sono già 4:3 o molto vicine → crop minimo, nessuna distorsione.
+3. **Rimuovere** dal `DialogContent` le classi `max-h-[90vh] overflow-y-auto overscroll-contain` introdotte in precedenza.
 
-3. **Aggiornare `src/pages/Realizzazioni.tsx`**
-   - Sostituire gli import `amianto1/2/3` con i 6 nuovi.
-   - `main`: `realizzazione-amianto-prima-1.webp` (immagine d'impatto "prima" dell'intervento).
-   - `gallery`: le altre 5 foto (niente duplicati con la main), così la galleria racconta il flusso prima→dopo.
-   - Riscrivere gli `alt` in modo coerente e SEO-friendly, ad es.:
-     - main: *"Copertura industriale in eternit prima della bonifica amianto eseguita da R.B. s.n.c. in Veneto"*
-     - *"Lastre ondulate in cemento-amianto deteriorate su capannone industriale"*
-     - *"Panoramica della copertura in amianto prima dell'intervento di rimozione"*
-     - *"Nuova sovracopertura coibentata posata da R.B. s.n.c. dopo la bonifica amianto"*
-     - *"Vista prospettica della nuova copertura industriale dopo lo smaltimento eternit"*
-     - *"Dettaglio della nuova copertura ondulata bianca su capannone in Veneto"*
+4. **Sostituire il contenuto del Dialog** con un `Carousel` (embla, già usato in pagina) configurato con:
+   - `opts={{ loop: true, startIndex: lightboxIndex }}`
+   - `CarouselContent` con un `CarouselItem` per ogni immagine; immagine in `object-contain max-h-[85vh]` per restare sempre visibile
+   - `CarouselPrevious` / `CarouselNext` visibili (anche su mobile), posizionati sopra i bordi, ben contrastati su sfondo scuro
+   - Lo swipe touch è nativo in embla, quindi è incluso automaticamente
 
-4. **Eliminare i vecchi asset**
-   - `src/assets/realizzazione-amianto-1.jpg`
-   - `src/assets/realizzazione-amianto-2.jpg`
-   - `src/assets/realizzazione-amianto-3.jpg`
+5. **Stile del DialogContent**: `max-w-[95vw] md:max-w-5xl p-0 bg-transparent border-0 shadow-none` per dare risalto all'immagine; aggiungere supporto tastiera (← →) tramite l'API di embla o lasciare il comportamento nativo già presente nel componente `Carousel` (gestisce ArrowLeft/ArrowRight).
+
+6. **Accessibilità**: aggiungere `DialogTitle` visivamente nascosto con il titolo del progetto/alt corrente, e mantenere il pulsante di chiusura del Dialog.
 
 ## Note tecniche
-
-- Rapporto target 4:3 (1280×960) → coerente con `width={1280} height={896}` già usato nei tag `<img>` (aggiorno `height` a `960` per allinearlo al nuovo rapporto ed evitare CLS).
-- Formato WebP mantenuto (più leggero del JPG attuale).
-- Nessuna modifica alle sezioni "Coperture industriali" e "Tetto civile".
+- Nessun nuovo pacchetto: si usano i componenti `Carousel` e `Dialog` già presenti.
+- Nessuna modifica alle 3 gallerie inline (`GallerySlider`): conservano il loro carousel di anteprima; cambia solo cosa viene aperto al click.
+- Comportamento identico per tutte e tre le sezioni (Bonifica amianto, Coperture industriali, Tetto civile).
