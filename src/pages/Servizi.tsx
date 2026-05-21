@@ -802,11 +802,6 @@ const Servizi = () => (
         </div>
       </section>
 
-      {/* CTA FINALE */}
-      <section className="py-20 lg:py-28 bg-navy text-navy-foreground relative overflow-hidden">
-        {/* placeholder anchor to keep CTA section below FAQ */}
-      </section>
-
       {/* FAQ */}
       <section className="py-20 lg:py-28 bg-muted/30 border-y border-border/60" aria-labelledby="faq-title">
         <div className="container mx-auto px-4 lg:px-8">
