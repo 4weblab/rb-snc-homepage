@@ -1,4 +1,4 @@
-import { Factory, Warehouse, Store, Building2, Home } from "lucide-react";
+import { Factory, Warehouse, Store, Wheat, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import sectorsBg from "@/assets/sectors-bg.jpg";
@@ -33,11 +33,11 @@ const sectors = [
     ariaLabel: "Rifacimento tetti civili per abitazioni e condomini",
   },
   {
-    icon: Building2,
-    title: "Edifici direzionali e uffici",
-    description: "Interventi su coperture per uffici, laboratori e strutture direzionali.",
+    icon: Wheat,
+    title: "Edifici agricoli",
+    description: "Interventi su coperture ed eternit per aziende agricole",
     href: "/servizi",
-    ariaLabel: "Servizi su coperture per uffici e edifici direzionali",
+    ariaLabel: "Servizi su coperture per aziende agricole",
   },
 ];
 
