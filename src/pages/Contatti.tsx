@@ -121,6 +121,10 @@ const Contatti = () => {
           content="Contatta R.B. s.n.c. per sopralluoghi su bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
         />
         <link rel="canonical" href="https://rb-snc.it/contatti" />
+        <meta property="og:title" content="Contatti R.B. s.n.c. | Richiedi sopralluogo in Veneto" />
+        <meta property="og:description" content="Contatta R.B. s.n.c. per sopralluoghi su bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto." />
+        <meta property="og:url" content="https://rb-snc.it/contatti" />
+        <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <Navbar />

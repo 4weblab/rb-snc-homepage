@@ -272,12 +272,16 @@ const Realizzazioni = () => {
   return (
     <>
       <Helmet>
-        <title>Realizzazioni bonifica amianto e coperture a Bassano del Grappa ( Vicenza ) | R.B. s.n.c.</title>
+        <title>Realizzazioni amianto e coperture Veneto | R.B. s.n.c.</title>
         <meta
           name="description"
           content="Guarda le realizzazioni R.B. s.n.c.: interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili a Bassano del Grappa ( Vicenza )."
         />
         <link rel="canonical" href="https://rb-snc.it/realizzazioni" />
+        <meta property="og:title" content="Realizzazioni amianto e coperture Veneto | R.B. s.n.c." />
+        <meta property="og:description" content="Interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili realizzati da R.B. s.n.c. in Veneto." />
+        <meta property="og:url" content="https://rb-snc.it/realizzazioni" />
+        <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <Navbar />
