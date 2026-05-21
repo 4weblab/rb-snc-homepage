@@ -1,8 +1,8 @@
 import { ShieldCheck, Factory, Home, ArrowRight, Star, Timer, Award, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import serviceAmianto from "@/assets/service-amianto.jpg";
-import serviceCoperture from "@/assets/service-coperture-industriali.jpg";
-import serviceTetto from "@/assets/service-tetto-civile.jpg";
+import serviceAmianto from "@/assets/service-amianto.webp";
+import serviceCoperture from "@/assets/service-coperture-industriali.webp";
+import serviceTetto from "@/assets/service-tetto-civile.webp";
 
 const services = [
   {
@@ -13,6 +13,7 @@ const services = [
     href: "/servizi#bonifica-amianto",
     ariaLabel: "Vai al servizio di bonifica amianto e smaltimento eternit in Veneto",
     image: serviceAmianto,
+    imageAlt: "Operatore R.B. s.n.c. durante bonifica amianto su copertura industriale in Veneto",
     featured: true,
   },
   {
@@ -23,6 +24,7 @@ const services = [
     href: "/servizi#coperture-industriali",
     ariaLabel: "Vai al servizio di rifacimento coperture industriali per capannoni e aziende",
     image: serviceCoperture,
+    imageAlt: "Rifacimento copertura industriale su capannone con lamiera grecata coibentata",
     featured: false,
   },
   {
@@ -33,6 +35,7 @@ const services = [
     href: "/servizi#tetti-civili",
     ariaLabel: "Vai al servizio di rifacimento tetti civili per abitazioni private",
     image: serviceTetto,
+    imageAlt: "Rifacimento tetto civile su abitazione privata con copertura in tegole",
     featured: false,
   },
 ];
@@ -98,7 +101,7 @@ const ServicesSection = () => {
                 <div className="relative h-[180px] overflow-hidden rounded-t-2xl">
                   <img
                     src={service.image}
-                    alt={service.title}
+                    alt={service.imageAlt}
                     width={1024}
                     height={768}
                     loading="lazy"

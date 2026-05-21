@@ -1,7 +1,7 @@
 import { Factory, Warehouse, Store, Wheat, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import sectorsBg from "@/assets/sectors-bg.jpg";
+import sectorsBg from "@/assets/sectors-bg.webp";
 
 const sectors = [
   {
