@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Zap, Award, Users } from "lucide-react";
 
 const stats = [
-  { value: "20+", label: "Anni di esperienza nel settore" },
+  { value: "25+", label: "Anni di esperienza nel settore" },
   { value: "500+", label: "Interventi realizzati tra aziende e privati" },
   { value: "Veneto", label: "Area principale di intervento" },
   { value: "H24", label: "Disponibilità per urgenze" },
