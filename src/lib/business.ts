@@ -70,6 +70,15 @@ export const localBusiness = {
   areaServed,
   contactPoint: contactPoints,
   sameAs: ["https://share.google/vVq1eG5PIttanZ00O"],
+  knowsAbout: [
+    "Coperture industriali",
+    "Bonifica amianto",
+    "Smaltimento eternit",
+    "Rifacimento tetti civili",
+    "Lattoneria",
+    "Sovracoperture coibentate",
+    "Edilizia civile",
+  ],
 };
 
 /** Reference compatta al LocalBusiness via @id (per evitare duplicazioni). */
