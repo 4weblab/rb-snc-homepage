@@ -1,24 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
+import project1 from "@/assets/realizzazione-amianto-dopo-1.webp";
+import project2 from "@/assets/realizzazione-coperture-delmachem-1.webp";
+import project3 from "@/assets/realizzazione-tetto-mestre-4.webp";
 
 const projects = [
   {
     image: project1,
-    title: "Copertura capannone industriale",
-    description: "Rifacimento completo copertura in lamiera grecata con isolamento termico.",
+    title: "Bonifica amianto su copertura industriale",
+    description: "Rimozione lastre in eternit e posa di nuova sovracopertura coibentata, con smaltimento certificato.",
   },
   {
     image: project2,
-    title: "Bonifica amianto stabilimento",
-    description: "Rimozione lastre in eternit e posa nuova copertura in pannelli sandwich.",
+    title: "Rifacimento copertura industriale",
+    description: "Nuova copertura in lamiera grecata su capannone industriale, con pannelli coibentati e finiture perimetrali.",
   },
   {
     image: project3,
     title: "Rifacimento completo tetto di struttura ad uso civile",
-    description: "Intervento di rifacimento tetto civile con materiali moderni e duraturi.",
+    description: "Sostituzione orditura, isolamento termico, guaina impermeabile e nuova copertura in tegole su abitazione privata.",
   },
 ];
 
