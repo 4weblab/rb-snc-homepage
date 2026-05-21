@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Smartphone, FileText, Hash } from "lucide-react";
+import { Mail, MapPin, Smartphone, FileText, Hash } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const footerLinks = [
