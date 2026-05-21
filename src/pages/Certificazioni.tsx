@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { localBusiness } from "@/lib/business";
+import { SITE_URL } from "@/lib/business";
 import {
   ShieldCheck,
   ScrollText,
@@ -41,19 +41,25 @@ const webPage = {
   name: "Sicurezza e normativa amianto in Veneto",
   description:
     "R.B. s.n.c. opera nel rispetto della normativa amianto (Legge 257/92 e D.M. 6 settembre 1994), gestendo sicurezza, smaltimento e documentazione degli interventi.",
-  url: "https://rb-snc.it/certificazioni",
+  url: `${SITE_URL}/certificazioni`,
   about: {
     "@type": "Thing",
     name: "Normativa amianto e sicurezza interventi",
   },
-  publisher: { "@id": "https://rb-snc.it/#business" },
+  publisher: { "@id": `${SITE_URL}/#business` },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@context": "https://schema.org", ...localBusiness },
     webPage,
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Certificazioni", item: `${SITE_URL}/certificazioni` },
+      ],
+    },
   ],
 };
 

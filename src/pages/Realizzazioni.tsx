@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { localBusiness } from "@/lib/business";
+import { SITE_URL } from "@/lib/business";
 import {
   Carousel,
   CarouselContent,
@@ -143,8 +143,8 @@ const collectionPage = {
   name: "Realizzazioni bonifica amianto e coperture a Bassano del Grappa ( Vicenza )",
   description:
     "Pagina realizzazioni R.B. s.n.c. con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili a Bassano del Grappa ( Vicenza ).",
-  url: "https://rb-snc.it/realizzazioni",
-  publisher: { "@id": "https://rb-snc.it/#business" },
+  url: `${SITE_URL}/realizzazioni`,
+  publisher: { "@id": `${SITE_URL}/#business` },
   mainEntity: {
     "@type": "ItemList",
     name: "Realizzazioni R.B. s.n.c.",
@@ -177,8 +177,14 @@ const collectionPage = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@context": "https://schema.org", ...localBusiness },
     collectionPage,
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Realizzazioni", item: `${SITE_URL}/realizzazioni` },
+      ],
+    },
   ],
 };
 
