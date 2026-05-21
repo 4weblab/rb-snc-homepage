@@ -102,7 +102,7 @@ const projects = [
     details: [
       { icon: Tag, label: "Tipologia", value: "Tetto civile" },
       { icon: Layers, label: "Contesto", value: "Abitazione privata" },
-      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: MapPin, label: "Area servita", value: "Bassano del Grappa ( Vicenza )" },
       { icon: Wrench, label: "Intervento", value: "Rifacimento copertura civile" },
       { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
