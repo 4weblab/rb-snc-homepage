@@ -26,7 +26,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import heroImg from "@/assets/contatti-hero.jpg";
-import { localBusiness } from "@/lib/business";
+import { SITE_URL } from "@/lib/business";
 
 const quickContacts = [
   {
@@ -81,15 +81,22 @@ const contactPage = {
   name: "Contatti R.B. s.n.c.",
   description:
     "Contatta R.B. s.n.c. per sopralluoghi su amianto, coperture e tetti in Veneto.",
-  url: "https://rb-snc.it/contatti",
-  publisher: { "@id": "https://rb-snc.it/#business" },
+  url: `${SITE_URL}/contatti`,
+  publisher: { "@id": `${SITE_URL}/#business` },
+  mainEntity: { "@id": `${SITE_URL}/#business` },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@context": "https://schema.org", ...localBusiness },
     contactPage,
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Contatti", item: `${SITE_URL}/contatti` },
+      ],
+    },
   ],
 };
 

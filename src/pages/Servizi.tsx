@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { localBusiness, areaServed } from "@/lib/business";
+import { localBusinessRef, areaServed, SITE_URL } from "@/lib/business";
 import {
   ShieldCheck,
   Factory,
@@ -132,11 +132,10 @@ const processSteps = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@context": "https://schema.org", ...localBusiness },
     {
       "@type": "Service",
       name: "Servizi di bonifica amianto e rifacimento coperture in Veneto",
-      provider: { "@id": localBusiness["@id"] },
+      provider: localBusinessRef,
       areaServed,
       serviceType: [
         "Bonifica amianto",
@@ -146,7 +145,14 @@ const jsonLd = {
       ],
       description:
         "R.B. s.n.c. offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto, con gestione dell’intervento, smaltimento e documentazione finale.",
-      url: "https://rb-snc.it/servizi",
+      url: `${SITE_URL}/servizi`,
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Servizi", item: `${SITE_URL}/servizi` },
+      ],
     },
   ],
 };
