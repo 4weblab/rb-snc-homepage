@@ -134,18 +134,36 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Service",
-      name: "Servizi di bonifica amianto e rifacimento coperture in Veneto",
+      "@id": `${SITE_URL}/servizi#bonifica-amianto`,
+      name: "Bonifica amianto e smaltimento eternit",
       provider: localBusinessRef,
       areaServed,
-      serviceType: [
-        "Bonifica amianto",
-        "Smaltimento eternit",
-        "Rifacimento coperture industriali",
-        "Rifacimento tetti civili",
-      ],
+      serviceType: "Bonifica amianto",
       description:
-        "R.B. s.n.c. offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto, con gestione dell’intervento, smaltimento e documentazione finale.",
-      url: `${SITE_URL}/servizi`,
+        "Rimozione e smaltimento di lastre in eternit e materiali contenenti amianto da coperture industriali, abitazioni e strutture civili in Veneto, con documentazione completa.",
+      url: `${SITE_URL}/servizi#bonifica-amianto`,
+    },
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/servizi#coperture-industriali`,
+      name: "Rifacimento coperture industriali",
+      provider: localBusinessRef,
+      areaServed,
+      serviceType: "Coperture industriali",
+      description:
+        "Rifacimento e sostituzione di coperture di capannoni, magazzini e strutture produttive, anche in continuità con la rimozione di vecchie lastre in eternit.",
+      url: `${SITE_URL}/servizi#coperture-industriali`,
+    },
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/servizi#tetti-civili`,
+      name: "Rifacimento tetti civili",
+      provider: localBusinessRef,
+      areaServed,
+      serviceType: "Tetti civili",
+      description:
+        "Sostituzione e rifacimento di tetti per abitazioni, garage, tettoie e pertinenze, con valutazione tecnica della copertura e gestione completa del cantiere.",
+      url: `${SITE_URL}/servizi#tetti-civili`,
     },
     {
       "@type": "BreadcrumbList",
