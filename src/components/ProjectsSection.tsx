@@ -17,8 +17,8 @@ const projects = [
   },
   {
     image: project3,
-    title: "Sovracopertura centro logistico",
-    description: "Installazione sovracopertura su struttura esistente con miglioramento energetico.",
+    title: "Rifacimento completo tetto di struttura ad uso civile",
+    description: "Intervento di rifacimento tetto civile con materiali moderni e duraturi.",
   },
 ];
 
