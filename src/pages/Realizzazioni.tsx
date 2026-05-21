@@ -286,10 +286,9 @@ const Realizzazioni = () => {
                 Bonifiche amianto e rifacimento coperture
               </h1>
               <p className="text-base md:text-lg text-white/85 leading-relaxed mb-8 max-w-2xl">
-                Una selezione di interventi su amianto, eternit, coperture
-                industriali e tetti civili. In attesa delle immagini definitive,
-                questa pagina mostra la struttura prevista per presentare i
-                lavori R.B. s.n.c. in modo chiaro, ordinato e professionale.
+                Interventi eseguiti su coperture industriali, lastre in eternit
+                e strutture civili con soluzioni certificate e conformi alle
+                normative vigenti.
               </p>
               <Button asChild variant="cta" size="xl">
                 <Link to="/contatti">Richiedi sopralluogo</Link>
