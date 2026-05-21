@@ -259,7 +259,7 @@ const Realizzazioni = () => {
           <div className="absolute inset-0">
             <img
               src={heroImg}
-              alt="Cantiere R.B. s.n.c. su copertura industriale in Veneto"
+              alt="Cantiere R.B. s.n.c. su copertura industriale a Bassano del Grappa ( Vicenza )"
               width={1920}
               height={896}
               className="w-full h-full object-cover"
