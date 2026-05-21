@@ -28,9 +28,12 @@ import {
 } from "lucide-react";
 
 import heroImg from "@/assets/realizzazioni-hero.jpg";
-import amianto1 from "@/assets/realizzazione-amianto-1.jpg";
-import amianto2 from "@/assets/realizzazione-amianto-2.jpg";
-import amianto3 from "@/assets/realizzazione-amianto-3.jpg";
+import amiantoPrima1 from "@/assets/realizzazione-amianto-prima-1.webp";
+import amiantoPrima2 from "@/assets/realizzazione-amianto-prima-2.webp";
+import amiantoPrima3 from "@/assets/realizzazione-amianto-prima-3.webp";
+import amiantoDopo1 from "@/assets/realizzazione-amianto-dopo-1.webp";
+import amiantoDopo2 from "@/assets/realizzazione-amianto-dopo-2.webp";
+import amiantoDopo3 from "@/assets/realizzazione-amianto-dopo-3.webp";
 import coperture1 from "@/assets/realizzazione-coperture-1.jpg";
 import coperture2 from "@/assets/realizzazione-coperture-2.jpg";
 import coperture3 from "@/assets/realizzazione-coperture-3.jpg";
@@ -47,11 +50,13 @@ const projects = [
     tag: "Bonifica amianto",
     title: "Bonifica amianto su copertura industriale",
     text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto. R.B. s.n.c. gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
-    main: { src: amianto1, alt: "Realizzazione bonifica amianto su copertura industriale in Veneto" },
+    main: { src: amiantoPrima1, alt: "Copertura industriale in eternit prima della bonifica amianto eseguita da R.B. s.n.c. in Veneto" },
     gallery: [
-      { src: amianto2, alt: "Dettaglio rimozione eternit da copertura" },
-      { src: amianto3, alt: "Cantiere bonifica amianto con materiali confezionati per smaltimento" },
-      { src: amianto1, alt: "Operatori specializzati durante intervento di bonifica amianto" },
+      { src: amiantoPrima2, alt: "Lastre ondulate in cemento-amianto deteriorate su capannone industriale" },
+      { src: amiantoPrima3, alt: "Panoramica della copertura in amianto prima dell'intervento di rimozione" },
+      { src: amiantoDopo1, alt: "Nuova sovracopertura coibentata posata da R.B. s.n.c. dopo la bonifica amianto" },
+      { src: amiantoDopo2, alt: "Vista prospettica della nuova copertura industriale dopo lo smaltimento eternit" },
+      { src: amiantoDopo3, alt: "Dettaglio della nuova copertura ondulata bianca su capannone in Veneto" },
     ] as GalleryImg[],
     details: [
       { icon: Tag, label: "Tipologia", value: "Bonifica amianto" },
