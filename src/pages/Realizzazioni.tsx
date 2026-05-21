@@ -536,6 +536,67 @@ const Realizzazioni = () => {
           </div>
         </section>
 
+        {/* GRANDI CANTIERI */}
+        <section
+          id="grandi-cantieri"
+          className="py-24 lg:py-36 bg-muted/40 relative overflow-hidden border-y-2 border-accent/20"
+        >
+          <div className="absolute -top-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-accent rounded-b-full" />
+          <div className="container mx-auto px-4 lg:px-8 relative">
+            <div className="max-w-3xl mb-14">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
+                Grandi Cantieri
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-foreground mb-5 leading-tight">
+                Interventi di grandi dimensioni
+              </h2>
+              <div className="w-24 h-1.5 bg-accent rounded-full mb-8" />
+              <p className="text-foreground/85 text-lg leading-relaxed">
+                Una selezione dei cantieri di dimensioni più importanti
+                realizzati negli anni da R.B. s.n.c. per aziende industriali e
+                committenti del territorio.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {grandiCantieri.map((c, i) => (
+                <button
+                  type="button"
+                  key={c.src}
+                  onClick={() => openLightbox(grandiCantieri.map(g => ({ src: g.src, alt: g.alt })), i)}
+                  aria-label={`Apri immagine ingrandita: ${c.azienda} - ${c.sede}`}
+                  className="group relative block w-full overflow-hidden rounded-2xl border border-border/60 bg-card shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in text-left"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={c.src}
+                      alt={c.alt}
+                      loading="lazy"
+                      width={1280}
+                      height={960}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-navy/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                      <ZoomIn className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-heading font-bold text-foreground text-base md:text-lg leading-snug mb-1">
+                      {c.azienda}
+                    </h3>
+                    <p className="text-sm text-muted-foreground flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-accent shrink-0" />
+                      {c.sede}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FINAL CTA */}
         <section className="py-20 lg:py-28 bg-primary text-primary-foreground relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
