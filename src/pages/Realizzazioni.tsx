@@ -12,7 +12,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogClose } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   ShieldCheck,
@@ -574,10 +574,16 @@ const Realizzazioni = () => {
         open={!!lightboxImages}
         onOpenChange={(o) => !o && setLightboxImages(null)}
       >
-        <DialogContent className="max-w-[95vw] md:max-w-5xl p-0 bg-transparent border-0 shadow-none sm:rounded-none">
+        <DialogContent className="max-w-[95vw] md:max-w-5xl p-0 bg-transparent border-0 shadow-none sm:rounded-none [&>button]:hidden">
           <VisuallyHidden>
             <DialogTitle>Galleria immagini</DialogTitle>
           </VisuallyHidden>
+          <DialogClose
+            aria-label="Torna al sito"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 bg-white text-black rounded-md px-5 py-2 text-sm font-semibold shadow-md hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            Torna al sito
+          </DialogClose>
           {lightboxImages && (
             <Carousel
               opts={{ loop: true, startIndex: lightboxIndex }}
