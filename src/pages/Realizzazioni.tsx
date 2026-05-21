@@ -47,6 +47,26 @@ import tetto4 from "@/assets/realizzazione-tetto-mestre-4.webp";
 import tetto5 from "@/assets/realizzazione-tetto-mestre-5.webp";
 import tetto6 from "@/assets/realizzazione-tetto-mestre-6.webp";
 
+import grandeAbb from "@/assets/grande-cantiere-abb-monselice.webp";
+import grandeAdesiv from "@/assets/grande-cantiere-adesiv-bassano.webp";
+import grandeAvicola from "@/assets/grande-cantiere-avicola-oppeano-verona.webp";
+import grandePeugeot from "@/assets/grande-cantiere-peugeot-este.webp";
+import grandeZilio from "@/assets/grande-cantiere-zilio-friola.webp";
+import grandeItw from "@/assets/grande-cantiere-itw-padova.webp";
+import grandeLidl from "@/assets/grande-cantiere-lidl-pordenone.webp";
+import grandeUmana from "@/assets/grande-cantiere-umana-marghera.webp";
+
+const grandiCantieri: { src: string; azienda: string; sede: string; alt: string }[] = [
+  { src: grandeAbb, azienda: "ABB", sede: "Monselice", alt: "Copertura industriale ABB a Monselice realizzata da R.B. s.n.c." },
+  { src: grandeAdesiv, azienda: "Adesiv", sede: "Bassano", alt: "Copertura industriale Adesiv a Bassano realizzata da R.B. s.n.c." },
+  { src: grandeAvicola, azienda: "Azienda Avicola Oppeano", sede: "Verona", alt: "Copertura azienda avicola Oppeano a Verona realizzata da R.B. s.n.c." },
+  { src: grandePeugeot, azienda: "Concessionaria Peugeot", sede: "Este", alt: "Copertura concessionaria Peugeot a Este realizzata da R.B. s.n.c." },
+  { src: grandeZilio, azienda: "Industrie Zilio", sede: "Friola ( Vicenza )", alt: "Copertura industriale Zilio a Friola ( Vicenza ) realizzata da R.B. s.n.c." },
+  { src: grandeItw, azienda: "ITW", sede: "Padova", alt: "Copertura industriale ITW a Padova realizzata da R.B. s.n.c." },
+  { src: grandeLidl, azienda: "Magazzino LIDL", sede: "Pordenone", alt: "Copertura magazzino LIDL a Pordenone realizzata da R.B. s.n.c." },
+  { src: grandeUmana, azienda: "Umana", sede: "Marghera", alt: "Copertura Umana a Marghera realizzata da R.B. s.n.c." },
+];
+
 type GalleryImg = { src: string; alt: string };
 
 const projects = [
