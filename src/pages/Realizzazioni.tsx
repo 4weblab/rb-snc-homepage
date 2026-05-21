@@ -19,7 +19,6 @@ import {
   Factory,
   Home,
   ArrowRight,
-  Info,
   MapPin,
   Wrench,
   Tag,
