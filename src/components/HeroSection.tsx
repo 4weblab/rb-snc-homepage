@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Zap, Award, HardHat } from "lucide-react";
-import heroBg1 from "@/assets/hero-bg.jpg";
-import heroBg2 from "@/assets/hero-bg-2.jpg";
-import heroBg3 from "@/assets/hero-bg-3.jpg";
-import heroBg4 from "@/assets/hero-bg-4.jpg";
+import heroBg1 from "@/assets/hero-bg.webp";
+import heroBg2 from "@/assets/hero-bg-2.webp";
+import heroBg3 from "@/assets/hero-bg-3.webp";
+import heroBg4 from "@/assets/hero-bg-4.webp";
 
 const heroImages = [
   { src: heroBg1, alt: "Rifacimento copertura industriale R.B. s.n.c. a Cittadella, Padova" },
@@ -26,6 +27,9 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <Helmet>
+        <link rel="preload" as="image" href={heroBg1} type="image/webp" fetchPriority="high" />
+      </Helmet>
       {/* Background carousel */}
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
