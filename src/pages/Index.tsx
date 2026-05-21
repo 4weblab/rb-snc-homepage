@@ -22,6 +22,10 @@ const Index = () => {
           content="R.B. s.n.c.: coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione. Soluzioni professionali per l'edilizia industriale."
         />
         <link rel="canonical" href="https://rb-snc.it/" />
+        <meta property="og:title" content="R.B. s.n.c. — Coperture Industriali e Bonifica Amianto" />
+        <meta property="og:description" content="Coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione. Soluzioni professionali in Veneto." />
+        <meta property="og:url" content="https://rb-snc.it/" />
+        <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(localBusinessJsonLd)}</script>
       </Helmet>
       <Navbar />
