@@ -33,7 +33,6 @@ const quickContacts = [
     icon: Phone,
     title: "Telefono",
     lines: [
-      { label: "049 7382238", href: "tel:+390497382238" },
       { label: "335 6010096", href: "tel:+393356010096", icon: Smartphone },
     ],
   },
