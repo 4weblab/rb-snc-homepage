@@ -1,17 +1,28 @@
-## Problema
+## Obiettivo
+Allineare la sezione "Realizzazioni" della Home (`src/components/ProjectsSection.tsx`) ai 3 casi reali presenti nella pagina `/realizzazioni`, sostituendo le immagini placeholder e i testi generici.
 
-Nello slideshow (lightbox della pagina Realizzazioni) la X è sparita ma il bottone "Torna al sito" non compare. Il bottone è effettivamente presente nel codice, ma viene nascosto insieme alla X.
+## Modifiche a `src/components/ProjectsSection.tsx`
 
-Causa: su `DialogContent` è stata applicata la classe `[&>button]:hidden` per nascondere la X di default. Questo selettore però nasconde **tutti** i `<button>` figli diretti del `DialogContent`, e il nostro `DialogClose` "Torna al sito" è proprio un `<button>` figlio diretto — quindi viene nascosto anche lui.
+Sostituire i 3 import attuali (`project-1.jpg`, `project-2.jpg`, `project-3.jpg`) con un'immagine rappresentativa per ciascun caso reale, scelta tra le foto già presenti in `src/assets/`:
 
-## Soluzione
+1. **Bonifica amianto su copertura industriale**
+   - Immagine: `realizzazione-amianto-dopo-1.webp` (mostra il risultato finale, più d'impatto in vetrina)
+   - Titolo: "Bonifica amianto su copertura industriale"
+   - Descrizione: "Rimozione lastre in eternit e posa di nuova sovracopertura coibentata, con smaltimento certificato."
 
-Avvolgere il `DialogClose` "Torna al sito" in un `<div>` contenitore, così non è più un figlio diretto `<button>` del `DialogContent` e il selettore `[&>button]:hidden` continua a nascondere solo la X di default di shadcn.
+2. **Rifacimento copertura industriale (Delmachem)**
+   - Immagine: `realizzazione-coperture-delmachem-1.webp`
+   - Titolo: "Rifacimento copertura industriale"
+   - Descrizione: "Nuova copertura in lamiera grecata su capannone industriale, con pannelli coibentati e finiture perimetrali."
 
-Il div wrapper riprenderà il posizionamento `absolute bottom-4 left-1/2 -translate-x-1/2 z-50`, mentre il bottone interno mantiene lo stile (sfondo bianco, testo nero, raggio leggero, ombra).
+3. **Rifacimento tetto civile (Mestre)**
+   - Immagine: `realizzazione-tetto-mestre-4.webp` (tetto nuovo completato in tegole)
+   - Titolo: "Rifacimento completo tetto di struttura ad uso civile"
+   - Descrizione: "Sostituzione orditura, isolamento termico, guaina impermeabile e nuova copertura in tegole su abitazione privata."
 
-### File toccato
+Ogni card continua a linkare a `/realizzazioni` tramite il bottone già presente "Vedi tutte le realizzazioni" (nessun cambiamento al layout o al CTA).
 
-- `src/pages/Realizzazioni.tsx` — wrap del `DialogClose` (righe 571–576) dentro un `<div>` con le classi di posizionamento; il bottone mantiene solo le classi visive (`bg-white text-black rounded-md px-5 py-2 text-sm font-semibold shadow-md hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent`).
-
-Nessuna modifica al componente `dialog.tsx` condiviso.
+## Note tecniche
+- Gli alt text delle immagini useranno il titolo del progetto (coerente con il pattern esistente).
+- Nessuna modifica a `Realizzazioni.tsx`, routing o stili globali.
+- I file immagine `project-1.jpg`, `project-2.jpg`, `project-3.jpg` restano in `src/assets/` ma non saranno più referenziati (eventuale pulizia successiva).
