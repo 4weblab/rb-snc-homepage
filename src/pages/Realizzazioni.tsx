@@ -132,7 +132,7 @@ const collectionPage = {
         position: 2,
         name: "Rifacimento copertura industriale",
         description:
-          "Rifacimento completo della copertura di un capannone industriale in Veneto con posa di pannelli sandwich coibentati e finiture perimetrali.",
+          "Rifacimento completo della copertura di un capannone industriale a Bassano del Grappa ( Vicenza ) con posa di pannelli sandwich coibentati e finiture perimetrali.",
       },
       {
         "@type": "CreativeWork",
