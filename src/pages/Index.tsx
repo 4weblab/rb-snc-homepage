@@ -37,14 +37,14 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>R.B. s.n.c. — Coperture Industriali e Bonifica Amianto</title>
+        <title>Bonifica amianto e coperture in Veneto | R.B. s.n.c.</title>
         <meta
           name="description"
-          content="R.B. s.n.c.: coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione. Soluzioni professionali per l'edilizia industriale."
+          content="R.B. s.n.c.: bonifica amianto, smaltimento eternit e rifacimento coperture industriali e tetti civili in Veneto. Richiedi un sopralluogo."
         />
         <link rel="canonical" href="https://rb-snc.it/" />
-        <meta property="og:title" content="R.B. s.n.c. — Coperture Industriali e Bonifica Amianto" />
-        <meta property="og:description" content="Coperture industriali, bonifica amianto, rifacimento tetti, sovracoperture e manutenzione. Soluzioni professionali in Veneto." />
+        <meta property="og:title" content="Bonifica amianto e coperture in Veneto | R.B. s.n.c." />
+        <meta property="og:description" content="Bonifica amianto, smaltimento eternit e rifacimento coperture industriali e tetti civili in Veneto. Richiedi un sopralluogo." />
         <meta property="og:url" content="https://rb-snc.it/" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
