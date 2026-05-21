@@ -15,6 +15,10 @@ const CookiePolicy = () => {
         />
         <link rel="canonical" href="https://rb-snc.it/cookie-policy" />
         <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Cookie Policy | R.B. s.n.c." />
+        <meta property="og:description" content="Cookie Policy di R.B. s.n.c.: il sito utilizza esclusivamente cookie tecnici, senza profilazione né tracciamento." />
+        <meta property="og:url" content="https://rb-snc.it/cookie-policy" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
       <main className="pt-16">

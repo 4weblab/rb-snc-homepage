@@ -128,6 +128,10 @@ const PrivacyPolicy = () => {
         />
         <link rel="canonical" href="https://rb-snc.it/privacy-policy" />
         <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Privacy Policy | R.B. s.n.c." />
+        <meta property="og:description" content="Privacy Policy di R.B. s.n.c. di Bertoluzzo e Ragazzo: titolare, dati raccolti, finalità, conservazione e diritti dell'utente." />
+        <meta property="og:url" content="https://rb-snc.it/privacy-policy" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
       <main className="pt-16">

@@ -154,12 +154,16 @@ const jsonLd = {
 const Servizi = () => (
   <>
     <Helmet>
-      <title>Servizi di bonifica amianto e coperture in Veneto | R.B. s.n.c.</title>
+      <title>Servizi bonifica amianto e coperture Veneto | R.B. s.n.c.</title>
       <meta
         name="description"
         content="R.B. s.n.c. offre servizi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto. Richiedi un sopralluogo."
       />
       <link rel="canonical" href="https://rb-snc.it/servizi" />
+      <meta property="og:title" content="Servizi bonifica amianto e coperture Veneto | R.B. s.n.c." />
+      <meta property="og:description" content="Bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto." />
+      <meta property="og:url" content="https://rb-snc.it/servizi" />
+      <meta property="og:type" content="website" />
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
     </Helmet>
     <Navbar />

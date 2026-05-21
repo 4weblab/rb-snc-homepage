@@ -67,6 +67,10 @@ const Certificazioni = () => {
           content="R.B. s.n.c. opera nel rispetto della normativa amianto (Legge 257/92 e D.M. 6 settembre 1994). Scopri come vengono gestiti sicurezza, smaltimento e documentazione."
         />
         <link rel="canonical" href="https://rb-snc.it/certificazioni" />
+        <meta property="og:title" content="Sicurezza e normativa amianto in Veneto | R.B. s.n.c." />
+        <meta property="og:description" content="R.B. s.n.c. opera nel rispetto della normativa amianto (Legge 257/92 e D.M. 6 settembre 1994): sicurezza, smaltimento e documentazione." />
+        <meta property="og:url" content="https://rb-snc.it/certificazioni" />
+        <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <Navbar />

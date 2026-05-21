@@ -1,0 +1,18 @@
+# R.B. s.n.c. di Bertoluzzo e Ragazzo
+
+> Impresa veneta specializzata in bonifica amianto, smaltimento eternit e rifacimento coperture industriali e civili. Sede a Cittadella (Padova), operativa in tutto il Veneto.
+
+R.B. s.n.c. è un'azienda B2B che gestisce direttamente i cantieri, senza intermediari, per aziende, capannoni industriali e privati. I servizi principali sono: bonifica e rimozione amianto (Legge 257/92, D.M. 6 settembre 1994), smaltimento certificato di eternit, rifacimento e sovracopertura di tetti industriali, coperture in lamiera grecata e pannelli coibentati, rifacimento tetti civili.
+
+## Pages
+
+- [Home](/): Presentazione dell'azienda, servizi principali e settori serviti.
+- [Servizi](/servizi): Bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili.
+- [Realizzazioni](/realizzazioni): Casi reali di interventi di bonifica amianto e coperture, inclusi grandi cantieri industriali in Veneto.
+- [Certificazioni](/certificazioni): Normativa amianto, sicurezza, smaltimento certificato e documentazione.
+- [Contatti](/contatti): Telefono, email, sede a Cittadella (PD) e modulo per richiesta sopralluogo.
+
+## Optional
+
+- [Privacy Policy](/privacy-policy): Trattamento dei dati personali.
+- [Cookie Policy](/cookie-policy): Cookie tecnici, nessuna profilazione.
