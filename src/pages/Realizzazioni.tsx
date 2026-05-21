@@ -12,7 +12,8 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   ShieldCheck,
   Factory,
@@ -193,7 +194,7 @@ const GallerySlider = ({
   onOpen,
 }: {
   images: GalleryImg[];
-  onOpen: (img: GalleryImg) => void;
+  onOpen: (index: number) => void;
 }) => (
   <Carousel opts={{ align: "start", loop: true }} className="w-full">
     <CarouselContent className="-ml-4">
@@ -204,7 +205,7 @@ const GallerySlider = ({
         >
           <button
             type="button"
-            onClick={() => onOpen(img)}
+            onClick={() => onOpen(i)}
             aria-label="Apri immagine ingrandita"
             className="group relative block w-full aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
           >
@@ -231,7 +232,13 @@ const GallerySlider = ({
 );
 
 const Realizzazioni = () => {
-  const [lightbox, setLightbox] = useState<GalleryImg | null>(null);
+  const [lightboxImages, setLightboxImages] = useState<GalleryImg[] | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = (images: GalleryImg[], index: number) => {
+    setLightboxImages(images);
+    setLightboxIndex(index);
+  };
 
   return (
     <>
