@@ -290,11 +290,11 @@ const Realizzazioni = () => {
         <title>Realizzazioni amianto e coperture Veneto | R.B. s.n.c.</title>
         <meta
           name="description"
-          content="Guarda le realizzazioni R.B. s.n.c.: interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili a Bassano del Grappa ( Vicenza )."
+          content="Realizzazioni R.B. s.n.c.: bonifica amianto, smaltimento eternit, coperture industriali e tetti civili eseguiti in Veneto e province limitrofe."
         />
         <link rel="canonical" href="https://rb-snc.it/realizzazioni" />
         <meta property="og:title" content="Realizzazioni amianto e coperture Veneto | R.B. s.n.c." />
-        <meta property="og:description" content="Interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili realizzati da R.B. s.n.c. in Veneto." />
+        <meta property="og:description" content="Realizzazioni R.B. s.n.c.: bonifica amianto, smaltimento eternit, coperture industriali e tetti civili eseguiti in Veneto." />
         <meta property="og:url" content="https://rb-snc.it/realizzazioni" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
