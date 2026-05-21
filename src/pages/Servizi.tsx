@@ -27,6 +27,7 @@ import {
   Car,
   Umbrella,
   Hammer,
+  HelpCircle,
 } from "lucide-react";
 import heroImg from "@/assets/servizi-hero.webp";
 import docImg from "@/assets/servizi-documentazione.webp";
@@ -129,6 +130,33 @@ const processSteps = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Quanto costa bonificare l'amianto da una copertura?",
+    a: "Il costo dipende da metri quadri, condizioni del materiale, accessibilità del cantiere ed eventuale sostituzione della copertura. Per una valutazione corretta è necessario un sopralluogo: R.B. s.n.c. verifica lo stato dell'eternit e propone un preventivo chiaro, comprensivo di rimozione, trasporto e smaltimento autorizzato.",
+  },
+  {
+    q: "Quanto dura un intervento di rimozione amianto?",
+    a: "La durata varia in base alla superficie e alla complessità del cantiere. Per coperture di capannoni industriali si parla in genere di alcuni giorni di lavoro, mentre interventi su tetti civili più piccoli si chiudono spesso in 1-2 giornate. Tempi precisi vengono comunicati dopo il sopralluogo.",
+  },
+  {
+    q: "Servono autorizzazioni per rimuovere l'eternit?",
+    a: "Sì. Prima dell'intervento deve essere presentato un Piano di Lavoro all'ASL di competenza, secondo quanto previsto dal D.Lgs. 81/2008 e dalla normativa amianto (Legge 257/92, D.M. 6 settembre 1994). R.B. s.n.c. gestisce direttamente questa parte burocratica per il cliente.",
+  },
+  {
+    q: "Dove finisce l'amianto rimosso?",
+    a: "I materiali contenenti amianto vengono incapsulati, trasportati e conferiti esclusivamente presso impianti di smaltimento autorizzati. Al cliente viene rilasciata la documentazione di trasporto e smaltimento, che attesta la corretta gestione dei rifiuti pericolosi.",
+  },
+  {
+    q: "Operate solo in Veneto?",
+    a: "L'area operativa principale di R.B. s.n.c. è il Veneto (Padova, Vicenza, Treviso, Venezia, Verona, Rovigo, Belluno). Per cantieri di una certa dimensione valutiamo interventi anche nelle province limitrofe.",
+  },
+  {
+    q: "Potete intervenire anche sul tetto di casa, non solo sui capannoni?",
+    a: "Sì. Oltre alle coperture industriali, eseguiamo rifacimenti di tetti civili per abitazioni private, garage, tettoie e pertinenze, inclusa la rimozione di vecchie lastre in eternit quando presenti.",
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -171,6 +199,15 @@ const jsonLd = {
         { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
         { "@type": "ListItem", position: 2, name: "Servizi", item: `${SITE_URL}/servizi` },
       ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/servizi#faq`,
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
     },
   ],
 };
