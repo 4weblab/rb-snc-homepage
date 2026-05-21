@@ -55,7 +55,7 @@ const projects = [
     icon: ShieldCheck,
     tag: "Bonifica amianto",
     title: "Bonifica amianto su copertura industriale",
-    text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale a Bassano del Grappa ( Vicenza ). R.B. s.n.c. gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
+    text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale. R.B. s.n.c. gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
     main: { src: amiantoPrima1, alt: "Copertura industriale in eternit prima della bonifica amianto eseguita da R.B. s.n.c. a Bassano del Grappa ( Vicenza )" },
     gallery: [
       { src: amiantoPrima2, alt: "Lastre ondulate in cemento-amianto deteriorate su capannone industriale" },
