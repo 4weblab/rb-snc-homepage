@@ -47,6 +47,26 @@ import tetto4 from "@/assets/realizzazione-tetto-mestre-4.webp";
 import tetto5 from "@/assets/realizzazione-tetto-mestre-5.webp";
 import tetto6 from "@/assets/realizzazione-tetto-mestre-6.webp";
 
+import grandeAbb from "@/assets/grande-cantiere-abb-monselice.webp";
+import grandeAdesiv from "@/assets/grande-cantiere-adesiv-bassano.webp";
+import grandeAvicola from "@/assets/grande-cantiere-avicola-oppeano-verona.webp";
+import grandePeugeot from "@/assets/grande-cantiere-peugeot-este.webp";
+import grandeZilio from "@/assets/grande-cantiere-zilio-friola.webp";
+import grandeItw from "@/assets/grande-cantiere-itw-padova.webp";
+import grandeLidl from "@/assets/grande-cantiere-lidl-pordenone.webp";
+import grandeUmana from "@/assets/grande-cantiere-umana-marghera.webp";
+
+const grandiCantieri: { src: string; azienda: string; sede: string; alt: string }[] = [
+  { src: grandeAbb, azienda: "ABB", sede: "Monselice", alt: "Copertura industriale ABB a Monselice realizzata da R.B. s.n.c." },
+  { src: grandeAdesiv, azienda: "Adesiv", sede: "Bassano", alt: "Copertura industriale Adesiv a Bassano realizzata da R.B. s.n.c." },
+  { src: grandeAvicola, azienda: "Azienda Avicola Oppeano", sede: "Verona", alt: "Copertura azienda avicola Oppeano a Verona realizzata da R.B. s.n.c." },
+  { src: grandePeugeot, azienda: "Concessionaria Peugeot", sede: "Este", alt: "Copertura concessionaria Peugeot a Este realizzata da R.B. s.n.c." },
+  { src: grandeZilio, azienda: "Industrie Zilio", sede: "Friola ( Vicenza )", alt: "Copertura industriale Zilio a Friola ( Vicenza ) realizzata da R.B. s.n.c." },
+  { src: grandeItw, azienda: "ITW", sede: "Padova", alt: "Copertura industriale ITW a Padova realizzata da R.B. s.n.c." },
+  { src: grandeLidl, azienda: "Magazzino LIDL", sede: "Pordenone", alt: "Copertura magazzino LIDL a Pordenone realizzata da R.B. s.n.c." },
+  { src: grandeUmana, azienda: "Umana", sede: "Marghera", alt: "Copertura Umana a Marghera realizzata da R.B. s.n.c." },
+];
+
 type GalleryImg = { src: string; alt: string };
 
 const projects = [
@@ -512,6 +532,67 @@ const Realizzazioni = () => {
                   onOpen={(i) => openLightbox([projects[2].main, ...projects[2].gallery], i + 1)}
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* GRANDI CANTIERI */}
+        <section
+          id="grandi-cantieri"
+          className="py-24 lg:py-36 bg-muted/40 relative overflow-hidden border-y-2 border-accent/20"
+        >
+          <div className="absolute -top-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-accent rounded-b-full" />
+          <div className="container mx-auto px-4 lg:px-8 relative">
+            <div className="max-w-3xl mb-14">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
+                Grandi Cantieri
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-foreground mb-5 leading-tight">
+                Interventi di grandi dimensioni
+              </h2>
+              <div className="w-24 h-1.5 bg-accent rounded-full mb-8" />
+              <p className="text-foreground/85 text-lg leading-relaxed">
+                Una selezione dei cantieri di dimensioni più importanti
+                realizzati negli anni da R.B. s.n.c. per aziende industriali e
+                committenti del territorio.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {grandiCantieri.map((c, i) => (
+                <button
+                  type="button"
+                  key={c.src}
+                  onClick={() => openLightbox(grandiCantieri.map(g => ({ src: g.src, alt: g.alt })), i)}
+                  aria-label={`Apri immagine ingrandita: ${c.azienda} - ${c.sede}`}
+                  className="group relative block w-full overflow-hidden rounded-2xl border border-border/60 bg-card shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in text-left"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={c.src}
+                      alt={c.alt}
+                      loading="lazy"
+                      width={1280}
+                      height={960}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-navy/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                      <ZoomIn className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-heading font-bold text-foreground text-base md:text-lg leading-snug mb-1">
+                      {c.azienda}
+                    </h3>
+                    <p className="text-sm text-muted-foreground flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-accent shrink-0" />
+                      {c.sede}
+                    </p>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </section>
