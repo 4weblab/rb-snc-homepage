@@ -28,7 +28,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       <Helmet>
-        <link rel="preload" as="image" href={heroBg1} type="image/webp" fetchpriority="high" />
+        <link rel="preload" as="image" href={heroBg1} type="image/webp" fetchPriority="high" />
       </Helmet>
       {/* Background carousel */}
       <div className="absolute inset-0">
