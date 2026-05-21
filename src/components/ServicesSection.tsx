@@ -1,8 +1,8 @@
 import { ShieldCheck, Factory, Home, ArrowRight, Star, Timer, Award, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import serviceAmianto from "@/assets/service-amianto.jpg";
-import serviceCoperture from "@/assets/service-coperture-industriali.jpg";
-import serviceTetto from "@/assets/service-tetto-civile.jpg";
+import serviceAmianto from "@/assets/service-amianto.webp";
+import serviceCoperture from "@/assets/service-coperture-industriali.webp";
+import serviceTetto from "@/assets/service-tetto-civile.webp";
 
 const services = [
   {

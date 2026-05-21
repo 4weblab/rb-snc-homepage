@@ -28,11 +28,11 @@ import {
   Umbrella,
   Hammer,
 } from "lucide-react";
-import heroImg from "@/assets/servizi-hero.jpg";
-import docImg from "@/assets/servizi-documentazione.jpg";
-import amiantoImg from "@/assets/service-amianto.jpg";
-import copertureImg from "@/assets/service-coperture-industriali.jpg";
-import tettoImg from "@/assets/service-tetto-civile.jpg";
+import heroImg from "@/assets/servizi-hero.webp";
+import docImg from "@/assets/servizi-documentazione.webp";
+import amiantoImg from "@/assets/service-amianto.webp";
+import copertureImg from "@/assets/service-coperture-industriali.webp";
+import tettoImg from "@/assets/service-tetto-civile.webp";
 
 const summaryCards = [
   {

@@ -25,7 +25,7 @@ import {
   ShieldCheck,
   AlertCircle,
 } from "lucide-react";
-import heroImg from "@/assets/contatti-hero.jpg";
+import heroImg from "@/assets/contatti-hero.webp";
 import { SITE_URL } from "@/lib/business";
 
 const quickContacts = [

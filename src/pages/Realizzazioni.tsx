@@ -27,7 +27,7 @@ import {
   ZoomIn,
 } from "lucide-react";
 
-import heroImg from "@/assets/realizzazioni-hero.jpg";
+import heroImg from "@/assets/realizzazioni-hero.webp";
 import amiantoPrima1 from "@/assets/realizzazione-amianto-prima-1.webp";
 import amiantoPrima2 from "@/assets/realizzazione-amianto-prima-2.webp";
 import amiantoPrima3 from "@/assets/realizzazione-amianto-prima-3.webp";

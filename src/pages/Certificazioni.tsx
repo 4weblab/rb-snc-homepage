@@ -17,9 +17,9 @@ import {
   ArrowRight,
   BookOpen,
 } from "lucide-react";
-import heroImg from "@/assets/certificazioni-hero.jpg";
-import sicurezzaImg from "@/assets/certificazioni-sicurezza.jpg";
-import docImg from "@/assets/certificazioni-documentazione.jpg";
+import heroImg from "@/assets/certificazioni-hero.webp";
+import sicurezzaImg from "@/assets/certificazioni-sicurezza.webp";
+import docImg from "@/assets/certificazioni-documentazione.webp";
 
 const phases = [
   { icon: Search, title: "Sopralluogo e valutazione iniziale", description: "Analisi diretta del sito per capire condizioni, materiali e contesto dell'intervento." },
