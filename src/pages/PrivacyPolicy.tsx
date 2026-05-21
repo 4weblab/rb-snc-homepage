@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ShieldCheck, Building2, Database, Target, Scale, Clock, Share2, UserCheck, Banknote } from "lucide-react";
+import { ShieldCheck, Building2, Database, Target, Scale, Clock, Share2, UserCheck, Banknote, Gavel } from "lucide-react";
 
 const sections = [
   {
@@ -33,6 +33,8 @@ const sections = [
           <li className="flex gap-2"><span className="text-accent">•</span>nome</li>
           <li className="flex gap-2"><span className="text-accent">•</span>telefono</li>
           <li className="flex gap-2"><span className="text-accent">•</span>email</li>
+          <li className="flex gap-2"><span className="text-accent">•</span>comune o zona di intervento</li>
+          <li className="flex gap-2"><span className="text-accent">•</span>tipo di intervento richiesto</li>
           <li className="flex gap-2"><span className="text-accent">•</span>messaggio</li>
         </ul>
       </>
@@ -58,9 +60,15 @@ const sections = [
     icon: Scale,
     title: "4. Base giuridica",
     body: (
-      <p className="text-base text-muted-foreground leading-relaxed">
-        Consenso dell'utente espresso tramite il form contatti.
-      </p>
+      <>
+        <p className="text-base text-muted-foreground leading-relaxed mb-3">
+          Il trattamento si fonda su:
+        </p>
+        <ul className="space-y-1.5 text-base text-muted-foreground leading-relaxed">
+          <li className="flex gap-2"><span className="text-accent">•</span><span><span className="font-semibold text-foreground">art. 6.1.a GDPR</span> — consenso dell'utente espresso tramite spunta nel form contatti</span></li>
+          <li className="flex gap-2"><span className="text-accent">•</span><span><span className="font-semibold text-foreground">art. 6.1.b GDPR</span> — esecuzione di misure precontrattuali su richiesta dell'utente (es. invio di un preventivo)</span></li>
+        </ul>
+      </>
     ),
   },
   {
@@ -68,16 +76,17 @@ const sections = [
     title: "5. Conservazione dei dati",
     body: (
       <p className="text-base text-muted-foreground leading-relaxed">
-        I dati vengono conservati per il tempo necessario a gestire la richiesta.
+        I dati vengono conservati per il tempo necessario a gestire la richiesta e fino a <span className="font-semibold text-foreground">24 mesi dall'ultimo contatto</span>, salvo eventuali obblighi di conservazione previsti dalla normativa fiscale e civilistica. Trascorso tale termine, i dati vengono cancellati o resi anonimi.
       </p>
     ),
   },
   {
     icon: Share2,
-    title: "6. Condivisione dei dati",
+    title: "6. Condivisione dei dati e trasferimenti",
     body: (
       <p className="text-base text-muted-foreground leading-relaxed">
-        I dati non vengono ceduti a terzi.
+        I dati raccolti tramite il form non vengono ceduti né venduti a terzi.
+        Il sito non utilizza servizi di terze parti che comportino trasferimento di dati personali al di fuori dell'Unione Europea (font, script e immagini sono ospitati direttamente sul dominio del sito).
       </p>
     ),
   },
@@ -85,19 +94,47 @@ const sections = [
     icon: UserCheck,
     title: "7. Diritti dell'utente",
     body: (
+      <>
+        <p className="text-base text-muted-foreground leading-relaxed mb-3">
+          In conformità agli artt. 15-22 GDPR, l'utente può in ogni momento esercitare i diritti di:
+        </p>
+        <ul className="space-y-1.5 text-base text-muted-foreground leading-relaxed">
+          <li className="flex gap-2"><span className="text-accent">•</span>accesso ai propri dati</li>
+          <li className="flex gap-2"><span className="text-accent">•</span>rettifica o aggiornamento</li>
+          <li className="flex gap-2"><span className="text-accent">•</span>cancellazione ("diritto all'oblio")</li>
+          <li className="flex gap-2"><span className="text-accent">•</span>limitazione e opposizione al trattamento</li>
+          <li className="flex gap-2"><span className="text-accent">•</span>portabilità dei dati</li>
+          <li className="flex gap-2"><span className="text-accent">•</span>revoca del consenso prestato</li>
+        </ul>
+        <p className="text-base text-muted-foreground leading-relaxed mt-3">
+          Le richieste possono essere inviate a{" "}
+          <a href="mailto:info@rb-snc.it" className="text-accent font-semibold hover:underline">info@rb-snc.it</a>.
+        </p>
+      </>
+    ),
+  },
+  {
+    icon: Gavel,
+    title: "8. Reclamo all'Autorità di controllo",
+    body: (
       <p className="text-base text-muted-foreground leading-relaxed">
-        L'utente può richiedere modifica o cancellazione dei dati scrivendo a{" "}
-        <a href="mailto:info@rb-snc.it" className="text-accent font-semibold hover:underline">
-          info@rb-snc.it
-        </a>
-        .
+        Ai sensi dell'art. 77 GDPR, l'utente ha diritto di proporre reclamo al{" "}
+        <a
+          href="https://www.garanteprivacy.it"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent font-semibold hover:underline"
+        >
+          Garante per la protezione dei dati personali
+        </a>{" "}
+        qualora ritenga che il trattamento dei propri dati violi la normativa vigente.
       </p>
     ),
   },
   {
     icon: Banknote,
     id: "aiuti-di-stato",
-    title: "8. Obblighi informativi per le erogazioni pubbliche",
+    title: "9. Obblighi informativi per le erogazioni pubbliche",
     body: (
       <p className="text-base text-muted-foreground leading-relaxed">
         Gli aiuti di Stato e gli aiuti &ldquo;de minimis&rdquo; ricevuti dalla nostra
