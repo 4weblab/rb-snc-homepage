@@ -125,7 +125,7 @@ const collectionPage = {
         position: 1,
         name: "Bonifica amianto su copertura industriale",
         description:
-          "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto, eseguito da R.B. s.n.c. nel rispetto della normativa vigente.",
+          "Intervento di bonifica amianto e smaltimento eternit su copertura industriale a Bassano del Grappa ( Vicenza ), eseguito da R.B. s.n.c. nel rispetto della normativa vigente.",
       },
       {
         "@type": "CreativeWork",
