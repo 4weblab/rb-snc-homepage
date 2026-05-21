@@ -111,9 +111,9 @@ const projects = [
 
 const collectionPage = {
   "@type": "CollectionPage",
-  name: "Realizzazioni bonifica amianto e coperture in Veneto",
+  name: "Realizzazioni bonifica amianto e coperture a Bassano del Grappa ( Vicenza )",
   description:
-    "Pagina realizzazioni R.B. s.n.c. con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto.",
+    "Pagina realizzazioni R.B. s.n.c. con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili a Bassano del Grappa ( Vicenza ).",
   url: "https://rb-snc.it/realizzazioni",
   publisher: { "@id": "https://rb-snc.it/#business" },
   mainEntity: {
