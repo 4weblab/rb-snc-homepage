@@ -554,7 +554,7 @@ const Realizzazioni = () => {
 
       {/* LIGHTBOX */}
       <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
-        <DialogContent className="max-w-5xl p-0 overflow-hidden bg-card border-border/60">
+        <DialogContent className="max-w-5xl p-0 bg-card border-border/60 max-h-[90vh] overflow-y-auto overscroll-contain">
           {lightbox && (
             <img
               src={lightbox.src}
