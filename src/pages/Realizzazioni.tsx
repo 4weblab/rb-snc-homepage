@@ -273,7 +273,7 @@ const Realizzazioni = () => {
                 Realizzazioni R.B. s.n.c.
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white leading-tight mb-5">
-                Realizzazioni di bonifica amianto e coperture in Veneto
+                Realizzazioni di bonifica amianto e coperture a Bassano del Grappa ( Vicenza )
               </h1>
               <p className="text-base md:text-lg text-white/85 leading-relaxed mb-8 max-w-2xl">
                 Una selezione di interventi su amianto, eternit, coperture
