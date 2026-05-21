@@ -12,7 +12,8 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   ShieldCheck,
   Factory,
@@ -193,7 +194,7 @@ const GallerySlider = ({
   onOpen,
 }: {
   images: GalleryImg[];
-  onOpen: (img: GalleryImg) => void;
+  onOpen: (index: number) => void;
 }) => (
   <Carousel opts={{ align: "start", loop: true }} className="w-full">
     <CarouselContent className="-ml-4">
@@ -204,7 +205,7 @@ const GallerySlider = ({
         >
           <button
             type="button"
-            onClick={() => onOpen(img)}
+            onClick={() => onOpen(i)}
             aria-label="Apri immagine ingrandita"
             className="group relative block w-full aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
           >
@@ -231,7 +232,13 @@ const GallerySlider = ({
 );
 
 const Realizzazioni = () => {
-  const [lightbox, setLightbox] = useState<GalleryImg | null>(null);
+  const [lightboxImages, setLightboxImages] = useState<GalleryImg[] | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = (images: GalleryImg[], index: number) => {
+    setLightboxImages(images);
+    setLightboxIndex(index);
+  };
 
   return (
     <>
@@ -330,7 +337,7 @@ const Realizzazioni = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
               <button
                 type="button"
-                onClick={() => setLightbox(projects[0].main)}
+                onClick={() => openLightbox([projects[0].main, ...projects[0].gallery], 0)}
                 aria-label="Apri immagine ingrandita"
                 className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-2 ring-accent/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
               >
@@ -381,7 +388,7 @@ const Realizzazioni = () => {
               <div className="w-12 h-1 bg-accent rounded-full mb-8" />
               <GallerySlider
                 images={[...projects[0].gallery]}
-                onOpen={setLightbox}
+                onOpen={(i) => openLightbox([projects[0].main, ...projects[0].gallery], i + 1)}
               />
             </div>
           </div>
@@ -412,7 +419,7 @@ const Realizzazioni = () => {
 
               <button
                 type="button"
-                onClick={() => setLightbox(projects[1].main)}
+                onClick={() => openLightbox([projects[1].main, ...projects[1].gallery], 0)}
                 aria-label="Apri immagine ingrandita"
                 className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-border/60 lg:order-2 lg:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
               >
@@ -439,7 +446,7 @@ const Realizzazioni = () => {
               <div className="w-12 h-1 bg-accent rounded-full mb-8" />
               <GallerySlider
                 images={[...projects[1].gallery]}
-                onOpen={setLightbox}
+                onOpen={(i) => openLightbox([projects[1].main, ...projects[1].gallery], i + 1)}
               />
             </div>
           </div>
@@ -465,7 +472,7 @@ const Realizzazioni = () => {
 
               <button
                 type="button"
-                onClick={() => setLightbox(projects[2].main)}
+                onClick={() => openLightbox([projects[2].main, ...projects[2].gallery], 0)}
                 aria-label="Apri immagine ingrandita"
                 className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-border/60 mb-14 lg:mb-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-zoom-in"
               >
@@ -502,7 +509,7 @@ const Realizzazioni = () => {
                 <div className="w-12 h-1 bg-accent rounded-full mb-8" />
                 <GallerySlider
                   images={[...projects[2].gallery]}
-                  onOpen={setLightbox}
+                  onOpen={(i) => openLightbox([projects[2].main, ...projects[2].gallery], i + 1)}
                 />
               </div>
             </div>
@@ -553,14 +560,33 @@ const Realizzazioni = () => {
       <Footer />
 
       {/* LIGHTBOX */}
-      <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
-        <DialogContent className="max-w-5xl p-0 bg-card border-border/60 max-h-[90vh] overflow-y-auto overscroll-contain">
-          {lightbox && (
-            <img
-              src={lightbox.src}
-              alt={lightbox.alt}
-              className="w-full h-auto object-contain"
-            />
+      <Dialog
+        open={!!lightboxImages}
+        onOpenChange={(o) => !o && setLightboxImages(null)}
+      >
+        <DialogContent className="max-w-[95vw] md:max-w-5xl p-0 bg-transparent border-0 shadow-none sm:rounded-none">
+          <VisuallyHidden>
+            <DialogTitle>Galleria immagini</DialogTitle>
+          </VisuallyHidden>
+          {lightboxImages && (
+            <Carousel
+              opts={{ loop: true, startIndex: lightboxIndex }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-0">
+                {lightboxImages.map((img, i) => (
+                  <CarouselItem key={`${img.src}-${i}`} className="pl-0 flex items-center justify-center">
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full max-h-[85vh] object-contain rounded-lg"
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2 md:-left-12 bg-white/90 hover:bg-white text-foreground border-0 h-10 w-10 md:h-11 md:w-11" />
+              <CarouselNext className="right-2 md:-right-12 bg-white/90 hover:bg-white text-foreground border-0 h-10 w-10 md:h-11 md:w-11" />
+            </Carousel>
           )}
         </DialogContent>
       </Dialog>
