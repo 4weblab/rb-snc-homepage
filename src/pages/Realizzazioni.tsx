@@ -82,7 +82,7 @@ const projects = [
     details: [
       { icon: Tag, label: "Tipologia", value: "Copertura industriale" },
       { icon: Layers, label: "Contesto", value: "Capannone Delmachem" },
-      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: MapPin, label: "Area servita", value: "Bassano del Grappa ( Vicenza )" },
       { icon: Wrench, label: "Intervento", value: "Rifacimento copertura" },
       { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
