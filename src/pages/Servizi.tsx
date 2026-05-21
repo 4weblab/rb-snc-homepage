@@ -804,6 +804,45 @@ const Servizi = () => (
 
       {/* CTA FINALE */}
       <section className="py-20 lg:py-28 bg-navy text-navy-foreground relative overflow-hidden">
+        {/* placeholder anchor to keep CTA section below FAQ */}
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 lg:py-28 bg-muted/30 border-y border-border/60" aria-labelledby="faq-title">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <span className="inline-flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-wider mb-3">
+              <HelpCircle className="w-4 h-4" />
+              Domande frequenti
+            </span>
+            <h2 id="faq-title" className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight">
+              Domande frequenti su amianto e coperture
+            </h2>
+            <div className="w-20 h-1 bg-accent rounded-full mx-auto" />
+          </div>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((f) => (
+              <details
+                key={f.q}
+                className="group bg-card rounded-2xl border-2 border-border/60 shadow-sm hover:border-accent/40 transition-colors"
+              >
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4 p-6 font-heading font-semibold text-foreground text-base md:text-lg">
+                  <span>{f.q}</span>
+                  <span className="shrink-0 w-7 h-7 rounded-full bg-accent/10 text-accent flex items-center justify-center group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+                  {f.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINALE */}
+      <section className="py-20 lg:py-28 bg-navy text-navy-foreground relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage:
