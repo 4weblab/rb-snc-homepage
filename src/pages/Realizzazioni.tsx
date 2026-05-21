@@ -323,13 +323,6 @@ const Realizzazioni = () => {
                 </Link>
                 .
               </p>
-              <div className="inline-flex items-start gap-3 rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 text-sm text-foreground">
-                <Info className="w-4 h-4 text-accent mt-0.5 shrink-0" />
-                <span>
-                  Contenuti provvisori in attesa di materiale fotografico
-                  definitivo.
-                </span>
-              </div>
             </div>
           </div>
         </section>
