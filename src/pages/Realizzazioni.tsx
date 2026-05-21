@@ -41,9 +41,12 @@ import coperture3 from "@/assets/realizzazione-coperture-delmachem-3.webp";
 import coperture4 from "@/assets/realizzazione-coperture-delmachem-4.webp";
 import coperture5 from "@/assets/realizzazione-coperture-delmachem-5.webp";
 import coperture6 from "@/assets/realizzazione-coperture-delmachem-6.webp";
-import tetto1 from "@/assets/realizzazione-tetto-1.jpg";
-import tetto2 from "@/assets/realizzazione-tetto-2.jpg";
-import tetto3 from "@/assets/realizzazione-tetto-3.jpg";
+import tetto1 from "@/assets/realizzazione-tetto-mestre-1.webp";
+import tetto2 from "@/assets/realizzazione-tetto-mestre-2.webp";
+import tetto3 from "@/assets/realizzazione-tetto-mestre-3.webp";
+import tetto4 from "@/assets/realizzazione-tetto-mestre-4.webp";
+import tetto5 from "@/assets/realizzazione-tetto-mestre-5.webp";
+import tetto6 from "@/assets/realizzazione-tetto-mestre-6.webp";
 
 type GalleryImg = { src: string; alt: string };
 
@@ -98,11 +101,13 @@ const projects = [
     tag: "Tetto civile",
     title: "Rifacimento tetto civile",
     text: "Rifacimento di un tetto civile su abitazione privata: sostituzione dell’orditura ammalorata, posa di nuovo isolamento termico, guaina impermeabile e copertura in tegole. Intervento eseguito con ponteggi a norma e ripristino completo di lattonerie, gronde e pluviali.",
-    main: { src: tetto1, alt: "Rifacimento tetto civile con copertura in tegole" },
+    main: { src: tetto1, alt: "Tetto civile in amianto prima del rifacimento eseguito da R.B. s.n.c. a Mestre ( Venezia )" },
     gallery: [
-      { src: tetto2, alt: "Posa di nuova orditura e isolamento su tetto civile" },
-      { src: tetto3, alt: "Dettaglio tetto civile dopo intervento di rifacimento" },
-      { src: tetto1, alt: "Tetto civile completato con copertura in tegole" },
+      { src: tetto2, alt: "Vista del tetto in amianto da rimuovere su edificio residenziale a Mestre ( Venezia )" },
+      { src: tetto3, alt: "Dettaglio della copertura in amianto con ponteggio di sicurezza prima dell'intervento a Mestre ( Venezia )" },
+      { src: tetto4, alt: "Nuovo tetto civile in tegole rosse con pannelli fotovoltaici realizzato a Mestre ( Venezia )" },
+      { src: tetto5, alt: "Dettaglio della nuova copertura in tegole con camino ripristinato a Mestre ( Venezia )" },
+      { src: tetto6, alt: "Vista panoramica del tetto civile completato con tegole nuove a Mestre ( Venezia )" },
     ] as GalleryImg[],
     details: [
       { icon: Tag, label: "Tipologia", value: "Tetto civile" },
