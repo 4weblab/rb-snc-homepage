@@ -50,19 +50,19 @@ const projects = [
     icon: ShieldCheck,
     tag: "Bonifica amianto",
     title: "Bonifica amianto su copertura industriale",
-    text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto. R.B. s.n.c. gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
-    main: { src: amiantoPrima1, alt: "Copertura industriale in eternit prima della bonifica amianto eseguita da R.B. s.n.c. in Veneto" },
+    text: "Intervento di bonifica amianto e smaltimento eternit su copertura industriale a Bassano del Grappa ( Vicenza ). R.B. s.n.c. gestisce direttamente il cantiere: rimozione in sicurezza delle lastre, confezionamento dei materiali secondo normativa e conferimento a centro autorizzato, con tutta la documentazione necessaria al committente.",
+    main: { src: amiantoPrima1, alt: "Copertura industriale in eternit prima della bonifica amianto eseguita da R.B. s.n.c. a Bassano del Grappa ( Vicenza )" },
     gallery: [
       { src: amiantoPrima2, alt: "Lastre ondulate in cemento-amianto deteriorate su capannone industriale" },
       { src: amiantoPrima3, alt: "Panoramica della copertura in amianto prima dell'intervento di rimozione" },
       { src: amiantoDopo1, alt: "Nuova sovracopertura coibentata posata da R.B. s.n.c. dopo la bonifica amianto" },
       { src: amiantoDopo2, alt: "Vista prospettica della nuova copertura industriale dopo lo smaltimento eternit" },
-      { src: amiantoDopo3, alt: "Dettaglio della nuova copertura ondulata bianca su capannone in Veneto" },
+      { src: amiantoDopo3, alt: "Dettaglio della nuova copertura ondulata bianca su capannone a Bassano del Grappa ( Vicenza )" },
     ] as GalleryImg[],
     details: [
       { icon: Tag, label: "Tipologia", value: "Bonifica amianto" },
       { icon: Layers, label: "Contesto", value: "Copertura industriale" },
-      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: MapPin, label: "Area servita", value: "Bassano del Grappa ( Vicenza )" },
       { icon: Wrench, label: "Intervento", value: "Rimozione e smaltimento eternit" },
       { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
@@ -82,7 +82,7 @@ const projects = [
     details: [
       { icon: Tag, label: "Tipologia", value: "Copertura industriale" },
       { icon: Layers, label: "Contesto", value: "Capannone Delmachem" },
-      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: MapPin, label: "Area servita", value: "Bassano del Grappa ( Vicenza )" },
       { icon: Wrench, label: "Intervento", value: "Rifacimento copertura" },
       { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
@@ -102,7 +102,7 @@ const projects = [
     details: [
       { icon: Tag, label: "Tipologia", value: "Tetto civile" },
       { icon: Layers, label: "Contesto", value: "Abitazione privata" },
-      { icon: MapPin, label: "Area servita", value: "Veneto" },
+      { icon: MapPin, label: "Area servita", value: "Bassano del Grappa ( Vicenza )" },
       { icon: Wrench, label: "Intervento", value: "Rifacimento copertura civile" },
       { icon: Clock, label: "Stato", value: "Intervento completato" },
     ],
@@ -111,9 +111,9 @@ const projects = [
 
 const collectionPage = {
   "@type": "CollectionPage",
-  name: "Realizzazioni bonifica amianto e coperture in Veneto",
+  name: "Realizzazioni bonifica amianto e coperture a Bassano del Grappa ( Vicenza )",
   description:
-    "Pagina realizzazioni R.B. s.n.c. con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili in Veneto.",
+    "Pagina realizzazioni R.B. s.n.c. con interventi di bonifica amianto, smaltimento eternit, rifacimento coperture industriali e tetti civili a Bassano del Grappa ( Vicenza ).",
   url: "https://rb-snc.it/realizzazioni",
   publisher: { "@id": "https://rb-snc.it/#business" },
   mainEntity: {
@@ -125,14 +125,14 @@ const collectionPage = {
         position: 1,
         name: "Bonifica amianto su copertura industriale",
         description:
-          "Intervento di bonifica amianto e smaltimento eternit su copertura industriale in Veneto, eseguito da R.B. s.n.c. nel rispetto della normativa vigente.",
+          "Intervento di bonifica amianto e smaltimento eternit su copertura industriale a Bassano del Grappa ( Vicenza ), eseguito da R.B. s.n.c. nel rispetto della normativa vigente.",
       },
       {
         "@type": "CreativeWork",
         position: 2,
         name: "Rifacimento copertura industriale",
         description:
-          "Rifacimento completo della copertura di un capannone industriale in Veneto con posa di pannelli sandwich coibentati e finiture perimetrali.",
+          "Rifacimento completo della copertura di un capannone industriale a Bassano del Grappa ( Vicenza ) con posa di pannelli sandwich coibentati e finiture perimetrali.",
       },
       {
         "@type": "CreativeWork",
@@ -243,10 +243,10 @@ const Realizzazioni = () => {
   return (
     <>
       <Helmet>
-        <title>Realizzazioni bonifica amianto e coperture in Veneto | R.B. s.n.c.</title>
+        <title>Realizzazioni bonifica amianto e coperture a Bassano del Grappa ( Vicenza ) | R.B. s.n.c.</title>
         <meta
           name="description"
-          content="Guarda le realizzazioni R.B. s.n.c.: interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili in Veneto."
+          content="Guarda le realizzazioni R.B. s.n.c.: interventi di bonifica amianto, smaltimento eternit, coperture industriali e tetti civili a Bassano del Grappa ( Vicenza )."
         />
         <link rel="canonical" href="https://rb-snc.it/realizzazioni" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -259,7 +259,7 @@ const Realizzazioni = () => {
           <div className="absolute inset-0">
             <img
               src={heroImg}
-              alt="Cantiere R.B. s.n.c. su copertura industriale in Veneto"
+              alt="Cantiere R.B. s.n.c. su copertura industriale a Bassano del Grappa ( Vicenza )"
               width={1920}
               height={896}
               className="w-full h-full object-cover"
@@ -273,7 +273,7 @@ const Realizzazioni = () => {
                 Realizzazioni R.B. s.n.c.
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white leading-tight mb-5">
-                Realizzazioni di bonifica amianto e coperture in Veneto
+                Realizzazioni di bonifica amianto e coperture a Bassano del Grappa ( Vicenza )
               </h1>
               <p className="text-base md:text-lg text-white/85 leading-relaxed mb-8 max-w-2xl">
                 Una selezione di interventi su amianto, eternit, coperture
