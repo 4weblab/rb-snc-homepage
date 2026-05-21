@@ -35,9 +35,12 @@ import amiantoPrima3 from "@/assets/realizzazione-amianto-prima-3.webp";
 import amiantoDopo1 from "@/assets/realizzazione-amianto-dopo-1.webp";
 import amiantoDopo2 from "@/assets/realizzazione-amianto-dopo-2.webp";
 import amiantoDopo3 from "@/assets/realizzazione-amianto-dopo-3.webp";
-import coperture1 from "@/assets/realizzazione-coperture-1.jpg";
-import coperture2 from "@/assets/realizzazione-coperture-2.jpg";
-import coperture3 from "@/assets/realizzazione-coperture-3.jpg";
+import coperture1 from "@/assets/realizzazione-coperture-delmachem-1.webp";
+import coperture2 from "@/assets/realizzazione-coperture-delmachem-2.webp";
+import coperture3 from "@/assets/realizzazione-coperture-delmachem-3.webp";
+import coperture4 from "@/assets/realizzazione-coperture-delmachem-4.webp";
+import coperture5 from "@/assets/realizzazione-coperture-delmachem-5.webp";
+import coperture6 from "@/assets/realizzazione-coperture-delmachem-6.webp";
 import tetto1 from "@/assets/realizzazione-tetto-1.jpg";
 import tetto2 from "@/assets/realizzazione-tetto-2.jpg";
 import tetto3 from "@/assets/realizzazione-tetto-3.jpg";
@@ -73,11 +76,13 @@ const projects = [
     tag: "Coperture industriali",
     title: "Rifacimento copertura industriale",
     text: "Rifacimento completo della copertura di un capannone industriale: smontaggio della copertura esistente, posa di pannelli sandwich coibentati e finiture perimetrali. Intervento gestito direttamente da R.B. s.n.c., con attenzione a tempi, sicurezza in quota e continuità dell’attività produttiva.",
-    main: { src: coperture1, alt: "Rifacimento copertura industriale su capannone" },
+    main: { src: coperture1, alt: "Nuova copertura industriale in lamiera grecata realizzata da R.B. s.n.c. sul capannone Delmachem a Bassano del Grappa ( Vicenza )" },
     gallery: [
-      { src: coperture2, alt: "Posa di pannelli sandwich su copertura industriale" },
-      { src: coperture3, alt: "Dettaglio nuova copertura industriale con lucernario" },
-      { src: coperture1, alt: "Nuova copertura industriale completata" },
+      { src: coperture2, alt: "Vista panoramica della nuova copertura industriale del capannone Delmachem a Bassano del Grappa ( Vicenza )" },
+      { src: coperture3, alt: "Copertura industriale in eternit prima dell'intervento di rifacimento sul capannone Delmachem a Bassano del Grappa ( Vicenza )" },
+      { src: coperture4, alt: "Dettaglio della nuova copertura industriale con lucernario sul capannone Delmachem a Bassano del Grappa ( Vicenza )" },
+      { src: coperture5, alt: "Fase di rimozione della vecchia copertura in amianto e posa della nuova copertura sul capannone Delmachem a Bassano del Grappa ( Vicenza )" },
+      { src: coperture6, alt: "Nuova copertura industriale completata sul capannone Delmachem a Bassano del Grappa ( Vicenza )" },
     ] as GalleryImg[],
     details: [
       { icon: Tag, label: "Tipologia", value: "Copertura industriale" },
