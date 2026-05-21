@@ -8,16 +8,19 @@ const projects = [
   {
     image: project1,
     title: "Bonifica amianto su copertura industriale",
+    imageAlt: "Copertura industriale dopo bonifica amianto e posa di sovracopertura coibentata in Veneto",
     description: "Rimozione lastre in eternit e posa di nuova sovracopertura coibentata, con smaltimento certificato.",
   },
   {
     image: project2,
     title: "Rifacimento copertura industriale",
+    imageAlt: "Rifacimento copertura industriale Delmachem con lamiera grecata e pannelli coibentati",
     description: "Nuova copertura in lamiera grecata su capannone industriale, con pannelli coibentati e finiture perimetrali.",
   },
   {
     image: project3,
     title: "Rifacimento completo tetto di struttura ad uso civile",
+    imageAlt: "Tetto civile rifatto a Mestre con nuova orditura, isolamento e copertura in tegole",
     description: "Sostituzione orditura, isolamento termico, guaina impermeabile e nuova copertura in tegole su abitazione privata.",
   },
 ];
@@ -46,7 +49,9 @@ const ProjectsSection = () => {
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={project.imageAlt}
+                  width={1280}
+                  height={960}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-[0.95] contrast-[1.02] saturate-[0.9]"
                   loading="lazy"
                 />
