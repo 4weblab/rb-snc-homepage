@@ -313,9 +313,8 @@ const Realizzazioni = () => {
                 Questa sezione raccoglie le principali tipologie di intervento
                 gestite da R.B. s.n.c.: bonifica amianto, smaltimento eternit,
                 rifacimento coperture industriali e rifacimento tetti civili.
-                Ogni scheda sarà aggiornata con immagini reali, dettagli del
-                lavoro e informazioni utili appena il materiale definitivo sarà
-                disponibile. Per approfondire l’offerta puoi consultare i{" "}
+                Ogni scheda mostrerà foto dettagliate del lavoro e informazioni
+                utili. Per approfondire l’offerta puoi consultare i{" "}
                 <Link
                   to="/servizi"
                   className="text-primary font-semibold underline-offset-4 hover:underline"
