@@ -33,7 +33,8 @@ const quickContacts = [
     icon: Phone,
     title: "Telefono",
     lines: [
-      { label: "335 6010096", href: "tel:+393356010096", icon: Smartphone },
+      { label: "Claudio 335 6010096", href: "tel:+393356010096", icon: Smartphone },
+      { label: "Orlando 329 4516884", href: "tel:+393294516884", icon: Smartphone },
     ],
   },
   {
