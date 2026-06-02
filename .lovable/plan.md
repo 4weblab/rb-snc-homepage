@@ -1,81 +1,68 @@
 ## Obiettivo
 
-Rendere il sito pienamente "LLM crawler ready" sapendo che è una SPA Vite (no SSR): i bot come GPTBot, ClaudeBot, PerplexityBot, CCBot non eseguono JS, quindi vedono solo `index.html` + `/llms.txt` + `/sitemap.xml`. Soluzione: usare `llms.txt` come "fonte di verità testuale" dei contenuti del sito, e allineare tutto sulle 5 pagine definitive: **Home, Servizi, Realizzazioni, Certificazioni, Contatti**.
+Rendere il sito deployabile su un server Windows/IIS "vanilla" — senza installare il modulo URL Rewrite né altri componenti aggiuntivi — sfruttando il fatto che tutte le rotte sono già prerenderizzate come file fisici.
 
 ## Stato attuale
 
-- Rotte in `src/App.tsx`: già combaciano (Home, Servizi, Realizzazioni, Certificazioni, Contatti + Privacy/Cookie).
-- `public/sitemap.xml`: già combacia.
-- `public/llms.txt`: già combacia ma è solo un indice di link.
-- `public/robots.txt`: aperto a tutti, sitemap dichiarato.
-- Memoria progetto: cita "Chi siamo. No Settori/Realizzazioni" — è obsoleta rispetto alla scelta attuale.
+- Tutte le pagine reali (`/`, `/servizi`, `/realizzazioni`, `/certificazioni`, `/contatti`, `/cookie-policy`, `/privacy-policy`, `/404`) sono già prerenderizzate da `vite.config.ts` e generate come file statici (`servizi/index.html`, ecc.) + `404.html`.
+- Il `web.config` attuale richiede il modulo **URL Rewrite** solo per il fallback SPA di rotte non previste.
+- Nessuna rotta dinamica lato client: il router gestisce solo le pagine prerenderizzate.
 
-## Cambi previsti
+Conclusione: il rewrite **non è necessario** in produzione. Possiamo ottenere lo stesso risultato usando solo funzionalità IIS native (`defaultDocument` + `httpErrors`).
 
-### 1. `public/llms.txt` — arricchire con i contenuti
+## Modifiche proposte
 
-Espandere il file con sezioni testuali per ogni pagina, leggendo i contenuti reali dai componenti React (`HeroSection`, `ServicesSection`, `ProjectsSection`, `Servizi.tsx`, `Realizzazioni.tsx`, `Certificazioni.tsx`, `Contatti.tsx`, ecc.). Struttura aggiornata, sempre conforme alla spec llmstxt.org:
+### 1. `public/web.config` — versione "no-modules"
 
-````text
-# R.B. s.n.c. di Bertoluzzo e Ragazzo
+Rimuovere il blocco `<rewrite>` e affidarsi a:
 
-> Bonifica amianto, smaltimento eternit e rifacimento coperture industriali e civili in Veneto. Sede a Cittadella (PD).
+- `<defaultDocument>` → IIS serve automaticamente `index.html` quando l'URL punta a una cartella (es. `/servizi/` → `/servizi/index.html`). Funziona nativamente, nessun modulo richiesto.
+- `<httpErrors>` con `path="/404.html"` e `responseMode="File"` → qualsiasi URL inesistente restituisce la pagina 404 prerenderizzata (con status 404 corretto per SEO).
+- Mantenere: `staticContent` (MIME webp/woff2/json), `customHeaders` (security), `caching`, `httpCompression`, `handlers` statici.
 
-[Paragrafi descrittivi: chi è l'azienda, dove opera, normative di riferimento, target B2B, contatti rapidi Claudio/Orlando con numeri.]
+Conseguenze accettabili:
+- Un URL tipo `/servizi` (senza slash finale) → IIS fa redirect automatico a `/servizi/` e poi serve `index.html`. OK.
+- Un URL inventato tipo `/foo` → mostra `404.html` con HTTP 404. OK (anzi corretto per SEO; meglio del rewrite a `index.html` che restituiva 200).
 
-## Servizi
-- [Bonifica amianto](/servizi#bonifica-amianto): descrizione + normativa
-- [Smaltimento eternit](/servizi#smaltimento): descrizione
-- [Rifacimento coperture industriali](/servizi#coperture-industriali): descrizione
-- [Sovracoperture e pannelli coibentati](/servizi#sovracoperture): descrizione
-- [Rifacimento tetti civili](/servizi#tetti-civili): descrizione
+### 2. `vite.config.ts` — nessuna modifica necessaria
 
-## Realizzazioni
-- [Realizzazioni](/realizzazioni): casi reali di cantieri industriali e civili in Veneto, con sintesi degli interventi.
+Il prerender già produce la struttura corretta (`dist/servizi/index.html`, `dist/404.html`, ecc.). Confermiamo solo che tutte le rotte di `App.tsx` siano elencate in `prerenderRoutes` (già il caso).
 
-## Certificazioni e normativa
-- [Certificazioni](/certificazioni): albo gestori ambientali, abilitazioni amianto (D.M. 6/9/1994), L. 257/92, DPI, formazione operatori, smaltimento certificato.
+### 3. Link interni
 
-## Contatti
-- Telefono: Claudio 335 6010096, Orlando 329 4516884
-- Email / PEC: [valori reali presi da Contatti.tsx]
-- Sede: Cittadella (PD), area operativa Veneto
-- [Pagina Contatti](/contatti)
+Verificare che i `<Link to="...">` puntino senza trailing slash (già così). Nessun intervento necessario: il client-side router gestisce comunque la navigazione SPA, e i refresh diretti vengono risolti da IIS via defaultDocument.
 
-## Pages
-- [Home](/)
-- [Servizi](/servizi)
-- [Realizzazioni](/realizzazioni)
-- [Certificazioni](/certificazioni)
-- [Contatti](/contatti)
+## Procedura di deploy risultante
 
-## Optional
-- [Privacy Policy](/privacy-policy)
-- [Cookie Policy](/cookie-policy)
-````
+```text
+1. npm run build            (in locale / CI, non sul server Windows)
+2. Copiare il contenuto di dist/ nella root del sito IIS
+3. Verificare che web.config sia presente nella root
+4. Nessun modulo IIS da installare oltre a quelli standard
+```
 
-I testi delle sezioni saranno estratti 1:1 dai componenti del sito (niente invenzioni). Per ogni servizio: nome, descrizione breve, eventuale normativa citata sul sito.
+## Dettagli tecnici
 
-### 2. `public/sitemap.xml` — aggiornare `lastmod`
+Nuovo `web.config` (struttura):
 
-Aggiornare la data `<lastmod>` di tutte le 5 URL a oggi (2026-06-02). Struttura e priorità invariate.
+```text
+<configuration>
+  <system.webServer>
+    <defaultDocument> index.html </defaultDocument>
+    <staticContent>   MIME .webp .woff2 .json .webmanifest </staticContent>
+    <httpProtocol>    security headers </httpProtocol>
+    <caching>         asset hashati Vite </caching>
+    <httpCompression> text/js/json/svg </httpCompression>
+    <httpErrors>      404 -> /404.html (File) </httpErrors>
+    <handlers>        StaticFile only </handlers>
+  </system.webServer>
+</configuration>
+```
 
-### 3. `public/robots.txt` — esplicitare i bot LLM (opzionale ma consigliato)
+Rimosso: l'intero blocco `<rewrite>`.
 
-Aggiungere blocchi espliciti `Allow: /` per `GPTBot`, `ClaudeBot`, `PerplexityBot`, `CCBot`, `Google-Extended` (training Google AI), `Applebot-Extended`. Già aperti via `User-agent: *`, ma essere espliciti riduce ambiguità e segnala consenso a indicizzazione AI.
+## File da modificare
 
-### 4. Memoria progetto — correggere
+- `public/web.config` — rimuovere `<rewrite>`, aggiornare commento iniziale.
 
-Aggiornare `mem://index.md` (riga Core) sostituendo:
-- `Pages: Home, Chi siamo, Servizi, Certificazioni, Contatti. No Settori/Realizzazioni.`
-
-con:
-- `Pages: Home, Servizi, Realizzazioni, Certificazioni, Contatti.`
-
-E aggiornare di conseguenza `mem://navigation/main-menu` se contiene la vecchia lista.
-
-## Fuori scope
-
-- Nessuna modifica a rotte React, componenti, design o testi del sito.
-- Nessuna migrazione a SSR (richiederebbe cambio stack).
-- Nessuna nuova pagina, nessuna immagine OG nuova.
+Nessun'altra modifica al codice applicativo.
