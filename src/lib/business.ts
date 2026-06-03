@@ -22,15 +22,7 @@ export const areaServed = {
 export const contactPoints = [
   {
     "@type": "ContactPoint" as const,
-    telephone: "+39 049 7382238",
-    contactType: "customer service",
-    email: "info@rb-snc.it",
-    areaServed: "IT",
-    availableLanguage: ["Italian"],
-  },
-  {
-    "@type": "ContactPoint" as const,
-    telephone: "+39 335 6010096",
+    telephone: "+393356010096",
     contactType: "customer service",
     areaServed: "IT",
     availableLanguage: ["Italian"],
@@ -42,14 +34,13 @@ export const contactPoints = [
  * Importato e referenziato/embedded da tutte le pagine.
  */
 export const localBusiness = {
-  "@type": ["LocalBusiness", "RoofingContractor"] as const,
+  "@type": "RoofingContractor" as const,
   "@id": `${SITE_URL}/#business`,
   name: "R.B. s.n.c. di Bertoluzzo e Ragazzo",
   image: `${SITE_URL}/og-image.webp`,
   logo: `${SITE_URL}/favicon.webp`,
   url: SITE_URL,
-  telephone: "+39 049 7382238",
-  email: "info@rb-snc.it",
+  telephone: "+393356010096",
   taxID: "04244010288",
   vatID: "04244010288",
   priceRange: "€€",
