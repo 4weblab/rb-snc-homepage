@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import logoRb from "@/assets/logo-rb.png.asset.json";
 
 const navLinks = [
 { label: "Home", href: "/" },
@@ -17,8 +18,15 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
-        <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight text-primary leading-tight">
-          R.B. s.n.c. <span className="text-foreground font-normal text-sm md:text-base">di Bertoluzzo e Ragazzo</span>
+        <Link to="/" className="flex items-center gap-2 font-heading text-xl md:text-2xl font-bold tracking-tight text-primary leading-tight">
+          <img
+            src={logoRb.url}
+            alt="Logo R.B. s.n.c."
+            width={40}
+            height={40}
+            className="h-10 w-auto"
+          />
+          <span>R.B. s.n.c. <span className="text-foreground font-normal text-sm md:text-base">di Bertoluzzo e Ragazzo</span></span>
         </Link>
 
         {/* Desktop */}
