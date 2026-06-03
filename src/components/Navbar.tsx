@@ -21,7 +21,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-2 font-heading text-xl md:text-2xl font-bold tracking-tight text-primary leading-tight">
           <img
             src={logoRb.url}
-            alt="Logo R.B. s.n.c."
+            alt="logo azienda RB snc"
             width={40}
             height={40}
             className="h-10 w-auto"
