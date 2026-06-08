@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -105,9 +105,29 @@ const Contatti = () => {
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [privacyError, setPrivacyError] = useState(false);
   const privacyRef = useRef<HTMLButtonElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const mountedAtRef = useRef<number>(Date.now());
+  const [status, setStatus] = useState<{
+    state: "idle" | "sending" | "success" | "error";
+    message: string;
+  }>({ state: "idle", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const ACCESS_KEY = "7863c7a4-919d-4560-8b3f-f42735d51af6";
+  const RATE_LIMIT_MS = 60_000;
+  const RL_KEY = "rb_w3f_last_submit_ts";
+
+  useEffect(() => {
+    mountedAtRef.current = Date.now();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status.state === "sending") return;
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Privacy obbligatoria
     if (!privacyAccepted) {
       setPrivacyError(true);
       toast.error("Consenso privacy mancante", {
@@ -117,7 +137,88 @@ const Contatti = () => {
       setTimeout(() => privacyRef.current?.focus(), 300);
       return;
     }
-    // Submit logic placeholder (form not yet wired to a backend)
+
+    // Validazione email (opzionale ma se compilata deve essere valida)
+    const emailVal = String(formData.get("email") || "").trim();
+    if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+      setStatus({ state: "error", message: "Inserisci un indirizzo email valido." });
+      toast.error("Email non valida");
+      return;
+    }
+
+    // Timing check (anti-bot)
+    if (Date.now() - mountedAtRef.current < 3000) {
+      setStatus({ state: "error", message: "Errore invio. Riprova." });
+      return;
+    }
+
+    // Rate limit lato client
+    try {
+      const last = Number(localStorage.getItem(RL_KEY) || "0");
+      if (Date.now() - last < RATE_LIMIT_MS) {
+        setStatus({
+          state: "error",
+          message: "Hai già inviato da poco. Riprova tra 1 minuto.",
+        });
+        return;
+      }
+    } catch {
+      /* ignore */
+    }
+
+    // Honeypot
+    if (formData.get("website") || formData.get("fax")) {
+      setStatus({ state: "error", message: "Errore invio." });
+      return;
+    }
+
+    formData.append("access_key", ACCESS_KEY);
+    formData.append("subject", "Nuova richiesta dal sito rb-snc.it");
+    formData.append("from_name", "R.B. s.n.c. — Sito");
+
+    setStatus({ state: "sending", message: "Invio in corso..." });
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      let data: { success?: boolean } | null = null;
+      try {
+        data = await response.json();
+      } catch {
+        /* ignore */
+      }
+      if (!response.ok || !data?.success) {
+        setStatus({ state: "error", message: "Invio non riuscito. Riprova tra poco." });
+        toast.error("Invio non riuscito", { description: "Riprova tra poco." });
+        return;
+      }
+      try {
+        localStorage.setItem(RL_KEY, String(Date.now()));
+      } catch {
+        /* ignore */
+      }
+      setStatus({
+        state: "success",
+        message: "Messaggio inviato. Ti ricontattiamo a breve.",
+      });
+      toast.success("Richiesta inviata", {
+        description: "Ti ricontattiamo a breve.",
+      });
+      form.reset();
+      setPrivacyAccepted(false);
+      setPrivacyError(false);
+      mountedAtRef.current = Date.now();
+    } catch {
+      setStatus({
+        state: "error",
+        message: "Problema di rete. Controlla la connessione e riprova.",
+      });
+      toast.error("Problema di rete", {
+        description: "Controlla la connessione e riprova.",
+      });
+    }
   };
 
   return (
@@ -244,7 +345,9 @@ const Contatti = () => {
                 </p>
 
                 <form
+                  ref={formRef}
                   onSubmit={handleSubmit}
+                  noValidate
                   className="bg-card rounded-3xl border-2 border-border shadow-card p-8 md:p-10 space-y-6"
                 >
                   <div>
@@ -360,17 +463,42 @@ const Contatti = () => {
 
                   <Button
                     type="submit"
+                    disabled={status.state === "sending"}
                     size="xl"
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   >
                     <Send className="mr-2 w-5 h-5" />
-                    Invia Richiesta
+                    {status.state === "sending" ? "Invio in corso..." : "Invia Richiesta"}
                   </Button>
-                </form>
 
-                <p className="text-sm text-muted-foreground mt-5 text-center md:text-left">
-                  Il form sarà attivato a breve. Per richieste urgenti, contattaci telefonicamente o via email.
-                </p>
+                  {/* Honeypot anti-spam */}
+                  <div className="sr-only" aria-hidden="true">
+                    <label>
+                      Website
+                      <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                    </label>
+                    <label>
+                      Fax
+                      <input name="fax" type="text" tabIndex={-1} autoComplete="off" />
+                    </label>
+                  </div>
+
+                  {status.message && (
+                    <p
+                      role="status"
+                      aria-live="polite"
+                      className={`text-sm font-medium text-center ${
+                        status.state === "success"
+                          ? "text-green-600"
+                          : status.state === "error"
+                          ? "text-destructive"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {status.message}
+                    </p>
+                  )}
+                </form>
               </div>
 
               {/* PROCESSO */}
