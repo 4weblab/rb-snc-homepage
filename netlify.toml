@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npx puppeteer browsers install chrome && npm run build"
   publish = "dist"
 
 # Compressione (gzip/brotli) e MIME types sono gestiti automaticamente da Netlify.
