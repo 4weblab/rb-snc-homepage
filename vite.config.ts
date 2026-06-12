@@ -7,7 +7,8 @@ import prerender from "@prerenderer/rollup-plugin";
 /**
  * Rotte da prerenderizzare al build.
  * Devono coincidere con quelle definite in src/App.tsx.
- * "/404" viene salvato come 404.html (gestito sotto da postProcess).
+ * "/404" viene salvato come 404.html (gestito sotto da postProcess) e
+ * servito da Netlify come pagina d'errore tramite public/_redirects.
  */
 const prerenderRoutes = [
   "/",

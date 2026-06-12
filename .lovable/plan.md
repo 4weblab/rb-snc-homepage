@@ -1,30 +1,43 @@
 ## Obiettivo
-Rendere funzionante il form della pagina `/contatti` inviando le richieste a Web3Forms via AJAX (stesso pattern collaudato sul progetto 4 Web Lab), mantenendo invariata la UI attuale.
-
-## Cosa serve da te
-- La **access key Web3Forms** dedicata a R.B. s.n.c. (la incollerai in chat). È una publishable key, va direttamente nel codice del componente.
+Passare da hosting Windows/IIS a Netlify, rimuovendo le configurazioni IIS-specifiche e aggiungendo quelle native Netlify (headers, redirect SPA, cache, 404 personalizzato).
 
 ## Modifiche
-Unico file toccato: `src/pages/Contatti.tsx` (nessun nuovo componente, nessuna dipendenza nuova).
 
-1. **Stato gestione invio**: aggiunta `status` (`idle | sending | success | error`) e messaggio; il bottone si disabilita durante l'invio e mostra "Invio...".
-2. **Validazione**: nome, telefono e privacy obbligatori; email se compilata deve essere valida. Errori inline sotto i campi + scroll al primo errore.
-3. **Anti-spam (come 4 Web Lab)**:
-   - 2 honeypot nascosti (`website`, `fax`) in `sr-only`.
-   - Timing check: rifiuto invii sotto i 3 secondi dal mount.
-   - Rate-limit lato client 60s via `localStorage` (`rb_w3f_last_submit_ts`).
-4. **Invio AJAX** a `https://api.web3forms.com/submit` con `FormData` contenente:
-   - `access_key` (la tua), `subject` "Nuova richiesta dal sito rb-snc.it", `from_name` "R.B. s.n.c. — Sito",
-   - campi del form: `nome`, `telefono`, `email`, `zona`, `tipo`, `messaggio`.
-5. **Feedback utente**: toast `sonner` su successo/errore + messaggio inline `role="status" aria-live="polite"`. Su successo il form viene resettato e la checkbox privacy riazzerata. Rimossa la riga "Il form sarà attivato a breve".
-6. **Cookie policy**: niente da aggiornare per ora (segnalo se vuoi che aggiunga una nota su Web3Forms + chiave `rb_w3f_last_submit_ts` come tecnico/localStorage, sul modello di 4 Web Lab).
+### 1. Rimozione file IIS
+- **Elimina** `public/web.config` — non serve su Netlify (è specifico IIS).
+
+### 2. Nuovo file `public/_headers` (Netlify)
+Headers di sicurezza e cache equivalenti a quelli IIS:
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- Cache long-term per asset hashati Vite (`/assets/*`: `Cache-Control: public, max-age=31536000, immutable`)
+- Cache breve per HTML (`/*.html`: `Cache-Control: public, max-age=0, must-revalidate`)
+- Cache lungo per `/*.webp`, `/*.woff2`, `/*.jpg`, `/*.png`
+
+### 3. Nuovo file `public/_redirects` (Netlify)
+- Pagina 404 personalizzata: `/* /404.html 404` come ultima riga, così le rotte non prerenderizzate restituiscono `404.html` con status 404 (come faceva `httpErrors` in `web.config`).
+- Le rotte prerenderizzate (Home, Servizi, Realizzazioni, Certificazioni, Contatti, Cookie/Privacy Policy) sono file fisici e vengono servite prima del fallback — comportamento identico a oggi.
+- Nota: non serve fallback SPA verso `/index.html` perché tutte le rotte note sono prerenderizzate al build da `vite.config.ts`.
+
+### 4. (Opzionale) `netlify.toml` minimale
+Aggiungere build settings espliciti per chiarezza:
+```
+[build]
+  command = "npm run build"
+  publish = "dist"
+```
+Compressione (gzip/brotli) e MIME types (webp, woff2, json, webmanifest) sono già gestiti automaticamente da Netlify — nessuna configurazione necessaria (a differenza di IIS).
+
+### 5. Commento `vite.config.ts`
+Il commento sopra `prerenderRoutes` cita "/404 viene salvato come 404.html (gestito sotto da postProcess)" — resta corretto: il file `404.html` ora viene servito da Netlify tramite `_redirects` invece che da `httpErrors` IIS. Aggiorno solo il commento per riflettere il nuovo hosting.
 
 ## Cosa NON cambia
-- Layout, copy, colori, sezioni "Contatti diretti" e "Cosa succede dopo la richiesta".
-- Schema JSON-LD (`ContactPage` + `BreadcrumbList`).
-- Navbar, Footer, altre pagine.
+- Codice React, routing, form Web3Forms, prerender, SEO, JSON-LD, sitemap, robots.txt, llms.txt restano invariati.
+- Le rotte continuano a essere prerenderizzate in file `index.html` dentro cartelle (es. `/servizi/index.html`), servite nativamente da Netlify.
 
-## Verifica post-build
-- Build pulita.
-- Submit reale: controllo network 200 + `success:true` dalla risposta Web3Forms.
-- Honeypot, rate-limit e timing testabili da console.
+## File toccati
+- `public/web.config` → eliminato
+- `public/_headers` → nuovo
+- `public/_redirects` → nuovo
+- `netlify.toml` → nuovo (root)
+- `vite.config.ts` → solo aggiornamento commento
