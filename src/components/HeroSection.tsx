@@ -28,7 +28,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       <Helmet>
-        <link rel="preload" as="image" href={heroBg1} type="image/webp" {...{ fetchpriority: "high" }} />
+        <link rel="preload" as="image" href={heroBg1} type="image/webp" fetchPriority="high" />
       </Helmet>
       {/* Background carousel */}
       <div className="absolute inset-0">
@@ -41,7 +41,7 @@ const HeroSection = () => {
             height={1080}
             decoding="async"
             loading={index === 0 ? "eager" : "lazy"}
-            {...{ fetchpriority: index === 0 ? "high" : "low" }}
+            fetchPriority={index === 0 ? "high" : "low"}
             className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
             style={{ opacity: index === currentIndex ? 1 : 0 }}
           />

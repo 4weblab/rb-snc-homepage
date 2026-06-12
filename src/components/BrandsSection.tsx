@@ -16,7 +16,7 @@ const BrandsSection = () => {
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[hsl(var(--navy))] to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[hsl(var(--navy))] to-transparent z-10" />
 
-        <div className="flex animate-[scroll_30s_linear_infinite] w-max">
+        <div className="flex animate-brands-scroll w-max">
           {[...brands, ...brands].map((brand, i) => (
             <div
               key={`${brand}-${i}`}
@@ -29,13 +29,6 @@ const BrandsSection = () => {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 };

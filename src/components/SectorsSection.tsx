@@ -50,9 +50,15 @@ const TimelineItem = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  // isMounted garantisce che il primo render lato client combaci col DOM
+  // prerenderizzato: l'IntersectionObserver parte solo dopo il mount, così
+  // le classi iniziali (visible, senza animazione) sono identiche a quelle
+  // che Puppeteer serializza al build.
+  const [isMounted, setIsMounted] = useState(false);
   const isRight = index % 2 === 0;
 
   useEffect(() => {
+    setIsMounted(true);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -68,6 +74,15 @@ const TimelineItem = ({
 
   const Icon = sector.icon;
 
+  // Finché non siamo montati lato client mostriamo lo stato "visibile"
+  // senza animazione, identico al markup prerenderizzato. Subito dopo il
+  // mount, l'observer prende il controllo e applica le transizioni reali.
+  const shown = !isMounted || isVisible;
+  const leftCardCls = shown ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8";
+  const rightCardCls = shown ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8";
+  const mobileCardCls = shown ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6";
+  const dotCls = shown ? "scale-100" : "scale-0";
+
   return (
     <div ref={ref} className="relative flex items-center w-full">
       {/* Desktop layout */}
@@ -78,11 +93,7 @@ const TimelineItem = ({
             <Link
               to={sector.href}
               aria-label={sector.ariaLabel}
-              className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
-              } transition-all duration-500 ease-out`}
+              className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${leftCardCls} transition-all duration-500 ease-out`}
             >
               <div className="h-1 bg-primary" />
               <div className="flex items-start gap-4 p-6">
@@ -103,9 +114,7 @@ const TimelineItem = ({
         {/* Center node */}
         <div className="flex flex-col items-center relative z-10 px-4">
           <div
-            className={`w-4 h-4 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
-              isVisible ? "scale-100" : "scale-0"
-            }`}
+            className={`w-4 h-4 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${dotCls}`}
           />
         </div>
 
@@ -115,11 +124,7 @@ const TimelineItem = ({
             <Link
               to={sector.href}
               aria-label={sector.ariaLabel}
-              className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-8"
-              } transition-all duration-500 ease-out`}
+              className={`block max-w-md w-full rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${rightCardCls} transition-all duration-500 ease-out`}
             >
               <div className="h-1 bg-primary" />
               <div className="flex items-start gap-4 p-6">
@@ -142,19 +147,13 @@ const TimelineItem = ({
       <div className="flex lg:hidden items-center gap-6 w-full">
         <div className="flex flex-col items-center shrink-0">
           <div
-            className={`w-3 h-3 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${
-              isVisible ? "scale-100" : "scale-0"
-            }`}
+            className={`w-3 h-3 rounded-full bg-primary border-2 border-background shadow-md transition-transform duration-500 ${dotCls}`}
           />
         </div>
         <Link
           to={sector.href}
           aria-label={sector.ariaLabel}
-          className={`block flex-1 rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover transition-all duration-300 group overflow-hidden ${
-            isVisible
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 translate-x-6"
-          } transition-all duration-500 ease-out`}
+          className={`block flex-1 rounded-xl border border-border/60 bg-card shadow-card hover:shadow-card-hover transition-all duration-300 group overflow-hidden ${mobileCardCls} transition-all duration-500 ease-out`}
         >
           <div className="h-1 bg-primary" />
           <div className="flex items-start gap-3 p-5">
