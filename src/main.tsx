@@ -27,12 +27,17 @@ if (isPrerendered) {
   createRoot(container).render(tree);
 }
 
-// Segnale per il prerenderer: la pagina è pronta.
-// Diamo un tick a React/Helmet per popolare DOM e <head>.
+// Segnali "pagina pronta" per i prerenderer:
+// - `render-event` → usato dal nostro prerender al build (Puppeteer via Vite).
+// - `window.prerenderReady` → usato da prerender.io / Netlify Prerendering
+//   per fare snapshot DOPO che Helmet ha popolato <head> (title, meta, og:*).
+// Diamo un tick a React/Helmet per popolare DOM e <head> prima di segnalare.
 if (typeof window !== "undefined") {
+  (window as unknown as { prerenderReady: boolean }).prerenderReady = false;
   requestAnimationFrame(() => {
     setTimeout(() => {
       document.dispatchEvent(new Event("render-event"));
+      (window as unknown as { prerenderReady: boolean }).prerenderReady = true;
     }, 50);
   });
 }

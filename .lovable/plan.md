@@ -1,55 +1,54 @@
-## Cosa significa l'errore
+## Obiettivo
 
-`Minified React error #418` = **"Hydration failed: l'UI iniziale del client non corrisponde a quella renderizzata dal server"**. Succede solo in produzione perché il sito usa `prerender` (Puppeteer in build) + `hydrateRoot` in `src/main.tsx`. In dev non si vede perché c'è solo `createRoot`.
+Far funzionare meglio **Netlify Prerendering** (servizio basato su prerender.io che renderizza la pagina in headless Chrome e serve HTML cached ai bot social/SEO), aggiungendo nel codice i segnali standard che il servizio si aspetta. Nessun cambiamento al design, ai contenuti o al prerender già esistente al build.
 
-Quando l'hydration fallisce, React **butta via tutto l'HTML prerenderato e ri-renderizza da zero**: la pagina funziona comunque, ma:
-- si perde il vantaggio SEO/performance del prerender (flash di re-render);
-- alcuni crawler/social possono leggere contenuto incoerente;
-- l'errore inquina la console.
+## Cosa manca oggi
 
-## Cause più probabili nel nostro caso
-
-Dall'analisi dei file:
-
-1. **`src/components/Footer.tsx:137`** → `© {new Date().getFullYear()}`. Se il build è stato fatto nel 2025 e l'utente carica nel 2026 (o viceversa attorno a Capodanno), c'è mismatch. Oggi siamo a giugno 2026, build recente: improbabile *ora*, ma è una bomba a orologeria.
-2. **`react-helmet-async` + `hydrateRoot`**: in alcuni casi i tag `<title>`/`<meta>` aggiunti da Helmet nell'HTML prerenderato non hanno gli stessi attributi (`data-rh`) di quelli che Helmet inietta al mount. È la causa più comune di #418 su SPA prerenderate.
-3. **`src/main.tsx`**: il check `container.hasChildNodes()` è fragile — basta un text node di whitespace per chiamare `hydrateRoot` su un root vuoto e fallire. Va reso più robusto (controllare `firstElementChild`).
-4. Eventuale differenza introdotta da estensioni browser o dal `postProcess` che inietta `lang="it"` (improbabile, ma da verificare).
+1. **Nessun segnale `window.prerenderReady`**
+   prerender.io aspetta questa flag prima di fare snapshot della pagina. Oggi emettiamo solo `document.dispatchEvent("render-event")`, che è il segnale richiesto dal nostro plugin Vite al build, ma **NON** dal servizio Netlify in produzione. Senza la flag, prerender.io fa snapshot dopo un timeout fisso (~10s) o, peggio, prima che Helmet abbia popolato `<head>`. Risultato: title/meta/og incompleti nello snapshot servito ai bot.
+2. **Nessun `prerender-status-code` sulla 404**
+   La pagina `NotFound` viene servita ai bot con status 200 (perché è il fallback SPA `/* → /404.html 404` lato Netlify, ma per rotte SPA matchate da React Router senza match, il bot vede 200). Senza `<meta name="prerender-status-code" content="404">` prerender.io non sa che è una 404 e la indicizza.
+3. **Niente di intrinsecamente bloccante**, ma il cookie banner: già fatto bene (ritorna `null` al primo render, comparsa dopo 400ms → lo snapshot non lo cattura). OK.
 
 ## Piano di intervento
 
-### Step 1 — Hardening del bootstrap (rimuove falsi-positivi)
+### Step 1 — Segnale `prerenderReady` in `src/main.tsx`
 
-In `src/main.tsx`:
-- sostituire `container.hasChildNodes()` con `container.firstElementChild !== null`, così l'app cade in `createRoot` se il prerender non ha emesso markup reale;
-- passare `onRecoverableError` a `hydrateRoot` per loggare in console il mismatch reale (in build production il messaggio resta criptico, ma quantomeno si vede lo stack del nodo coinvolto).
+- All'avvio: `window.prerenderReady = false`.
+- Dopo che React ha montato l'app **e** Helmet ha popolato `<head>` (basta lo stesso `requestAnimationFrame + setTimeout` già presente per `render-event`): `window.prerenderReady = true`.
+- Mantenere anche `dispatchEvent("render-event")` per non rompere il prerender al build.
 
-### Step 2 — Fix del Footer
+Così sia il prerender al build (Puppeteer) sia Netlify Prerendering (prerender.io) hanno il segnale che usano nativamente, e fanno snapshot **dopo** che il `<title>`, `<meta>`, `<link rel="canonical">` e i `og:*` per-route sono in DOM.
 
-In `src/components/Footer.tsx`:
-- calcolare l'anno **fuori dal render** una sola volta, oppure usare uno `useState(() => new Date().getFullYear())` impostato in `useEffect`, oppure hard-codare `2026` (l'anno cambia raramente). Approccio consigliato: fissare l'anno corrente come costante e aggiornarlo manualmente, oppure leggere l'anno solo lato client dopo mount (con fallback al valore prerenderato).
+### Step 2 — Status 404 corretto nella SPA per i bot
 
-### Step 3 — Verifica HTML prerenderato vs runtime
+In `src/pages/NotFound.tsx`, aggiungere via `<Helmet>`:
+- `<meta name="prerender-status-code" content="404" />`
+- `<meta name="robots" content="noindex, nofollow" />`
+- `<title>` e `<meta description>` dedicati.
 
-- aprire `dist/index.html` dopo `npm run build` e confrontarlo con il DOM live: cercare differenze in `<head>` (ordine meta, attributi `data-rh`) e nei nodi figli di `#root`;
-- se la differenza è nei tag Helmet, valutare il pattern raccomandato da `react-helmet-async` per SSR: passare un `helmetContext` al `HelmetProvider` e usarlo, così gli attributi sono coerenti tra prerender e hydration.
+Effetto: quando un bot chiede una rotta inesistente (es. `/vecchia-pagina`), prerender.io serve l'HTML con header `HTTP 404`, evitando indicizzazione di pagine fantasma.
 
-### Step 4 — Validazione
+### Step 3 — Verifica & cleanup leggeri (no fix, solo controllo)
 
-- nuovo build di produzione;
-- aprire il sito in locale (servendo `dist/`) con DevTools aperte: **nessun** errore #418, nessun "Text content did not match", nessun warning di hydration;
-- verificare con Lighthouse che il contenuto sopra la piega resti stabile (no layout shift causato dal re-render fallito).
+- Confermare che `public/_headers` non disabiliti il caching delle HTML in modo aggressivo per i bot (oggi `Cache-Control: public, max-age=0, must-revalidate` — OK, lascia che prerender.io gestisca la sua cache).
+- Confermare che `og:image` (1200×630) e canonical risolvano correttamente nello snapshot post-Helmet (già verificato precedentemente).
+- Nessun intervento su `netlify.toml` o `_redirects` necessario: la regola `/* /404.html 404` è già corretta per rotte fisiche non risolte.
 
 ## Cosa NON cambio
 
-- nessuna modifica al routing, ai contenuti, alle pagine, al sistema di prerender o al design;
-- nessuna nuova dipendenza.
+- Lista di rotte prerenderizzate al build (`vite.config.ts`) — invariata.
+- Contenuti, design, sistema Helmet per-route — invariati.
+- robots.txt, sitemap.xml, llms.txt — invariati.
 
 ## Dettagli tecnici (per riferimento)
 
 ```text
-build  →  Puppeteer renderizza ogni rotta → dist/<route>/index.html (con #root popolato + tag Helmet in <head>)
-runtime →  browser scarica HTML → React hydrateRoot(#root) → confronta tree → se differisce → error #418 → re-render completo
+Bot social (LinkedIn/Facebook/Twitter/Slack) → Netlify edge → User-Agent bot? 
+  └─ sì → richiesta inoltrata a prerender.io
+       └─ headless Chrome carica la pagina
+            └─ aspetta window.prerenderReady === true  (← oggi mai impostata)
+                 └─ snapshot HTML → cache → restituito al bot
 ```
 
-Il file `vite.config.ts` resta invariato; il fix è tutto in `src/main.tsx` + `src/components/Footer.tsx` (+ eventualmente helmetContext se Step 3 lo conferma).
+File toccati: `src/main.tsx`, `src/pages/NotFound.tsx`. Tutto qui.
