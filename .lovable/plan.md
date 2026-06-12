@@ -1,54 +1,41 @@
 ## Obiettivo
 
-Far funzionare meglio **Netlify Prerendering** (servizio basato su prerender.io che renderizza la pagina in headless Chrome e serve HTML cached ai bot social/SEO), aggiungendo nel codice i segnali standard che il servizio si aspetta. Nessun cambiamento al design, ai contenuti o al prerender già esistente al build.
+Eliminare le cause potenziali di hydration mismatch tra HTML prerenderizzato (Puppeteer al build) e primo render React lato client, individuate da un audit profondo del codebase.
 
-## Cosa manca oggi
+## Cosa cambia (4 fix mirati)
 
-1. **Nessun segnale `window.prerenderReady`**
-   prerender.io aspetta questa flag prima di fare snapshot della pagina. Oggi emettiamo solo `document.dispatchEvent("render-event")`, che è il segnale richiesto dal nostro plugin Vite al build, ma **NON** dal servizio Netlify in produzione. Senza la flag, prerender.io fa snapshot dopo un timeout fisso (~10s) o, peggio, prima che Helmet abbia popolato `<head>`. Risultato: title/meta/og incompleti nello snapshot servito ai bot.
-2. **Nessun `prerender-status-code` sulla 404**
-   La pagina `NotFound` viene servita ai bot con status 200 (perché è il fallback SPA `/* → /404.html 404` lato Netlify, ma per rotte SPA matchate da React Router senza match, il bot vede 200). Senza `<meta name="prerender-status-code" content="404">` prerender.io non sa che è una 404 e la indicizza.
-3. **Niente di intrinsecamente bloccante**, ma il cookie banner: già fatto bene (ritorna `null` al primo render, comparsa dopo 400ms → lo snapshot non lo cattura). OK.
+### 1. `src/components/ui/sonner.tsx` + `src/App.tsx` — GRAVE
+**Problema:** `<Sonner />` usa `useTheme()` di `next-themes` senza `ThemeProvider` nel tree (uso scorretto) e renderizza un portal direttamente in `<body>` — quindi **fuori da `#root`**. Durante il prerender Puppeteer serializza questo portal nel body; al primo `hydrateRoot(#root)` React non lo tocca, e poi il client ne crea un secondo → DOM "sporco" con due container Sonner.
 
-## Piano di intervento
+**Fix:** Rimuovere `<Sonner />` da `App.tsx` (i toast nel progetto si usano via il `<Toaster />` shadcn già presente — i form di contatto non usano sonner). Eliminare anche il file `src/components/ui/sonner.tsx` per pulizia. Nessuna funzionalità persa.
 
-### Step 1 — Segnale `prerenderReady` in `src/main.tsx`
+### 2. `src/components/HeroSection.tsx` — MEDIO
+**Problema:** `<img {...{ fetchpriority: ... }} />` e `<link {...{ fetchpriority: "high" }} />` passano l'attributo in lowercase via spread. React 18.3 supporta la prop nativa `fetchPriority` (camelCase). La forma lowercase può produrre attributi DOM diversi tra prerender e hydration.
 
-- All'avvio: `window.prerenderReady = false`.
-- Dopo che React ha montato l'app **e** Helmet ha popolato `<head>` (basta lo stesso `requestAnimationFrame + setTimeout` già presente per `render-event`): `window.prerenderReady = true`.
-- Mantenere anche `dispatchEvent("render-event")` per non rompere il prerender al build.
+**Fix:** Sostituire i due spread con `fetchPriority="high|low"` (camelCase, prop nativa React).
 
-Così sia il prerender al build (Puppeteer) sia Netlify Prerendering (prerender.io) hanno il segnale che usano nativamente, e fanno snapshot **dopo** che il `<title>`, `<meta>`, `<link rel="canonical">` e i `og:*` per-route sono in DOM.
+### 3. `src/components/SectorsSection.tsx` — MEDIO
+**Problema:** `TimelineItem` parte con `isVisible=false` → classi `opacity-0 -translate-x-8`. Nel prerender, gli `useEffect` girano *prima* del `render-event` (rAF + 50ms): se l'IntersectionObserver scatta in quella finestra, Puppeteer serializza HTML con `opacity-100 translate-x-0`, mentre il primo render client ha `opacity-0`. → mismatch di `className`.
 
-### Step 2 — Status 404 corretto nella SPA per i bot
+**Fix:** Aggiungere flag `isMounted` (false al primo render, true in `useEffect`): finché `!isMounted` usare le stesse classi del prerender (visibili, senza animazione). Solo da `isMounted=true` in poi si attiva l'observer e le transizioni. Questo garantisce che il primo render client combaci sempre col DOM prerenderizzato.
 
-In `src/pages/NotFound.tsx`, aggiungere via `<Helmet>`:
-- `<meta name="prerender-status-code" content="404" />`
-- `<meta name="robots" content="noindex, nofollow" />`
-- `<title>` e `<meta description>` dedicati.
+### 4. `src/components/BrandsSection.tsx` — LIEVE (preventivo)
+**Problema:** `<style>{...}</style>` inline nel JSX (keyframes). React 18 non hoista gli style tag; differenze di whitespace tra bundle e prerender possono generare warning.
 
-Effetto: quando un bot chiede una rotta inesistente (es. `/vecchia-pagina`), prerender.io serve l'HTML con header `HTTP 404`, evitando indicizzazione di pagine fantasma.
+**Fix:** Spostare `@keyframes scroll` e la classe `.animate-brands-scroll` in `src/index.css` (sezione `@layer utilities`); rimuovere lo `<style>` inline e l'attributo `style={{ animation: ... }}` → usare `className="animate-brands-scroll"`.
 
-### Step 3 — Verifica & cleanup leggeri (no fix, solo controllo)
+## File toccati
 
-- Confermare che `public/_headers` non disabiliti il caching delle HTML in modo aggressivo per i bot (oggi `Cache-Control: public, max-age=0, must-revalidate` — OK, lascia che prerender.io gestisca la sua cache).
-- Confermare che `og:image` (1200×630) e canonical risolvano correttamente nello snapshot post-Helmet (già verificato precedentemente).
-- Nessun intervento su `netlify.toml` o `_redirects` necessario: la regola `/* /404.html 404` è già corretta per rotte fisiche non risolte.
+- `src/App.tsx` — rimuovere import e `<Sonner />`
+- `src/components/ui/sonner.tsx` — eliminare il file
+- `src/components/HeroSection.tsx` — `fetchPriority` camelCase
+- `src/components/SectorsSection.tsx` — flag `isMounted`
+- `src/components/BrandsSection.tsx` — rimuovere `<style>` inline
+- `src/index.css` — aggiungere keyframes `brands-scroll`
 
-## Cosa NON cambio
+## Cosa NON cambia
 
-- Lista di rotte prerenderizzate al build (`vite.config.ts`) — invariata.
-- Contenuti, design, sistema Helmet per-route — invariati.
-- robots.txt, sitemap.xml, llms.txt — invariati.
-
-## Dettagli tecnici (per riferimento)
-
-```text
-Bot social (LinkedIn/Facebook/Twitter/Slack) → Netlify edge → User-Agent bot? 
-  └─ sì → richiesta inoltrata a prerender.io
-       └─ headless Chrome carica la pagina
-            └─ aspetta window.prerenderReady === true  (← oggi mai impostata)
-                 └─ snapshot HTML → cache → restituito al bot
-```
-
-File toccati: `src/main.tsx`, `src/pages/NotFound.tsx`. Tutto qui.
+- `src/main.tsx` (logica `isPrerendered` + `hydrateRoot` corretta)
+- `CookieBanner`, `Navbar`, `ScrollToHash`, `HeroSection` carosello (stato iniziale già consistente)
+- Hook `use-mobile`, rotte, `vite.config.ts`, `netlify.toml`, contenuti, design, SEO/Helmet
+- Nessuna modifica al backend o al prerender setup

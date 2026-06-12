@@ -84,4 +84,15 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Marquee per BrandsSection (estratto da <style> inline per evitare
+     differenze di whitespace tra prerender e bundle che possono causare
+     warning di hydration). */
+  @keyframes brands-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-brands-scroll {
+    animation: brands-scroll 30s linear infinite;
+  }
 }
