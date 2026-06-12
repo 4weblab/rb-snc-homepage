@@ -1,8 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Font self-hosted (GDPR-friendly, nessuna richiesta a fonts.googleapis.com) */
+/* IMPORTANTE: gli @import devono precedere qualsiasi altra regola CSS (PostCSS). */
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
@@ -11,6 +8,10 @@
 @import '@fontsource/space-grotesk/500.css';
 @import '@fontsource/space-grotesk/600.css';
 @import '@fontsource/space-grotesk/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
