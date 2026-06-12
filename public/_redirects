@@ -1,0 +1,3 @@
+# Tutte le rotte applicative sono prerenderizzate al build (vedi vite.config.ts)
+# e servite come file statici. Le URL non esistenti restituiscono 404.html con status 404.
+/*    /404.html    404
