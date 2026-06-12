@@ -10,12 +10,19 @@ const tree = (
   </HelmetProvider>
 );
 
-// Se la pagina è stata prerenderizzata, l'HTML iniziale ha già contenuto:
-// usiamo hydrateRoot per agganciarci senza warning di mismatch.
-const isPrerendered = container.hasChildNodes();
+// Se la pagina è stata prerenderizzata, l'HTML iniziale ha già markup reale
+// dentro #root: usiamo hydrateRoot. firstElementChild evita falsi positivi
+// dovuti a soli text node di whitespace.
+const isPrerendered = container.firstElementChild !== null;
 
 if (isPrerendered) {
-  hydrateRoot(container, tree);
+  hydrateRoot(container, tree, {
+    onRecoverableError: (error) => {
+      // Logga in console il mismatch reale per facilitare il debug in prod.
+      // eslint-disable-next-line no-console
+      console.warn("[hydration]", error);
+    },
+  });
 } else {
   createRoot(container).render(tree);
 }
