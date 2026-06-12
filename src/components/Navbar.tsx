@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import logoRb from "@/assets/logo-rb.png.asset.json";
 
 const navLinks = [
 { label: "Home", href: "/" },
@@ -20,7 +19,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
         <Link to="/" className="flex items-center gap-2 font-heading text-xl md:text-2xl font-bold tracking-tight text-primary leading-tight">
           <img
-            src={logoRb.url}
+            src="/logo-rb.png"
             alt="logo azienda RB snc"
             width={40}
             height={40}
