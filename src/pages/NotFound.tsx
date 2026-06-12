@@ -14,6 +14,10 @@ const NotFound = () => {
       <Helmet>
         <title>Pagina non trovata (404) | R.B. s.n.c.</title>
         <meta name="robots" content="noindex, follow" />
+        {/* Indica a prerender.io / Netlify Prerendering di servire HTTP 404
+            invece di 200 per le rotte SPA non risolte da React Router. */}
+        <meta name="prerender-status-code" content="404" />
+        <meta name="description" content="La pagina che stai cercando non esiste o è stata spostata. Torna alla home di R.B. s.n.c." />
         <link rel="canonical" href="https://rb-snc.it/404" />
       </Helmet>
       <div className="flex min-h-screen items-center justify-center bg-muted">
