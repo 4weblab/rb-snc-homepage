@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Compressione (gzip/brotli) e MIME types sono gestiti automaticamente da Netlify.
+# Headers di sicurezza e cache sono definiti in public/_headers.
+# Il fallback 404 personalizzato è definito in public/_redirects.
