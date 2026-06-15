@@ -1,41 +1,32 @@
 ## Obiettivo
+Rimuovere Puppeteer e tutto il sistema di prerendering. L'app diventa una SPA pura servita da `index.html`.
 
-Eliminare le cause potenziali di hydration mismatch tra HTML prerenderizzato (Puppeteer al build) e primo render React lato client, individuate da un audit profondo del codebase.
+## Modifiche
 
-## Cosa cambia (4 fix mirati)
+### 1. `vite.config.ts`
+- Rimuovere `import prerender from "@prerenderer/rollup-plugin"`.
+- Rimuovere la costante `prerenderRoutes`.
+- Rimuovere il blocco `mode === "production" && prerender({...})` dai plugins.
+- Mantenere `react()` e `componentTagger()` in dev.
 
-### 1. `src/components/ui/sonner.tsx` + `src/App.tsx` — GRAVE
-**Problema:** `<Sonner />` usa `useTheme()` di `next-themes` senza `ThemeProvider` nel tree (uso scorretto) e renderizza un portal direttamente in `<body>` — quindi **fuori da `#root`**. Durante il prerender Puppeteer serializza questo portal nel body; al primo `hydrateRoot(#root)` React non lo tocca, e poi il client ne crea un secondo → DOM "sporco" con due container Sonner.
+### 2. `package.json` — devDependencies
+Rimuovere:
+- `@prerenderer/renderer-puppeteer`
+- `@prerenderer/rollup-plugin`
+- `jsdom` (era usato solo come potenziale renderer alternativo — verifico se serve a vitest prima di rimuoverlo; se `vitest.config` o i test lo usano, lo mantengo).
 
-**Fix:** Rimuovere `<Sonner />` da `App.tsx` (i toast nel progetto si usano via il `<Toaster />` shadcn già presente — i form di contatto non usano sonner). Eliminare anche il file `src/components/ui/sonner.tsx` per pulizia. Nessuna funzionalità persa.
+### 3. `public/_redirects`
+- Sostituire il fallback `/*  /404.html  404` con `/*  /index.html  200` così la SPA gestisce tutte le rotte client-side (incluse `/servizi`, `/realizzazioni`, ecc.) senza che Netlify cerchi HTML statici inesistenti.
 
-### 2. `src/components/HeroSection.tsx` — MEDIO
-**Problema:** `<img {...{ fetchpriority: ... }} />` e `<link {...{ fetchpriority: "high" }} />` passano l'attributo in lowercase via spread. React 18.3 supporta la prop nativa `fetchPriority` (camelCase). La forma lowercase può produrre attributi DOM diversi tra prerender e hydration.
+### 4. `public/404.html`
+- Se presente (generato dal prerender), eliminarlo: senza prerender non viene più rigenerato e diventerebbe stantio. La rotta `/404` è già gestita lato React Router.
 
-**Fix:** Sostituire i due spread con `fetchPriority="high|low"` (camelCase, prop nativa React).
+### 5. Verifiche post-modifica
+- `index.html` non deve riferirsi a marker tipo `render-event` (già verificato: nessuna occorrenza).
+- Sitemap, robots.txt, llms.txt restano invariati (i contenuti sono già statici in `public/`).
+- Canonical e meta SEO continuano a funzionare via `react-helmet-async` lato client.
 
-### 3. `src/components/SectorsSection.tsx` — MEDIO
-**Problema:** `TimelineItem` parte con `isVisible=false` → classi `opacity-0 -translate-x-8`. Nel prerender, gli `useEffect` girano *prima* del `render-event` (rAF + 50ms): se l'IntersectionObserver scatta in quella finestra, Puppeteer serializza HTML con `opacity-100 translate-x-0`, mentre il primo render client ha `opacity-0`. → mismatch di `className`.
-
-**Fix:** Aggiungere flag `isMounted` (false al primo render, true in `useEffect`): finché `!isMounted` usare le stesse classi del prerender (visibili, senza animazione). Solo da `isMounted=true` in poi si attiva l'observer e le transizioni. Questo garantisce che il primo render client combaci sempre col DOM prerenderizzato.
-
-### 4. `src/components/BrandsSection.tsx` — LIEVE (preventivo)
-**Problema:** `<style>{...}</style>` inline nel JSX (keyframes). React 18 non hoista gli style tag; differenze di whitespace tra bundle e prerender possono generare warning.
-
-**Fix:** Spostare `@keyframes scroll` e la classe `.animate-brands-scroll` in `src/index.css` (sezione `@layer utilities`); rimuovere lo `<style>` inline e l'attributo `style={{ animation: ... }}` → usare `className="animate-brands-scroll"`.
-
-## File toccati
-
-- `src/App.tsx` — rimuovere import e `<Sonner />`
-- `src/components/ui/sonner.tsx` — eliminare il file
-- `src/components/HeroSection.tsx` — `fetchPriority` camelCase
-- `src/components/SectorsSection.tsx` — flag `isMounted`
-- `src/components/BrandsSection.tsx` — rimuovere `<style>` inline
-- `src/index.css` — aggiungere keyframes `brands-scroll`
-
-## Cosa NON cambia
-
-- `src/main.tsx` (logica `isPrerendered` + `hydrateRoot` corretta)
-- `CookieBanner`, `Navbar`, `ScrollToHash`, `HeroSection` carosello (stato iniziale già consistente)
-- Hook `use-mobile`, rotte, `vite.config.ts`, `netlify.toml`, contenuti, design, SEO/Helmet
-- Nessuna modifica al backend o al prerender setup
+## Impatti da conoscere
+- **SEO**: i crawler che non eseguono JavaScript (es. alcuni bot legacy) vedranno solo `index.html` "vuoto". Google, Bing, GPTBot, ClaudeBot eseguono JS e indicizzano correttamente le SPA, ma l'indicizzazione potrebbe richiedere più tempo rispetto all'HTML pre-renderizzato.
+- **llms.txt**: resta la fonte principale di contenuto testuale per i crawler LLM che non eseguono JS — già arricchita, quindi nessuna regressione lato AI search.
+- **Build**: più veloce, niente download di Chromium, niente variabile `PUPPETEER_EXECUTABLE_PATH`.
