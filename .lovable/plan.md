@@ -1,32 +1,50 @@
 ## Obiettivo
-Rimuovere Puppeteer e tutto il sistema di prerendering. L'app diventa una SPA pura servita da `index.html`.
+Pulire `src/main.tsx` mantenendo SOLO il timer globale che imposta `window.prerenderReady`, rimuovendo la logica legacy di prerendering.
 
-## Modifiche
+## Modifiche a `src/main.tsx`
 
-### 1. `vite.config.ts`
-- Rimuovere `import prerender from "@prerenderer/rollup-plugin"`.
-- Rimuovere la costante `prerenderRoutes`.
-- Rimuovere il blocco `mode === "production" && prerender({...})` dai plugins.
-- Mantenere `react()` e `componentTagger()` in dev.
+**Rimuovere:**
+- Import `hydrateRoot` da `react-dom/client`
+- Variabile `isPrerendered` e il branch `if/else` con `hydrateRoot`
+- `document.dispatchEvent(new Event("render-event"))` (segnale Puppeteer non più usato)
+- Commenti relativi al prerender build-time
 
-### 2. `package.json` — devDependencies
-Rimuovere:
-- `@prerenderer/renderer-puppeteer`
-- `@prerenderer/rollup-plugin`
-- `jsdom` (era usato solo come potenziale renderer alternativo — verifico se serve a vitest prima di rimuoverlo; se `vitest.config` o i test lo usano, lo mantengo).
+**Mantenere:**
+- `createRoot(container).render(tree)` come unico metodo di mount
+- Timer globale `requestAnimationFrame + setTimeout(50)` che imposta `window.prerenderReady = true` (valido per tutte le pagine)
 
-### 3. `public/_redirects`
-- Sostituire il fallback `/*  /404.html  404` con `/*  /index.html  200` così la SPA gestisce tutte le rotte client-side (incluse `/servizi`, `/realizzazioni`, ecc.) senza che Netlify cerchi HTML statici inesistenti.
+## Risultato atteso (`src/main.tsx`)
 
-### 4. `public/404.html`
-- Se presente (generato dal prerender), eliminarlo: senza prerender non viene più rigenerato e diventerebbe stantio. La rotta `/404` è già gestita lato React Router.
+```tsx
+import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
+import App from "./App.tsx";
+import "./index.css";
 
-### 5. Verifiche post-modifica
-- `index.html` non deve riferirsi a marker tipo `render-event` (già verificato: nessuna occorrenza).
-- Sitemap, robots.txt, llms.txt restano invariati (i contenuti sono già statici in `public/`).
-- Canonical e meta SEO continuano a funzionare via `react-helmet-async` lato client.
+const container = document.getElementById("root")!;
 
-## Impatti da conoscere
-- **SEO**: i crawler che non eseguono JavaScript (es. alcuni bot legacy) vedranno solo `index.html` "vuoto". Google, Bing, GPTBot, ClaudeBot eseguono JS e indicizzano correttamente le SPA, ma l'indicizzazione potrebbe richiedere più tempo rispetto all'HTML pre-renderizzato.
-- **llms.txt**: resta la fonte principale di contenuto testuale per i crawler LLM che non eseguono JS — già arricchita, quindi nessuna regressione lato AI search.
-- **Build**: più veloce, niente download di Chromium, niente variabile `PUPPETEER_EXECUTABLE_PATH`.
+createRoot(container).render(
+  <HelmetProvider>
+    <App />
+  </HelmetProvider>
+);
+
+// Segnale globale per prerender.io / Netlify Prerendering:
+// snapshot DOPO che React e Helmet hanno popolato DOM e <head>.
+// Si applica a TUTTE le pagine del sito.
+declare global {
+  interface Window {
+    prerenderReady: boolean;
+  }
+}
+
+window.prerenderReady = false;
+requestAnimationFrame(() => {
+  setTimeout(() => {
+    window.prerenderReady = true;
+  }, 50);
+});
+```
+
+## File toccati
+- `src/main.tsx` (unico file modificato)
