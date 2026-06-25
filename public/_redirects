@@ -1,3 +1,10 @@
+# Redirect dal vecchio sito ASP ai nuovi percorsi
+/servizi.asp          /servizi          301
+/societa.asp          /                 301
+/ring.asp             /realizzazioni    301
+/clienti.asp          /realizzazioni    301
+/informativa.asp      /certificazioni   301
+
 # SPA fallback: tutte le rotte non corrispondenti a file statici vengono
 # servite da index.html (React Router gestisce il routing, inclusa /404).
 /*    /index.html   200

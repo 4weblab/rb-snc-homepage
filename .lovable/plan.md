@@ -1,50 +1,19 @@
-## Obiettivo
-Pulire `src/main.tsx` mantenendo SOLO il timer globale che imposta `window.prerenderReady`, rimuovendo la logica legacy di prerendering.
+## Piano: Aggiornamento redirect Netlify
 
-## Modifiche a `src/main.tsx`
+### Obiettivo
+Integrare i redirect del vecchio sito ASP nel file `public/_redirects` del progetto, mantenendo il fallback SPA esistente.
 
-**Rimuovere:**
-- Import `hydrateRoot` da `react-dom/client`
-- Variabile `isPrerendered` e il branch `if/else` con `hydrateRoot`
-- `document.dispatchEvent(new Event("render-event"))` (segnale Puppeteer non più usato)
-- Commenti relativi al prerender build-time
+### File coinvolto
+- `public/_redirects`
 
-**Mantenere:**
-- `createRoot(container).render(tree)` come unico metodo di mount
-- Timer globale `requestAnimationFrame + setTimeout(50)` che imposta `window.prerenderReady = true` (valido per tutte le pagine)
+### Modifica
+Aggiungere in cima al file tutti i redirect ASP forniti nel file caricato (`_redirect`), lasciando in fondo la riga esistente:
 
-## Risultato atteso (`src/main.tsx`)
-
-```tsx
-import { createRoot } from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
-import App from "./App.tsx";
-import "./index.css";
-
-const container = document.getElementById("root")!;
-
-createRoot(container).render(
-  <HelmetProvider>
-    <App />
-  </HelmetProvider>
-);
-
-// Segnale globale per prerender.io / Netlify Prerendering:
-// snapshot DOPO che React e Helmet hanno popolato DOM e <head>.
-// Si applica a TUTTE le pagine del sito.
-declare global {
-  interface Window {
-    prerenderReady: boolean;
-  }
-}
-
-window.prerenderReady = false;
-requestAnimationFrame(() => {
-  setTimeout(() => {
-    window.prerenderReady = true;
-  }, 50);
-});
+```
+/* /index.html 200
 ```
 
-## File toccati
-- `src/main.tsx` (unico file modificato)
+### Nota tecnica
+- Il file caricato è `_redirect` (nome errato per Netlify); il file corretto nel progetto è `public/_redirects`.
+- Lovable hosting non processa `_redirects`; i redirect funzioneranno solo su Netlify (dove è ospitato il sito).
+- Non sarà creato alcun file `_redirect` aggiuntivo; il file caricato verrà scartato dopo l'integrazione.
