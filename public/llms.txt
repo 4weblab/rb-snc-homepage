@@ -39,6 +39,10 @@ Processo standard di ogni intervento: 1) sopralluogo, 2) analisi e preventivo, 3
 - Area di intervento: Veneto (Padova, Vicenza, Treviso, Venezia, Verona, Rovigo, Belluno) e province limitrofe per cantieri di una certa dimensione
 - [Pagina contatti e modulo sopralluogo](/contatti)
 
+## Credits / Sviluppo web
+
+- [4 Web Lab](/4weblab): Sito web Aziendale creato e gestito da 4 Web Lab | Siti web per negozi, professionisti e aziende. La pagina `/4weblab` presenta il case study del restyling digitale di R.B. s.n.c.: portfolio cantieri, prestazioni mobile, SEO locale Veneto e punti di contatto. Include link dofollow a [4weblab.it](https://4weblab.it) e al [caso studio verticale edilizia RB snc](https://4weblab.it/realizzazioni/realizzazione-sito-web-edilizia-rb-snc-veneto).
+
 ## Pages
 
 - [Home](/): Presentazione dell'azienda, servizi principali, settori serviti, punti di forza e marchi di riferimento.
@@ -46,6 +50,7 @@ Processo standard di ogni intervento: 1) sopralluogo, 2) analisi e preventivo, 3
 - [Realizzazioni](/realizzazioni): Casi reali di bonifica amianto, coperture industriali e tetti civili, con galleria fotografica e dettagli dei grandi cantieri industriali in Veneto.
 - [Certificazioni](/certificazioni): Normativa amianto (L. 257/92, D.M. 6/9/1994), sicurezza, smaltimento certificato e documentazione tracciabile.
 - [Contatti](/contatti): Telefoni diretti (Claudio, Orlando), email, area di intervento e modulo per richiesta sopralluogo.
+- [4 Web Lab](/4weblab): Credit e case study dello sviluppo web curato da 4 Web Lab.
 
 ## Optional
 
