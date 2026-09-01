@@ -177,7 +177,7 @@ const FourWebLab = () => (
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex justify-center">
               <Button asChild variant="hero" size="lg" className="font-semibold">
                 <a
                   href="https://4weblab.it"
@@ -186,16 +186,6 @@ const FourWebLab = () => (
                 >
                   Visita 4 Web Lab
                   <ExternalLink className="ml-2 w-4 h-4" />
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="font-semibold border-white/30 text-white hover:bg-white/10 hover:text-white">
-                <a
-                  href="https://4weblab.it/realizzazioni/realizzazione-sito-web-edilizia-rb-snc-veneto"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Leggi il caso studio
-                  <ArrowRight className="ml-2 w-4 h-4" />
                 </a>
               </Button>
             </div>
