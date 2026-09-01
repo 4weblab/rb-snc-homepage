@@ -7,6 +7,7 @@ import Servizi from "./pages/Servizi";
 import Realizzazioni from "./pages/Realizzazioni";
 import Certificazioni from "./pages/Certificazioni";
 import Contatti from "./pages/Contatti";
+import FourWebLab from "./pages/FourWebLab";
 import NotFound from "./pages/NotFound";
 import CookiePolicy from "./pages/CookiePolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/realizzazioni" element={<Realizzazioni />} />
           <Route path="/certificazioni" element={<Certificazioni />} />
           <Route path="/contatti" element={<Contatti />} />
+          <Route path="/4weblab" element={<FourWebLab />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
