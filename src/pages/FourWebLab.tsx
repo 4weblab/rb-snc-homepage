@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { localBusinessRef, SITE_URL } from "@/lib/business";
 import {
@@ -9,7 +8,6 @@ import {
   Gauge,
   MapPinned,
   Phone,
-  ArrowRight,
   ExternalLink,
   FileText,
   Quote,
@@ -191,14 +189,6 @@ const FourWebLab = () => (
             </div>
           </div>
 
-          <div className="mt-12 text-center">
-            <Button asChild variant="hero" size="lg">
-              <Link to="/contatti">
-                Richiedi un sopralluogo
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
     </main>
