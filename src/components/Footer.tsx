@@ -150,14 +150,12 @@ const Footer = () => {
           </p>
           <p>
             Sito web Aziendale creato e gestito da{" "}
-            <a
-              href="https://4weblab.it"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/4weblab"
               className="text-background/60 hover:text-primary transition-colors underline-offset-2 hover:underline"
             >
               4 Web Lab | Siti web per negozi, professionisti e aziende
-            </a>
+            </Link>
           </p>
         </div>
       </div>
