@@ -5,6 +5,7 @@
 /clienti.asp          /realizzazioni    301
 /informativa.asp      /certificazioni   301
 
-# SPA fallback: tutte le rotte non corrispondenti a file statici vengono
-# servite da index.html (React Router gestisce il routing, inclusa /404).
-/*    /index.html   200
+# Ogni pagina del sito è generata staticamente in fase di build:
+# le rotte reali sono file HTML serviti direttamente da Netlify.
+# Tutto il resto risponde con la pagina 404 e un vero stato HTTP 404.
+/*    /404.html   404
